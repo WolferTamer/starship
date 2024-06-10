@@ -1,11 +1,21 @@
 import 'dotenv/config'
-import { Client } from 'discord.js'
+import { Client, Collection, Events, IntentsBitField } from "discord.js";
 
 const client = new Client({
-intents: ['Guilds', 'GuildMessages', 'GuildMembers']
+intents: [
+    IntentsBitField.Flags.Guilds, 
+    IntentsBitField.Flags.GuildMembers, 
+    IntentsBitField.Flags.GuildMessages]
 })
 
-client.on('ready', (c)=> {
-    console.log(`${c.user.username} is online`);
+client.commands = new Collection()
+client.events = new Collection()
+
+client.on('ready', () => {
+
+    ['command_handler', 'event_handler'].forEach(handler => {
+        require(`./handlers/${handler}`)(client);
+    })
 })
+
 client.login(process.env.TOKEN)
