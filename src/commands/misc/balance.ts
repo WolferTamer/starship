@@ -6,6 +6,6 @@ module.exports = {
 		.setName('balance')
 		.setDescription('Shows your balance!'),
 	async execute(interaction: CommandInteraction, profileData: any) {
-		return `Wow! your balance is ${profileData.balance}`;
+		return {text:`Wow! your balance is ${profileData.balance}`};
 	},
 };

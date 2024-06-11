@@ -32,10 +32,16 @@ module.exports = {
         }
 
         try {
+            let commandRes = await command.execute(interaction, profileData);
             let response = prefix;
-            response += await command.execute(interaction, profileData);
+            response += commandRes.text;
             response += postfix;
-            interaction.reply(response);
+            if(commandRes.embeds) {
+                interaction.reply({embeds:commandRes.embeds});
+                if(response !== "") {interaction.channel?.send(response);}
+            } else {
+                interaction.reply(response);
+            }
         } catch (error) {
             console.error(error);
             if (interaction.replied || interaction.deferred) {
