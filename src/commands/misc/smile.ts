@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('smile')
 		.setDescription('Draws a smiley face!'),
-	async execute(interaction: CommandInteraction, profileData: mongoose.Document) {
+	async execute(interaction: CommandInteraction, profileData: any) {
         const embed = new EmbedBuilder()
         .setColor(0xFFFFFF)
         .setTitle("A Smile!")

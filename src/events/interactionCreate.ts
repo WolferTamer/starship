@@ -31,6 +31,8 @@ module.exports = {
             return;
         }
 
+        profileData.save();
+
         try {
             let commandRes = await command.execute(interaction, profileData);
             let response = prefix;
