@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import * as mongoose from 'mongoose'
 import { Client, Collection, Events, IntentsBitField } from "discord.js";
 
 const client = new Client({
@@ -17,5 +18,11 @@ client.on('ready', () => {
         require(`./handlers/${handler}`)(client);
     })
 })
+
+mongoose.connect(process.env.MONGODB_SRV!).then(async()=> {
+    console.log('Connected to the database!');
+}).catch((err)=> {
+    console.log(err);
+});
 
 client.login(process.env.TOKEN)

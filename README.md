@@ -1,6 +1,6 @@
 # Starship
 
-This programs requires a `.env` file in order to run. The values you need are TOKEN (the bot's unique token), CLIENT (the bot's ID), and GUILD (the local guild to register commands to)
+This programs requires a `.env` file in order to run. The values you need are TOKEN (the bot's unique token), CLIENT (the bot's ID), GUILD (the local guild to register commands to), and MONGODB_SRV (the path to the mongodb server)
 
 `npm run dev` to run in dev mode.
 
