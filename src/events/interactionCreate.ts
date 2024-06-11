@@ -4,7 +4,7 @@ const UserModel = require('../utils/schema')
 
 module.exports = {
 	name: Events.InteractionCreate,
-	once: true,
+	once: false,
 	async execute(interaction: Interaction) {
 		if (!interaction.isChatInputCommand()) return;
         let prefix = "";
