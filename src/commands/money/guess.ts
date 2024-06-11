@@ -15,7 +15,7 @@ module.exports = {
         const options = interaction.options;
         const guess = options.getInteger('number')!;
         if(profileData.balance < 50) {
-            return "I'm sorry, you need $50 or more to play"
+            return {text:"I'm sorry, you need $50 or more to play"}
         }
         let balChange = 0;
         let text = '';
