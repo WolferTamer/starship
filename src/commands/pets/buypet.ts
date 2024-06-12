@@ -28,10 +28,14 @@ module.exports = {
             .setColor(0x0565ff)
             .setDescription(`Congratulations, you bought a ${petName}!`)
     
+        let newPet = {
+            petid:index,
+            petname:pets.pets[index].name
+        }
         const response2 = await UserModel.findOneAndUpdate({
             userid: interaction.user.id
         }, {
-            $set: {pet:index},
+            $push: {pets:newPet},
             $inc: {balance:-pets.pets[index].cost}
         });
         

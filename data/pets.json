@@ -4,27 +4,31 @@
         "icon":"🐱",
         "description": "The classic kitty will hang out with you and snuggle when you're laying down!\nThey'll give you passive rewards.",
         "badge":1,
-        "cost":1000
+        "cost":1000,
+        "postchance":0.1
     },
     {
         "name": "Puppy",
         "icon":"🐶",
         "description": "The classic puppy will demand constant attention and play, make sure to give them treats!\nThey'll give you simple tasks to earn rewards.",
         "badge":1,
-        "cost":1000
+        "cost":1000,
+        "postchance":0.1
     },
     {
         "name": "Bear",
         "icon":"🐻",
         "description": "The bear will give you constant protection and a fuzzy friend to cozy up with!\nThey'll help you in battles.",
         "badge":4,
-        "cost":50000
+        "cost":50000,
+        "postchance":0
     },
     {
         "name": "Bunny",
         "icon": "🐰",
         "description": "This little guy will hop around without a care in the world, gathering tons of veggies!\nThey'll automatically collect some of your items.",
         "badge":2,
-        "cost":8000
+        "cost":8000,
+        "postchance":0
     }
 ]}

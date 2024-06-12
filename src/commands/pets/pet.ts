@@ -25,17 +25,24 @@ module.exports = {
             user = interaction.user
         }
 
-        if(profileData.pet < 0) {
+        if(profileData.pets.length < 1) {
             return {text:"This user doesn't have a pet yet."}
         }
 
-        const pet = pets.pets[profileData.pet]
-
         let embed = new EmbedBuilder()
-            .setTitle(`${pet.name} ${pet.icon}`)
-            .setDescription(pet.description)
+            .setTitle(`Your Pets`)
+            .setDescription('A list of all your pets')
             .setColor(0x0565ff)
 
+		profileData.pets.forEach((obj : any, index : number) => {
+			const pet = pets.pets[obj.petid]
+			let nameVal = `${obj.petname} ${pet.icon}`
+			if(index==profileData.pet) { nameVal+=' (Chosen)'}
+			embed.addFields( {
+				name:nameVal,
+				value:pet.description
+			})
+		})
 		return {text:``, embeds:[embed]};
 	},
 };

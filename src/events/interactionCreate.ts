@@ -1,5 +1,5 @@
 import { Client, CommandInteraction, Events, Interaction } from "discord.js";
-import * as mongoose from 'mongoose'
+const petPostFix =require( '../utils/petPostFix')
 const UserModel = require('../utils/schema')
 //Gets called whenever an interaction (command) occurs.
 
@@ -39,12 +39,19 @@ module.exports = {
         //Save the profile so as to register any new values with defaults
         profileData.save();
 
+        if(profileData.pet > -1) {
+            const petPost = petPostFix(profileData)
+            if(petPost) {
+                postfix += '\n'+ petPost + '\n'
+            }
+        }
+
         try {
             //Try running the command. Respond using the return value
             //Also add a prefix and postfix, which will be added before/after the response respectively.
             let commandRes = await command.execute(interaction, profileData);
             let response = prefix;
-            response += commandRes.text;
+            response += `${commandRes.text}`;
             response += postfix;
             if(commandRes.embeds) {
                 interaction.reply({embeds:commandRes.embeds});
