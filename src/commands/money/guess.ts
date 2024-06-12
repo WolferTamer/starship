@@ -13,7 +13,7 @@ module.exports = {
             .setName('amount').setDescription('The amount of money you want to bet, minimum 50')
         .setMinValue(50).setMaxValue(100000).setRequired(false)),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
-        const rand = Math.round(Math.random()*10);
+        const rand = Math.floor(Math.random()*10)+1;
         const options = interaction.options;
         const guess = options.getInteger('number')!;
         const amount = options.getInteger('amount') ?? 50;
@@ -28,12 +28,12 @@ module.exports = {
         //check which number is guessed and award based off of it.
         if(guess == rand) {
             balChange=amount*2;
-            text = `Your guess of ${guess} was exactly right! You earned ${amount*2}`
+            text = `Your guess of ${guess} was exactly right! You earned $${amount*2}`
         }else if (Math.abs(guess-rand) <=2){
             text = `Your guess of ${guess} was 2 or less away from ${rand}, so you won't lose any money.`
         } else {
             balChange = -amount;
-            text = `Your guess of ${guess} was more than 2 away from ${rand}, you lost ${amount}`
+            text = `Your guess of ${guess} was more than 2 away from ${rand}, you lost $${amount}`
         }
 
         if(balChange != 0) {
