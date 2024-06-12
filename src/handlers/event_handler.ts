@@ -8,6 +8,7 @@ module.exports = async (client: Client) => {
     const eventsPath = path.join(__dirname, '../events');
     const eventFiles = fs.readdirSync(eventsPath).filter((file:any) => file.endsWith('.js') || file.endsWith('ts'));
 
+    //reads every file in /events/ and adds the .on/.once registers to them
     for (const file of eventFiles) {
         const filePath = path.join(eventsPath, file);
         const event = require(filePath);

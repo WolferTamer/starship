@@ -1,15 +1,19 @@
 import { Client, CommandInteraction, Events, Interaction } from "discord.js";
 import * as mongoose from 'mongoose'
 const UserModel = require('../utils/schema')
+//Gets called whenever an interaction (command) occurs.
 
 module.exports = {
 	name: Events.InteractionCreate,
 	once: false,
 	async execute(interaction: Interaction) {
+        //If it isnt a slash command, return.
 		if (!interaction.isChatInputCommand()) return;
         let prefix = "";
         let postfix = ""
         let profileData;
+
+        //Grab the user's data from the database. If none exist then create it and add a prefix for it.
         try{
             profileData = await UserModel.findOne({userid:interaction.user.id});
             if(!profileData) {
@@ -24,6 +28,7 @@ module.exports = {
             console.log(e)
         }
 
+        
         const command = interaction.client.commands.get(interaction.commandName);
 
         if (!command) {
@@ -31,9 +36,12 @@ module.exports = {
             return;
         }
 
+        //Save the profile so as to register any new values with defaults
         profileData.save();
 
         try {
+            //Try running the command. Respond using the return value
+            //Also add a prefix and postfix, which will be added before/after the response respectively.
             let commandRes = await command.execute(interaction, profileData);
             let response = prefix;
             response += commandRes.text;

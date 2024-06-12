@@ -10,6 +10,7 @@ module.exports = async (client: Client) => {
     const foldersPath = path.join(__dirname, '../commands');
     const commandFolders = fs.readdirSync(foldersPath);
     
+    //Goes through every subfolder in src/commands/ and adds it to the list. 
     for (const folder of commandFolders) {
         const commandsPath = path.join(foldersPath, folder);
         const commandFiles = fs.readdirSync(commandsPath).filter((file: any) => file.endsWith('.js') || file.endsWith('.ts'));
@@ -28,7 +29,8 @@ module.exports = async (client: Client) => {
 
     const rest = new REST().setToken(process.env.TOKEN!);
 
-// and deploy your commands!
+    // and deploy your commands!
+    //Registers both the application and guild commands. Guild commands are registered in a specific server.
     (async () => {
         try {
             console.log(`Started refreshing ${commands.length} application (/) commands.`);

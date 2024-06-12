@@ -14,6 +14,8 @@ module.exports = {
         if(amount > profileData.balance) {
             return {text:`You don't have enough money to pay ${amount}`}
         }
+
+        //If any required vals do not exist, set them now.
         let data : any= {}
         if(!profileData.badgetier) {
             data["badgetier"] = 0;
@@ -29,9 +31,11 @@ module.exports = {
             })
         }
 
+    
         profileData = await UserModel.findOne({userid:interaction.user.id});
         const chances = badgeChances(amount)
 
+        //Get a random number then compare it to each chance to see which badge to award.
         const rand = Math.random();
         let text = ""
         let badgeRes = 0
@@ -49,6 +53,7 @@ module.exports = {
             badgeRes = 6
         }
 
+        //If the user already has a badge of equal or greater quality, don't change it.
         if(profileData.badgetier<badgeRes) {
             text = `${interaction.user} spent $${amount} and got a ${tierToColor(badgeRes)} badge! They now get even more special stuff!`
         } else {
@@ -63,6 +68,7 @@ module.exports = {
 };
 
 async function updateBadge(id:string, badge:number, amount:number) {
+    //Update the data. Don't send anything if no money was spent & the badge didn't change.
     if(amount == 0 && badge == 0) {
         return
     }
@@ -106,6 +112,7 @@ function badgeChances(amount:number) {
         dec = 1000
     }
 
+    //reduces the chances of a green badge, then adjusts all values to make the sum = 1
     if(amount < 100000) {
         const ratio = (amount-dec/10)/dec/10;
         chances[0]-=ratio;
