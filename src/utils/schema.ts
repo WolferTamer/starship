@@ -22,7 +22,8 @@ const baseSchema = new mongoose.Schema({
     badgetier: {type:Number,default:0},
     badgedate: {type:Date, default: Date.now},
     pet: {type:Number, default:-1},
-    pets: {type:[petSchema], default: []}
+    pets: {type:[petSchema], default: []},
+    muted: {type:Boolean, default: false}
     });
 
 const UserModel = mongoose.model('Base', baseSchema);
