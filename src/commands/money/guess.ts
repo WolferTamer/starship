@@ -19,7 +19,8 @@ module.exports = {
         const amount = options.getInteger('amount') ?? 50;
 
         if(profileData.balance < amount) {
-            return {text:"I'm sorry, you don't have enough to play with that amount."}
+            interaction.reply("I'm sorry, you don't have enough to play with that amount.")
+            return;
         }
 
         let balChange = 0;
@@ -46,6 +47,6 @@ module.exports = {
             });
         }
         
-		return {text:text};
+		interaction.reply(text);
 	},
 };

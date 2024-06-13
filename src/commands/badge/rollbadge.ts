@@ -12,7 +12,8 @@ module.exports = {
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
         const amount = interaction.options.getInteger('amount') ?? 0;
         if(amount > profileData.balance) {
-            return {text:`You don't have enough money to pay ${amount}`}
+            interaction.reply(`You don't have enough money to pay ${amount}`)
+            return;
         }
 
         //If any required vals do not exist, set them now.
@@ -63,7 +64,7 @@ module.exports = {
 
         updateBadge(interaction.user.id, badgeRes, amount)
         
-		return {text:text};
+		interaction.reply(text);
 	},
 };
 

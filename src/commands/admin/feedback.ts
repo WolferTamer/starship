@@ -17,7 +17,8 @@ module.exports = {
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
 
         if(profileData.muted) {
-            return {text:`I'm sorry, you are banned from providing feedback. If this has been done in error please contact a developer.`}
+            interaction.reply(`I'm sorry, you are banned from providing feedback. If this has been done in error please contact a developer.`)
+            return;
         }
         const options = interaction.options;
         const type = options.getString('type')!;
@@ -43,6 +44,6 @@ module.exports = {
 
         (interaction.client.channels.cache.get(process.env.FEEDBACK!) as TextChannel).send({embeds:[embed]})
 
-		return {text:'You sent the preceding message to the admins', embeds:[embed]};
+		interaction.reply({embeds:[embed]});
 	},
 };

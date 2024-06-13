@@ -6,6 +6,6 @@ module.exports = {
 		.setName('ping')
 		.setDescription('Replies with Pong!'),
 	async execute(interaction: CommandInteraction, profileData: mongoose.Document) {
-		return {text:`Pong! Latency is ${Date.now() - interaction.createdTimestamp}ms`};
+		interaction.reply(`Pong! Latency is ${Date.now() - interaction.createdTimestamp}ms`);
 	},
 };

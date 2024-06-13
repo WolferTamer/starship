@@ -17,16 +17,19 @@ module.exports = {
         const recipient = options.getUser('user')!;
         const amount = options.getInteger('amount')!;
         if(profileData.balance < amount) {
-            return {text:"You do not have the balance to pay this much."}
+            interaction.reply("You do not have the balance to pay this much.")
+            return;
         }
         try{
             const recData = await UserModel.findOne({userid:recipient.id});
             if(!recData) {
-                return {text:"This user has not used this bot and does not have a profile."}
+                interaction.reply("This user has not used this bot and does not have a profile.")
+                return;
             } 
         } catch (e) {
             console.log(e)
-            return {text:"An error occured. please try again."}
+            interaction.reply("An error occured. please try again.")
+            return;
         }
 
         const response1 = await UserModel.findOneAndUpdate({
@@ -42,6 +45,6 @@ module.exports = {
             $inc: {balance:amount}
         });
 
-		return {text:`You paid $${amount} to ${recipient}, your remaining balance is ${profileData.balance-amount}`};
+		interaction.reply(`You paid $${amount} to ${recipient}, your remaining balance is ${profileData.balance-amount}`);
 	},
 };

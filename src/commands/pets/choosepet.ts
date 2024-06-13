@@ -14,7 +14,8 @@ module.exports = {
 
         let index = profileData.pets.findIndex((element : any) => element.petname.toLowerCase() === name.toLowerCase())
         if(index < 0) {
-            return {text: `You don't seem to have a pet named ${name}`}
+            interaction.reply( `You don't seem to have a pet named ${name}`)
+            return;
         }
 
         const response2 = await UserModel.findOneAndUpdate({
@@ -25,6 +26,6 @@ module.exports = {
             }
         });
 
-		return {text:`${name} was chosen`};
+		interaction.reply(`${name} was chosen`);
 	},
 };

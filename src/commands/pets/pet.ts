@@ -15,18 +15,21 @@ module.exports = {
 			try{
 				profileData = await UserModel.findOne({userid:user.id});
 				if(!profileData) {
-					return {text:"This user has not used this bot and does not have a profile."}
+					interaction.reply("This user has not used this bot and does not have a profile.")
+					return;
 				}
 			} catch (e) {
 				console.log(e)
-				return {text:"An error occured. please try again."}
+				interaction.reply("An error occured. please try again.")
+				return;
 			}
 		} else {
             user = interaction.user
         }
 
         if(profileData.pets.length < 1) {
-            return {text:"This user doesn't have a pet yet."}
+            interaction.reply("This user doesn't have a pet yet.")
+			return;
         }
 
         let embed = new EmbedBuilder()
@@ -43,6 +46,6 @@ module.exports = {
 				value:pet.description
 			})
 		})
-		return {text:``, embeds:[embed]};
+		interaction.reply({embeds:[embed]});
 	},
 };

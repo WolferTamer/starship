@@ -14,7 +14,7 @@ module.exports = {
                 {name:"Stat Changes:", value:"+5 Awesome \n+7 Catch Rate\n+1000000 Cuteness"}
             )
             .setThumbnail('https://png.pngtree.com/png-vector/20230116/ourmid/pngtree-3d-star-badge-clipart-png-image_6564314.png')
-		return {text:``, embeds:[embed]};
+		interaction.reply({embeds:[embed]});
 	},
 };
 

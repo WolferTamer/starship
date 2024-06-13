@@ -13,7 +13,19 @@ for(let [key,value] of Object.entries(items)) {
 let petSchema = new mongoose.Schema({
     petid: {type:Number,default:0,required:true},
     petname: {type:String,default:''}
-})
+});
+
+const weaponSchema = new mongoose.Schema({
+    id: {type:Number, default:-1},
+    grade: {type:Number,default:1}
+});
+
+const droneSchema = new mongoose.Schema({
+    speed: {type:Number,default:1},
+    quality: {type:Number,default:1},
+    travel: {type:Number,default:1},
+    amount: {type:Number,default:10}
+});
 
 const baseSchema = new mongoose.Schema({
     userid: {type: String,require:true, unique:true}, 
@@ -23,7 +35,9 @@ const baseSchema = new mongoose.Schema({
     badgedate: {type:Date, default: Date.now},
     pet: {type:Number, default:-1},
     pets: {type:[petSchema], default: []},
-    muted: {type:Boolean, default: false}
+    muted: {type:Boolean, default: false},
+    weapons: {type:[weaponSchema],default:[{id:0,grade:1},{id:0,grade:1},{id:0,grade:1}]},
+    drones: {type:[droneSchema],default:[{}]}
     });
 
 const UserModel = mongoose.model('Base', baseSchema);

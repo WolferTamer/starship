@@ -21,17 +21,21 @@ module.exports = {
             try{
                 profileData = await UserModel.findOne({userid:recipient.id});
                 if(!profileData) {
-                    return {text:"This user has not used this bot and does not have a profile."}
+                    interaction.reply("This user has not used this bot and does not have a profile.")
+                    return;
                 } 
             } catch (e) {
                 console.log(e)
-                return {text:"An error occured. please try again."}
+                interaction.reply("An error occured. please try again.")
+                return;
             }
         }
         if(index < 0) {
-            return {text:`The pet ${petName} does not exist.`}
+            interaction.reply(`The pet ${petName} does not exist.`)
+            return;
         } else if (!isAdmin){
-            return {text:`You are not an admin.`}
+            interaction.reply(`You are not an admin.`)
+            return;
         }
 
         let newPet = {
@@ -47,9 +51,10 @@ module.exports = {
             });
         } catch(e) {
             console.log(e);
-            return {text:'An error occured. please try again.'}
+            interaction.reply('An error occured. please try again.')
+            return;
         }
         
-		return {text:`${interaction.user} gave ${recipient ?? 'themselves'} a ${petName}`};
+		interaction.reply(`${interaction.user} gave ${recipient ?? 'themselves'} a ${petName}`);
 	},
 };

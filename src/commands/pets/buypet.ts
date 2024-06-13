@@ -15,13 +15,17 @@ module.exports = {
 
 
         if(index < 0) {
-            return {text:`The pet ${petName} does not exist.`}
+            interaction.reply(`The pet ${petName} does not exist.`)
+            return;
         } else if (pets.pets[index].badge > profileData.badgetier){
-            return {text:`You don't have a high enough badge tier to buy ${petName}.`}
+            interaction.reply(`You don't have a high enough badge tier to buy ${petName}.`)
+            return;
         }  else if (profileData.balance < pets.pets[index].cost) {
-            return {text:`You don't have enough money to buy ${petName}.`}
+            interaction.reply(`You don't have enough money to buy ${petName}.`)
+            return;
         } else if(owned >= 0) {
-            return {text: `You already own a ${petName}`}
+            interaction.reply( `You already own a ${petName}`)
+            return;
         }
 
 
@@ -41,6 +45,6 @@ module.exports = {
             $inc: {balance:-pets.pets[index].cost}
         });
         
-		return {text:``,embeds:[embed]};
+		interaction.reply({embeds:[embed]});
 	},
 };

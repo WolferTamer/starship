@@ -49,16 +49,11 @@ module.exports = {
         try {
             //Try running the command. Respond using the return value
             //Also add a prefix and postfix, which will be added before/after the response respectively.
-            let commandRes = await command.execute(interaction, profileData);
+            await command.execute(interaction, profileData);
             let response = prefix;
-            response += `${commandRes.text}`;
             response += postfix;
-            if(commandRes.embeds) {
-                interaction.reply({embeds:commandRes.embeds});
-                if(response !== "") {interaction.channel?.send(response);}
-            } else {
-                interaction.reply(response);
-            }
+            if(response !== "") {interaction.channel?.send(response);}
+            
         } catch (error) {
             console.error(error);
             if (interaction.replied || interaction.deferred) {

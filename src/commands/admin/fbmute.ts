@@ -12,15 +12,22 @@ module.exports = {
         const isAdmin = admins.findIndex((item) => item === interaction.user.id) >= 0
         const recipient = interaction.options.getUser('user')!
 
+        if(!isAdmin) {
+            interaction.reply("You are not an admin")
+            return;
+        }
+
         if(recipient) {
             try{
                 profileData = await UserModel.findOne({userid:recipient.id});
                 if(!profileData) {
-                    return {text:"This user has not used this bot and does not have a profile."}
+                    interaction.reply("This user has not used this bot and does not have a profile.")
+                    return;
                 } 
             } catch (e) {
                 console.log(e)
-                return {text:"An error occured. please try again."}
+                interaction.reply("An error occured. please try again.")
+                return;
             }
         }
         const isMuted = profileData.muted
@@ -40,9 +47,10 @@ module.exports = {
             });
         } catch(e) {
             console.log(e);
-            return {text:'An error occured. please try again.'}
+            interaction.reply('An error occured. please try again.')
+            return;
         }
 
-		return {text:text};
+		interaction.reply(text);
 	},
 };

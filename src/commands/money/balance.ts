@@ -14,16 +14,19 @@ module.exports = {
 			try{
 				const recData = await UserModel.findOne({userid:user.id});
 				if(!recData) {
-					return {text:"This user has not used this bot and does not have a profile."}
+					interaction.reply("This user has not used this bot and does not have a profile.")
+					return;
 				} else {
-					return {text:`${user}'s balance is $${recData.balance}`}
+					interaction.reply(`${user}'s balance is $${recData.balance}`)
+					return;
 				} 
 			} catch (e) {
 				console.log(e)
-				return {text:"An error occured. please try again."}
+				interaction.reply("An error occured. please try again.")
+				return;
 			}
 		}
 
-		return {text:`Wow! your balance is $${profileData.balance}`};
+		interaction.reply(`Wow! your balance is $${profileData.balance}`);
 	},
 };

@@ -1,0 +1,19 @@
+{
+    "speed": [
+        {"item":"spacesilk","amount":10},
+        {"item":"spacesilk","amount":10},
+        {"item":"spacesilk","amount":30}
+    ],
+    "quality": [
+        {"item":"spacesilk","amount":5},
+        {"item":"spacesilk","amount":5}
+    ],
+    "travel": [
+        {"item":"spacesilk","amount":15},
+        {"item":"spacesilk","amount":15}
+    ],
+    "amount": [
+        {"item":"spacesilk","amount":2},
+        {"item":"spacesilk","amount":2}
+    ]
+}

@@ -10,6 +10,6 @@ module.exports = {
         .setColor(0xFFFFFF)
         .setTitle("A Smile!")
         .setImage('https://i.pinimg.com/564x/6a/ba/8b/6aba8b5c288c728568945c53625eba87.jpg')
-		return {text:'',embeds:[embed]};
+		interaction.reply({embeds:[embed]});
 	},
 };

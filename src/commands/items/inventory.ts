@@ -20,6 +20,6 @@ module.exports = {
         }
     
 
-		return {text:``,embeds:[embed]};
+		interaction.reply({embeds:[embed]});
 	},
 };
