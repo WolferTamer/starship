@@ -11,6 +11,8 @@ module.exports = {
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
         const petName = interaction.options.getString('pet')!.toLowerCase()
         const index = pets.pets.findIndex((obj) => obj.name.toLowerCase() === petName)
+        const owned = profileData.pets.findIndex((obj : any) => obj.petid == index)
+
 
         if(index < 0) {
             return {text:`The pet ${petName} does not exist.`}
@@ -18,8 +20,8 @@ module.exports = {
             return {text:`You don't have a high enough badge tier to buy ${petName}.`}
         }  else if (profileData.balance < pets.pets[index].cost) {
             return {text:`You don't have enough money to buy ${petName}.`}
-        } else if (profileData.pet == index) {
-            return {text:`You already own ${petName}.`}
+        } else if(owned >= 0) {
+            return {text: `You already own a ${petName}`}
         }
 
 

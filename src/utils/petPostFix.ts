@@ -1,6 +1,8 @@
 import * as pets from '../../data/pets.json'
 const UserModel = require('../utils/schema')
 
+//A method to be called and added to the postfix of a message. It take in the equipped pet and gives a chance for a
+//random event to happen.
 module.exports = (profileData: any) => {
     if(profileData.pet < 0) { return; }
     const pet =  pets.pets[profileData.pets[profileData.pet].petid]
@@ -8,10 +10,10 @@ module.exports = (profileData: any) => {
     const rand = Math.random()
 
     if(rand < chance) {
-        if(profileData.pet == 0) {
+        if(profileData.pets[profileData.pet].petid == 0) {
             giveItem('spacesilk',profileData)
             return `${profileData.pets[profileData.pet].petname} ${pet.icon} gave you 1 space silk!`
-        } else if(profileData.pet == 1){
+        } else if(profileData.pets[profileData.pet].petid == 1){
             return `${profileData.pets[profileData.pet].petname} ${pet.icon} wants to play fetch!`
         }
     }

@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription('Look at all your items'),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
 		let embed = new EmbedBuilder()
-            .setTitle('inventory')
+            .setTitle('Inventory')
             .setColor(0x0565ff)
             .setDescription('A list of all your items.')
         for(let [key,value] of Object.entries(items)) {

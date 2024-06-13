@@ -4,10 +4,12 @@ import * as pets from '../../data/pets.json'
 
 let itemSchema = new mongoose.Schema()
 
+//Dynamically adds a count entries for all the items in /data/items.json
 for(let [key,value] of Object.entries(items)) {
     itemSchema.add({[key]:{type:Number,default:0}})
 }
 
+//A template for pets. May have levels in the future.
 let petSchema = new mongoose.Schema({
     petid: {type:Number,default:0,required:true},
     petname: {type:String,default:''}
