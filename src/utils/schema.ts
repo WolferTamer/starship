@@ -24,7 +24,9 @@ const droneSchema = new mongoose.Schema({
     speed: {type:Number,default:1},
     quality: {type:Number,default:1},
     travel: {type:Number,default:1},
-    amount: {type:Number,default:10}
+    amount: {type:Number,default:10},
+    sent: {type:Date, default:new Date(0)},
+    working: {type:Boolean, default: false}
 });
 
 const baseSchema = new mongoose.Schema({

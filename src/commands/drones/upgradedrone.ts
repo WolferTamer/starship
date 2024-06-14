@@ -32,7 +32,7 @@ module.exports = {
                 }
 
                 if(upgrades[type as keyof typeof upgrades][tier].amount > profileData.items[upgrades[type as keyof typeof upgrades][tier].item]) {
-                    await i.reply(`You do not have enough materials to upgrade ${type}`)
+                    await i.reply({content:`You do not have enough materials to upgrade ${type}`,ephemeral:true})
                     return;
                 }
                 
@@ -47,7 +47,7 @@ module.exports = {
 
                 await response.edit(buildEmbed(profileData.drones[botNum-1],botNum))
 
-                await i.reply(`You spent ${upgrades[type as keyof typeof upgrades][tier].amount} ${upgrades[type as keyof typeof upgrades][tier].item} to upgrade ${type}`)
+                await i.reply({content:`You spent ${upgrades[type as keyof typeof upgrades][tier].amount} ${upgrades[type as keyof typeof upgrades][tier].item} to upgrade ${type}`,ephemeral:true})
             }
         });
 	},
@@ -101,6 +101,14 @@ function buildEmbed(drone: any, botNum: number) {
         if(drone.travel < upgrades.travel.length) {
             upgradeVariety.setDisabled(false);
             varietyVal = `${drone.travel+1} - ${upgrades.travel[drone.travel].amount} ${upgrades.travel[drone.travel].item}`
+        }
+
+        if(drone.working) {
+            upgradeVariety.setDisabled(true);
+            upgradeAmount.setDisabled(true);
+            upgradeQuality.setDisabled(true);
+            upgradeSpeed.setDisabled(true);
+            embed.setTitle(`Upgrade Drone ${botNum} (WORKING)`)
         }
         embed.addFields([
             {name:`Speed💨: ${Math.round((2/drone.speed)*drone.amount*100)/100} minutes`,

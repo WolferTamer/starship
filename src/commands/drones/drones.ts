@@ -12,7 +12,7 @@ module.exports = {
         let i = 1
         for(let drone of profileData.drones) {
             embed.addFields([
-                {name:`🤖 Drone ${i}`,
+                {name:`🤖 Drone ${i} ${drone.working ? '(WORKING)':''}`,
                 value:`- Speed: ${Math.round((2/drone.speed)*drone.amount*100)/100} minutes\n- Amount: ${drone.amount}\n- Quality: ${drone.quality}\n- Variety: ${drone.travel}`}
             ])
             i++
