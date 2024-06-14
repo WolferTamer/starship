@@ -23,7 +23,7 @@ module.exports = {
         .setMinValue(1)
     ),
   async execute(interaction: ChatInputCommandInteraction, profileData: any) {
-    const itemName = interaction.options.getString("item")!;
+    const itemName = interaction.options.getString("item")!.toLowerCase().replace(/\s/g, '');;
     const amount = interaction.options.getInteger("amount") ?? profileData.items[itemName]
     const item = items[itemName as keyof typeof items];
     if (!item) {
@@ -46,7 +46,7 @@ module.exports = {
     let embed = new EmbedBuilder()
       .setTitle(`Sold ${item.name}`)
       .setColor(0x0565ff)
-      .setDescription(`Sold ${profileData.items[itemName]} ${item.name} for ${cost}`);
+      .setDescription(`Sold ${amount} ${item.name} for ${cost}`);
 
     const response = await UserModel.findOneAndUpdate({
         userid: interaction.user.id

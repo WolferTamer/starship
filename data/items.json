@@ -1,22 +1,22 @@
 {
     "spacesilk" : {
         "name":"Space Silk",
-        "emoji": "🧵",
+        "emoji": "1251306207839387648",
         "rarity": 0
     },
     "wobblywool": {
-        "name":"Wobbly wool",
-        "emoji": "🧶",
+        "name":"Wobbly Wool",
+        "emoji": "1251306179775430707",
         "rarity": 1
     },
     "luxuryleather": {
         "name": "Luxury Leather",
-        "emoji": "💼",
+        "emoji": "1251301997886570496",
         "rarity":2
     },
     "orbitalore": {
         "name":"Orbital Ore",
-        "emoji": "⛰️",
+        "emoji": "909345157877465129",
         "rarity":0
     }
 
