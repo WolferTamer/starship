@@ -2,6 +2,22 @@
     "spacesilk" : {
         "name":"Space Silk",
         "emoji": "🧵",
+        "rarity": 0
+    },
+    "wobblywool": {
+        "name":"Wobbly wool",
+        "emoji": "🧶",
         "rarity": 1
+    },
+    "luxuryleather": {
+        "name": "Luxury Leather",
+        "emoji": "💼",
+        "rarity":2
+    },
+    "orbitalore": {
+        "name":"Orbital Ore",
+        "emoji": "⛰️",
+        "rarity":0
     }
+
 }

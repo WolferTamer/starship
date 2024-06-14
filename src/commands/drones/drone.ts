@@ -1,6 +1,7 @@
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, ComponentType, EmbedBuilder, SlashCommandBuilder} from "discord.js";
 const UserModel = require('../../utils/schema')
-import * as items from '../../../data/items.json'
+const rollItems = require('../../utils/rollItems')
+
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('drone')
@@ -26,7 +27,7 @@ module.exports = {
             .setDisabled(false)
         if(drone.working) {
             if(Date.now()-drone.sent.getTime() >= workTime*60000) {
-                let newItems = rollAll(drone)
+                let newItems = rollItems(drone)
                 let stringVal = ''
                 for(let [key,val] of Object.entries(newItems)) {
                     stringVal+=`${val} ${key.split('.')[1]}\n`
@@ -88,22 +89,4 @@ module.exports = {
             }
         })
     }
-}
-
-function rollAll(drone:any) {
-    let items: any= {};
-    for(let i = 0; i < drone.amount; i++) {
-        const item : string = rollItem(drone)
-        if(items[item]){
-            items[item]+=1
-        } else {
-            items[item] = 1
-        }
-    }
-    return items
-}
-
-function rollItem(drone:any) {
-
-    return 'items.spacesilk'
 }
