@@ -11,7 +11,7 @@ module.exports = {
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
         const botNum = interaction.options.getInteger('drone')!;
         if(botNum > profileData.drones.length) {
-            interaction.reply( `You don't have that many bots!`)
+            interaction.reply({content:`You don't have that many bots!`,ephemeral:true})
             return;
         }
         const drone = profileData.drones[botNum-1]

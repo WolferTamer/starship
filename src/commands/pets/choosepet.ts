@@ -14,7 +14,7 @@ module.exports = {
 
         let index = profileData.pets.findIndex((element : any) => element.petname.toLowerCase() === name.toLowerCase())
         if(index < 0) {
-            interaction.reply( `You don't seem to have a pet named ${name}`)
+            interaction.reply( {content:`You don't seem to have a pet named ${name}`,ephemeral:true})
             return;
         }
 

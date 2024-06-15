@@ -55,16 +55,26 @@ module.exports = {
         }
 
         //If the user already has a badge of equal or greater quality, don't change it.
+        let embed:EmbedBuilder
         if(profileData.badgetier<badgeRes) {
-            text = `${interaction.user} spent $${amount} and got a ${tierToColor(badgeRes)} badge! They now get even more special stuff!`
+            embed = new EmbedBuilder()
+                .setTitle(`${interaction.user.displayName} Earned a New Badge!`)
+                .setTimestamp(Date.now())
+                .setColor(0x00FF00)
+                .setDescription(`You spent $${amount} and got a ${tierToColor(badgeRes)} badge, which is ${badgeRes-profileData.badgetier} better than your old badge.`)
+                .setFooter({text:`Check /badge to see what your new badge does.`})
         } else {
-            text = `${interaction.user} spent $${amount} and got a ${tierToColor(badgeRes)} badge! Their current badge will be kept.`
-            badgeRes = 0
+            embed = new EmbedBuilder()
+                .setTitle(`${interaction.user.displayName} Didn't Find a New Badge`)
+                .setTimestamp(Date.now())
+                .setColor(0xFF0000)
+                .setDescription(`You spent $${amount} and got a ${tierToColor(badgeRes)} badge, which isn't better than your current badge.`)
+                badgeRes = 0
         }
 
         updateBadge(interaction.user.id, badgeRes, amount)
         
-		interaction.reply(text);
+		interaction.reply({embeds:[embed]});
 	},
 };
 

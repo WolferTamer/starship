@@ -15,12 +15,12 @@ module.exports = {
 			try{
 				profileData = await UserModel.findOne({userid:user.id});
 				if(!profileData) {
-					interaction.reply("This user has not used this bot and does not have a profile.")
+					interaction.reply({content:"This user has not used this bot and does not have a profile.",ephemeral:true})
 					return;
 				}
 			} catch (e) {
 				console.log(e)
-				interaction.reply("An error occured. please try again.")
+				interaction.reply({content:"An error occured. please try again.",ephemeral:true})
 				return;
 			}
 		} else {
@@ -28,7 +28,7 @@ module.exports = {
         }
 
         if(profileData.pets.length < 1) {
-            interaction.reply("This user doesn't have a pet yet.")
+            interaction.reply({content:"This user doesn't have a pet yet.",ephemeral:true})
 			return;
         }
 

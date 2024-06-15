@@ -13,7 +13,7 @@ module.exports = {
         const recipient = interaction.options.getUser('user')!
 
         if(!isAdmin) {
-            interaction.reply("You are not an admin")
+            interaction.reply({content:"You are not an admin",ephemeral:true})
             return;
         }
 
@@ -21,12 +21,12 @@ module.exports = {
             try{
                 profileData = await UserModel.findOne({userid:recipient.id});
                 if(!profileData) {
-                    interaction.reply("This user has not used this bot and does not have a profile.")
+                    interaction.reply({content:"This user has not used this bot and does not have a profile.",ephemeral:true})
                     return;
                 } 
             } catch (e) {
                 console.log(e)
-                interaction.reply("An error occured. please try again.")
+                interaction.reply({content:"An error occured. please try again.",ephemeral:true})
                 return;
             }
         }
@@ -47,7 +47,7 @@ module.exports = {
             });
         } catch(e) {
             console.log(e);
-            interaction.reply('An error occured. please try again.')
+            interaction.reply({content:'An error occured. please try again.',ephemeral:true})
             return;
         }
 

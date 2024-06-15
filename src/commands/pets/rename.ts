@@ -18,7 +18,7 @@ module.exports = {
         //Finds the pet based on the name provided
         let index = profileData.pets.findIndex((element : any) => element.petname.toLowerCase() === oldName.toLowerCase())
         if(index < 0) {
-            interaction.reply( `You don't seem to have a pet named ${oldName}`)
+            interaction.reply( {content:`You don't seem to have a pet named ${oldName}`,ephemeral:true})
             return;
         }
 

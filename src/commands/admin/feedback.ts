@@ -17,7 +17,7 @@ module.exports = {
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
 
         if(profileData.muted) {
-            interaction.reply(`I'm sorry, you are banned from providing feedback. If this has been done in error please contact a developer.`)
+            interaction.reply({content:`I'm sorry, you are banned from providing feedback. If this has been done in error please contact a developer.`,ephemeral:true})
             return;
         }
         const options = interaction.options;
@@ -43,7 +43,7 @@ module.exports = {
             .setColor(color);
 
         (interaction.client.channels.cache.get(process.env.FEEDBACK!) as TextChannel).send({embeds:[embed]})
-
+        embed.setTitle(`Sent ${title} to the Developers`)
 		interaction.reply({embeds:[embed]});
 	},
 };

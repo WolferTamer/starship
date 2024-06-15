@@ -46,7 +46,7 @@ module.exports = {
     let embed = new EmbedBuilder()
       .setTitle(`Sold ${item.name}`)
       .setColor(0x0565ff)
-      .setDescription(`Sold ${amount} ${item.name} for ${cost}`);
+      .setDescription(`Sold ${amount} x ${interaction.client.emojis.cache.get(item.emoji)} ${item.name} for ${cost}`);
 
     const response = await UserModel.findOneAndUpdate({
         userid: interaction.user.id

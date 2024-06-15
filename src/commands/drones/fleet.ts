@@ -9,9 +9,10 @@ import {
 } from "discord.js";
 const UserModel = require("../../utils/schema");
 const rollItems = require("../../utils/rollItems");
+import {drones} from '../../../data/drones.json'
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("massdrone")
+    .setName("fleet")
     .setDescription("Send your drones out to work"),
   async execute(interaction: ChatInputCommandInteraction, profileData: any) {
     let workingDrones = "";
@@ -26,7 +27,7 @@ module.exports = {
       if (obj.working) {
         const workTime = (2 / obj.speed) * obj.amount;
         if (Date.now() - obj.sent.getTime() >= workTime * 60000) {
-          completedDrones += `${i + 1} `;
+          completedDrones += `${interaction.client.emojis.cache.get(drones[i].emoji)} `;
           let stuff = rollItems(obj);
           for (let [key, item] of Object.entries(stuff)) {
             if (inc[key]) {
@@ -37,10 +38,10 @@ module.exports = {
           }
           set[`drones.${i}.sent`] = Date.now();
         } else {
-          workingDrones += `${i + 1} `;
+          workingDrones += `${interaction.client.emojis.cache.get(drones[i].emoji)} `;
         }
       } else {
-        nonWorkingDrones += `${i + 1} `;
+        nonWorkingDrones += `${interaction.client.emojis.cache.get(drones[i].emoji)} `;
         set[`drones.${i}.sent`] = Date.now();
         set[`drones.${i}.working`] = true;
       }
@@ -75,7 +76,7 @@ module.exports = {
       );
     } catch (e) {
       console.log(e);
-      interaction.reply(`There was an error. Please try again`);
+      interaction.reply({content:`There was an error. Please try again`,ephemeral:true});
       return;
     }
 

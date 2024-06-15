@@ -1,6 +1,8 @@
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, ComponentType, EmbedBuilder, SlashCommandBuilder} from "discord.js";
 const UserModel = require('../../utils/schema')
 const rollItems = require('../../utils/rollItems')
+import items from '../../../data/items.json'
+import {drones} from '../../../data/drones.json'
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -11,13 +13,13 @@ module.exports = {
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
         const botNum = interaction.options.getInteger('drone')!;
         if(botNum > profileData.drones.length) {
-            interaction.reply( `You don't have that many bots!`)
+            interaction.reply({content:`You don't have that many bots!`,ephemeral:true})
             return;
         }
         const drone = profileData.drones[botNum-1]
         const workTime = (2/drone.speed)*drone.amount
         const embed = new EmbedBuilder()
-            .setTitle(`Drone #${botNum} 🤖`)
+            .setTitle(`Drone #${botNum} ${interaction.client.emojis.cache.get(drones[botNum-1].emoji)}`)
             .setColor(0x3ea5b3)
             .setDescription(`The info about this drone`)
         const startWork = new ButtonBuilder()
@@ -30,7 +32,8 @@ module.exports = {
                 let newItems = rollItems(drone)
                 let stringVal = ''
                 for(let [key,val] of Object.entries(newItems)) {
-                    stringVal+=`${val} ${key.split('.')[1]}\n`
+                    let item = items[key.split('.')[1] as keyof typeof items]
+                    stringVal+=`${val} x ${interaction.client.emojis.cache.get(item.emoji)} ${item.name}\n`
                 }
                 embed.addFields([
                     {name:`Finished working for ${drone.amount} items`,value:stringVal}
@@ -44,7 +47,7 @@ module.exports = {
                     });
                 }catch(e){
                     console.log(e)
-                    interaction.reply(`There was an error. Please try again`)
+                    interaction.reply({content:`There was an error. Please try again`,ephemeral:true})
                     return
                 }
             } else {
@@ -83,7 +86,7 @@ module.exports = {
                     i.reply({content:`Work started!`,ephemeral:true})
                 }catch(e){
                     console.log(e)
-                    i.reply(`There was an error. Please try again`)
+                    i.reply({content:`There was an error. Please try again`,ephemeral:true})
                     return
                 }
             }

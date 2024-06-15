@@ -15,16 +15,16 @@ module.exports = {
 
 
         if(index < 0) {
-            interaction.reply(`The pet ${petName} does not exist.`)
+            interaction.reply({content:`The pet ${petName} does not exist.`,ephemeral:true})
             return;
         } else if (pets.pets[index].badge > profileData.badgetier){
-            interaction.reply(`You don't have a high enough badge tier to buy ${petName}.`)
+            interaction.reply({content:`You don't have a high enough badge tier to buy ${petName}.`,ephemeral:true})
             return;
         }  else if (profileData.balance < pets.pets[index].cost) {
-            interaction.reply(`You don't have enough money to buy ${petName}.`)
+            interaction.reply({content:`You don't have enough money to buy ${petName}.`,ephemeral:true})
             return;
         } else if(owned >= 0) {
-            interaction.reply( `You already own a ${petName}`)
+            interaction.reply({content:`You already own a ${petName}`,ephemeral:true})
             return;
         }
 
