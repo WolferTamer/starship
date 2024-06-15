@@ -1,0 +1,35 @@
+{
+    "weapons":{
+        "redlaser": {
+            "ingredients": {
+                "spacesilk":20
+            },
+            "attacksenemies":true,
+            "damage":25,
+            "maxTargets":1,
+            "behavior":"highesthealth",
+            "name":"Red Laser Cannon"
+        },"glaive": {
+            "ingredients": {
+                "spacesilk":10,
+                "orbitalore":10
+            },
+            "attacksenemies":true,
+            "damage":15,
+            "maxTargets":2,
+            "behavior":"lowesthealth",
+            "name":"Electric Glaive Launcher"
+        },"torpedo": {
+            "ingredients": {
+                "spacesilk":10,
+                "orbitalore":10,
+                "wobblywool":20
+            },
+            "attacksenemies":true,
+            "damage":10,
+            "maxTargets":4,
+            "behavior":"lowesthealth",
+            "name":"Torpedo Igniter"
+        }
+    }
+}
