@@ -1,0 +1,38 @@
+{
+    "combat":[
+        {
+            "description":"Lifeforms suddenly appear on your scanners. A ship hid itself on a nearby asteroid and is now speeding towards you. Prepare for combat!",
+            "weapons":[
+                {
+                    "weaponid":"redlaser",
+                    "grade":2
+                }, {
+                    "weaponid":"redlaser",
+                    "grade":2
+                }
+            ],
+            "rewards":[{"id":"spacesilk","value":20}],
+            "weight":1
+        }
+    ],"boost":[
+        {
+            "description":"You find yourself at a small port and a local benefactor offers to repair your ship. Your weapons have been healed for 20 health!",
+            "key":"health",
+            "targets":[0,1,2,3],
+            "value":20,
+            "weight":1
+        }
+    ],"choice":[
+        {
+            "description":"You identify a criminal ship holding valuable resources leaving a nearby planet. You can chase after them or stop by the planet to recover.",
+            "choices":{"boost":"Stop","combat":"Chase"},
+            "weight":1
+        }
+    ],"reward":[
+        {
+            "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
+            "rewards":[{"id":"whitecore","value":2}],
+            "weight":1
+        }
+    ]
+}

@@ -8,6 +8,9 @@
             "damage":25,
             "maxTargets":1,
             "behavior":"highesthealth",
+            "health":100,
+            "defense":5,
+            "apt":1,
             "name":"Red Laser Cannon"
         },"glaive": {
             "ingredients": {
@@ -18,6 +21,9 @@
             "damage":15,
             "maxTargets":2,
             "behavior":"lowesthealth",
+            "health":110,
+            "defense":3,
+            "apt":1,
             "name":"Electric Glaive Launcher"
         },"torpedo": {
             "ingredients": {
@@ -29,6 +35,9 @@
             "damage":10,
             "maxTargets":4,
             "behavior":"lowesthealth",
+            "health":70,
+            "defense":5,
+            "apt":0.5,
             "name":"Torpedo Igniter"
         }
     }
