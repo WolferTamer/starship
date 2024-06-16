@@ -30,17 +30,20 @@ function rollItem(drone:any) {
             break;
         }
     }
-    let itemlist: any = {}
+    let itemlist: any= {}
     for(let [key,obj] of Object.entries(items)) {
         if(obj.rarity == rarity) {
             itemlist[key] = obj
         }
     }
-    
-    const randItem = Math.random()*Object.entries(itemlist).length
     let sum = 0;
     for(let [key,obj] of Object.entries(itemlist) ) {
-        sum++
+        sum+=(obj as any).weight
+    }
+    const randItem = Math.random()*sum
+    sum = 0
+    for(let [key,obj] of Object.entries(itemlist) ) {
+        sum+=(obj as any).weight
         if(randItem < sum) {
             return `items.${key}`
         }

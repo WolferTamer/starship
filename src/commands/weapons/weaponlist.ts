@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandIntegerOption, SlashCommandNumberOption } from "discord.js";
+import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder} from "discord.js";
 import {weapons} from '../../../data/weapons.json'
 
 module.exports = {

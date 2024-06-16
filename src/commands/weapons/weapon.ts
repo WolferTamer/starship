@@ -15,6 +15,7 @@ module.exports = {
         const weapon = weapons[weaponid as keyof typeof weapons]
         if(!weapon) {
             interaction.reply({content:`The weapon was not found.`,ephemeral:true})
+            return;
         }
         let ingredientText = ``
         for(let [key,obj] of Object.entries(weapon.ingredients)) {

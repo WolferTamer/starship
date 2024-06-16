@@ -2,22 +2,62 @@
     "spacesilk" : {
         "name":"Space Silk",
         "emoji": "1251306207839387648",
-        "rarity": 0
+        "rarity": 0,
+        "weight": 1
     },
     "wobblywool": {
         "name":"Wobbly Wool",
         "emoji": "1251306179775430707",
-        "rarity": 1
+        "rarity": 1,
+        "weight": 1
     },
     "luxuryleather": {
         "name": "Luxury Leather",
         "emoji": "1251301997886570496",
-        "rarity":2
+        "rarity":2,
+        "weight": 1
     },
     "orbitalore": {
         "name":"Orbital Ore",
         "emoji": "1251324330004971573",
-        "rarity":0
+        "rarity":0,
+        "weight":1
+    },
+    "whitecore": {
+        "name":"White Resource Core",
+        "emoji": "1251324330004971573",
+        "rarity":0,
+        "weight":0
+    },
+    "grenncore": {
+        "name":"Green Resource Core",
+        "emoji": "1251324330004971573",
+        "rarity":1,
+        "weight":0
+    },
+    "bluecore": {
+        "name":"Blue Resource Core",
+        "emoji": "1251324330004971573",
+        "rarity":2,
+        "weight":0
+    },
+    "purplecore": {
+        "name":"Purple Resource Core",
+        "emoji": "1251324330004971573",
+        "rarity":3,
+        "weight":0
+    },
+    "redcore": {
+        "name":"Red Resource Core",
+        "emoji": "1251324330004971573",
+        "rarity":4,
+        "weight":0
+    },
+    "orangecore": {
+        "name":"Orange Resource Core",
+        "emoji": "1251324330004971573",
+        "rarity":5,
+        "weight":0
     }
 
 }
