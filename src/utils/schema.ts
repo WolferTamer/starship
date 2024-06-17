@@ -21,6 +21,11 @@ const weaponSchema = new mongoose.Schema({
     slot:{type:Number,default:0}
 });
 
+const weaponStoreSchema = new mongoose.Schema({
+    weaponid: {type:String, default:"redlaser"},
+    grade: {type:Number,default:1}
+})
+
 const droneSchema = new mongoose.Schema({
     speed: {type:Number,default:1},
     quality: {type:Number,default:1},
@@ -40,7 +45,8 @@ const baseSchema = new mongoose.Schema({
     pets: {type:[petSchema], default: []},
     muted: {type:Boolean, default: false},
     weapons: {type:[weaponSchema],default:[{},{},{},{}]},
-    drones: {type:[droneSchema],default:[{}]}
+    drones: {type:[droneSchema],default:[{}]},
+    weaponstorage: {type:[weaponSchema],default:[]}
     });
 
 const UserModel = mongoose.model('Base', baseSchema);
