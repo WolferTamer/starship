@@ -13,7 +13,7 @@ module.exports = {
         const weaponid = interaction.options.getString('weapon')!.toLowerCase().replace(/\s/g, '');
         const weaponInfo = weapons[weaponid as keyof typeof weapons]
         if(!weaponInfo) {
-            interaction.reply(`The weapon ${weaponid} doesnt seem to exit`)
+            interaction.reply({content:`The weapon ${weaponid} doesnt seem to exit`,ephemeral:true})
             return;
         }
         const ingredients = weaponInfo.ingredients
@@ -21,6 +21,10 @@ module.exports = {
         let data : any = {}
         for(let [key,obj] of Object.entries(ingredients)) {
             let item = items[key as keyof typeof items]
+            if(profileData.items[key] < obj) {
+                interaction.reply({content:`You don't have enough ${item.name} to craft this weapon.`,ephemeral:true})
+            return;
+            }
             text+=`\n${obj} x ${interaction.client.emojis.cache.get(item.emoji)} ${item.name}`
             data[`items.${key}`] = -obj
         }

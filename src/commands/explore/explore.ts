@@ -34,13 +34,26 @@ module.exports = {
         for(let userWep of profileData.weapons) {
             const wepModifier = weaponQualityMod(userWep.grade)
             const wepInfo = weapons[userWep.weaponid as keyof typeof weapons]
+            let defMod = 0;
+            let speedMod = 0;
+            let healthMod = 0;
+            let damMod = 0;
+            if(userWep.slot == 1) {
+                defMod = 3;
+            } else if (userWep.slot == 2) {
+                speedMod = .5
+            } else if (userWep.slot == 3) {
+                damMod = 5
+            } else if (userWep.slot == 4) {
+                healthMod = 20
+            }
             player.push({
-                damage:wepInfo.damage*wepModifier,
-                health:wepInfo.health*wepModifier,
+                damage:wepInfo.damage*wepModifier + damMod,
+                health:wepInfo.health*wepModifier + healthMod,
                 attacksenemies:wepInfo.attacksenemies,
-                defense:wepInfo.defense*wepModifier,
-                atp:wepInfo.apt*wepModifier,
-                attackStore:1+wepInfo.apt*wepModifier,
+                defense:wepInfo.defense*wepModifier + defMod,
+                atp:wepInfo.apt*wepModifier + speedMod,
+                attackStore:Math.max(1,wepInfo.apt*wepModifier),
                 weaponid:userWep.weaponid,
                 maxTargets:wepInfo.maxTargets,
                 behavior:wepInfo.behavior,
@@ -206,7 +219,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
             attacksenemies:wepInfo.attacksenemies,
             defense:wepInfo.defense*wepModifier,
             atp:wepInfo.apt*wepModifier,
-            attackStore:1+wepInfo.apt*wepModifier,
+            attackStore:Math.max(1,wepInfo.apt*wepModifier),
             weaponid:userWep.weaponid,
             maxTargets:wepInfo.maxTargets,
             behavior:wepInfo.behavior,
@@ -229,7 +242,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
                     damageTaken = `${tempPlayer[i].health - player[i].health}`
                 }
                 embed.addFields([
-                    {name:`Player Weapon ${i+1} ${tookdamage}`,value:`${player[i].health} ${healthEmoji} ${damageTaken}`,inline:true}
+                    {name:`Player Weapon ${i+1} ${tookdamage}`,value:`${player[i].health} ${healthEmoji} ${-damageTaken}`,inline:true}
                 ])
                 if(player[i].dead) {playersDead++}
             }else {
@@ -245,7 +258,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
                     damageTaken = `${tempEnemy[i].health - enemy[i].health}`
                 }
                 embed.addFields([
-                    {name:`Enemy Weapon ${i+1} ${tookdamage}`,value:`${enemy[i].health} ${healthEmoji} ${damageTaken}`,inline:true}
+                    {name:`Enemy Weapon ${i+1} ${tookdamage}`,value:`${enemy[i].health} ${healthEmoji} ${-damageTaken}`,inline:true}
                 ])
                 if(enemy[i].dead) {enemiesDead++}
             }

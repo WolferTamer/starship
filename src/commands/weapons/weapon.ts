@@ -27,7 +27,7 @@ module.exports = {
         } else {
             statText+= 'Allies\n'
         }
-        statText+=`Damage: ${weapon.damage}\nMax Targets: ${weapon.maxTargets}\nBehavior: `
+        statText+=`Damage: ${weapon.damage}\nMax Targets: ${weapon.maxTargets}\nAttacks Per Turn: ${weapon.apt}\nBehavior: `
         if(weapon.behavior === 'lowesthealth') {
             statText+=`Attacks targets with lowest health`
         } else if(weapon.behavior === 'highesthealth') {
