@@ -22,6 +22,7 @@ module.exports = (type = '') => {
         sum+=obj.weight
     }
     rand *=sum
+    sum = 0;
     for(let obj of encounters[type as keyof typeof encounters]) {
         sum+=obj.weight
         if(rand < sum) {

@@ -23,7 +23,7 @@ module.exports = {
             let item = items[key as keyof typeof items]
             if(profileData.items[key] < obj) {
                 interaction.reply({content:`You don't have enough ${item.name} to craft this weapon.`,ephemeral:true})
-            return;
+                return;
             }
             text+=`\n${obj} x ${interaction.client.emojis.cache.get(item.emoji)} ${item.name}`
             data[`items.${key}`] = -obj

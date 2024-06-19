@@ -69,14 +69,9 @@ function buildEmbed(drone: any, botNum: number) {
             .setLabel('Quality')
             .setStyle(ButtonStyle.Primary)
             .setDisabled(true)
-        const upgradeVariety = new ButtonBuilder()
-            .setCustomId('variety')
-            .setLabel('Variety')
-            .setStyle(ButtonStyle.Primary)
-            .setDisabled(true)
     
         const actionRow = new ActionRowBuilder<ButtonBuilder>()
-            .addComponents(upgradeSpeed,upgradeAmount,upgradeQuality,upgradeVariety);
+            .addComponents(upgradeSpeed,upgradeAmount,upgradeQuality);
 
             let embed = new EmbedBuilder()
             .setTitle(`Upgrade Drone ${botNum}`)
@@ -97,14 +92,8 @@ function buildEmbed(drone: any, botNum: number) {
             upgradeQuality.setDisabled(false);
             qualityVal = `${drone.quality+1} - ${upgrades.quality[drone.quality].amount} ${upgrades.quality[drone.quality].item}`
         }
-        let varietyVal = 'Max'
-        if(drone.travel < upgrades.travel.length) {
-            upgradeVariety.setDisabled(false);
-            varietyVal = `${drone.travel+1} - ${upgrades.travel[drone.travel].amount} ${upgrades.travel[drone.travel].item}`
-        }
 
         if(drone.working) {
-            upgradeVariety.setDisabled(true);
             upgradeAmount.setDisabled(true);
             upgradeQuality.setDisabled(true);
             upgradeSpeed.setDisabled(true);
@@ -116,9 +105,7 @@ function buildEmbed(drone: any, botNum: number) {
             {name:`Amount💼: ${drone.amount}`,
             value:amountVal},
             {name:`Quality🌟: ${drone.quality}`,
-            value:qualityVal},
-            {name:`Variety🌎: ${drone.travel}`,
-            value:varietyVal}
+            value:qualityVal}
         ])
         
 		return {embeds:[embed],components:[actionRow]};

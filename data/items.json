@@ -17,10 +17,46 @@
         "rarity":2,
         "weight": 1
     },
+    "alienfur": {
+        "name": "Alien Fur",
+        "emoji": "1251301997886570496",
+        "rarity":3,
+        "weight": 1
+    },
+    "insectcarapace": {
+        "name": "Insect Carapace",
+        "emoji": "1251301997886570496",
+        "rarity":4,
+        "weight": 1
+    },
     "orbitalore": {
         "name":"Orbital Ore",
         "emoji": "1251324330004971573",
         "rarity":0,
+        "weight":1
+    },
+    "asteroidiron": {
+        "name":"Asteroid Iron",
+        "emoji": "1251324330004971573",
+        "rarity":1,
+        "weight":1
+    },
+    "ancientsteel": {
+        "name":"Ancient Steel",
+        "emoji": "1251324330004971573",
+        "rarity":2,
+        "weight":1
+    },
+    "corruptedcarbon": {
+        "name":"Corrupted Carbon",
+        "emoji": "1251324330004971573",
+        "rarity":3,
+        "weight":1
+    },
+    "elementalmetal": {
+        "name":"Elemental Metal",
+        "emoji": "1251324330004971573",
+        "rarity":4,
         "weight":1
     },
     "whitecore": {
@@ -29,7 +65,7 @@
         "rarity":0,
         "weight":0
     },
-    "grenncore": {
+    "greencore": {
         "name":"Green Resource Core",
         "emoji": "1251324330004971573",
         "rarity":1,

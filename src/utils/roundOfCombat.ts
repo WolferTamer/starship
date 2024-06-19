@@ -18,7 +18,7 @@ module.exports = (player: any, enemy:any) => {
                     while(targets.length > weapon.maxTargets) {
                         let max = Math.max(...targets.map((o:number)=>{if(weapon.attacksenemies) {return enemy[o].health;} return player[o].health}));
                         for(let j = 0; j < targets.length; j++) {
-                            if(enemy[targets[j]].health == max) {
+                            if((!weapon.attacksenemies && player[targets[j]].health == max) || (weapon.attacksenemies &&enemy[targets[j]].health == max)) {
                                 targets.splice(j,1);
                                 break;
                             }
@@ -28,7 +28,7 @@ module.exports = (player: any, enemy:any) => {
                     while(targets.length > weapon.maxTargets) {
                         let max = Math.min(...targets.map((o:number)=>{if(weapon.attacksenemies) {return enemy[o].health;} return player[o].health}));
                         for(let j = 0; j < targets.length; j++) {
-                            if(enemy[targets[j]].health == max) {
+                            if((!weapon.attacksenemies && player[targets[j]].health == max) || (weapon.attacksenemies &&enemy[targets[j]].health == max)) {
                                 targets.splice(j,1);
                                 break;
                             }
@@ -78,7 +78,7 @@ module.exports = (player: any, enemy:any) => {
                     while(targets.length > weapon.maxTargets) {
                         let max = Math.max(...targets.map((o:number)=>{if(weapon.attacksenemies) {return player[o].health;} return enemy[o].health}));
                         for(let j = 0; j < targets.length; j++) {
-                            if(player[targets[j]].health == max) {
+                            if((weapon.attacksenemies && player[targets[j]].health == max) || (!weapon.attacksenemies &&enemy[targets[j]].health == max)) {
                                 targets.splice(j,1);
                                 break;
                             }
@@ -88,7 +88,7 @@ module.exports = (player: any, enemy:any) => {
                     while(targets.length > weapon.maxTargets) {
                         let max = Math.min(...targets.map((o:number)=>{if(weapon.attacksenemies) {return player[o].health;} return enemy[o].health}));
                         for(let j = 0; j < targets.length; j++) {
-                            if(player[targets[j]].health == max) {
+                            if((weapon.attacksenemies && player[targets[j]].health == max) || (!weapon.attacksenemies &&enemy[targets[j]].health == max)) {
                                 targets.splice(j,1);
                                 break;
                             }

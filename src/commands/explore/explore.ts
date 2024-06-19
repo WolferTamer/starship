@@ -57,16 +57,17 @@ module.exports = {
                 weaponid:userWep.weaponid,
                 maxTargets:wepInfo.maxTargets,
                 behavior:wepInfo.behavior,
+                name:wepInfo.name,
                 dead:false
             })
         }
         collector.once('collect', async i => {
             if(i.customId==='startexplore') {
                 const roll = rollEncounter();
-                const encounter = encounters.boost[0];
-                const type = 'boost';
-                player = await handleNewEncounter(type,encounter,player,response)
+                const encounter = roll.value;
+                const type = roll.type;
                 i.deferUpdate()
+                player = await handleNewEncounter(type,encounter,player,response)
             }
         })
 
@@ -115,16 +116,32 @@ async function handleNewEncounter(type:string, encounter:any,player:any, respons
 }
 
 function handleBoost(encounter: typeof encounters.boost[0],player:any, response: InteractionResponse<boolean>) {
+    let healthEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'health' && object.guild.id == process.env.GUILD)
+    let damageEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'damage' && object.guild.id == process.env.GUILD)
+    let armorEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'health' && object.guild.id == process.env.GUILD)
+    let hitEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'hit' && object.guild.id == process.env.GUILD)
+    
     const embed = new EmbedBuilder()
         .setTitle('Exploration')
         .setDescription(encounter.description)
         .setColor(0x00FF00)
+        let text = ''
     for(let index of encounter.targets) {
         if(!player[index].dead) {
             player[index][encounter.key]+=encounter.value
 
         }
+        if(encounter.key === 'health') {
+            text += `+${encounter.value}${healthEmoji}: ${player[index].name}\n`
+        } else if(encounter.key === 'damage') {
+            text += `+${encounter.value}${damageEmoji}: ${player[index].name}\n`
+        } else if(encounter.key === 'defense') {
+            text += `+${encounter.value}${armorEmoji}: ${player[index].name}\n`
+        }
     }
+    embed.addFields([{
+        name:`Boosts:`,value:text
+    }])
     const continueBtn = new ButtonBuilder()
         .setCustomId('continueexplore')
         .setLabel('Continue')
@@ -166,7 +183,7 @@ async function handleReward(encounter: typeof encounters.reward[0],player:any, r
     for(let obj of encounter.rewards) {
         data[`items.${obj.id}`] = obj.value
         const item = items[obj.id as keyof typeof items]
-        text += `${obj.value} x ${item.name}\n`
+        text += `${obj.value} x ${response.interaction.client.emojis.cache.get(item.emoji)} ${item.name}\n`
     }
     embed.addFields([
         {name:'Rewards:',value:text}
@@ -223,6 +240,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
             weaponid:userWep.weaponid,
             maxTargets:wepInfo.maxTargets,
             behavior:wepInfo.behavior,
+            name:wepInfo.name,
             dead:false
         })
     }
@@ -242,7 +260,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
                     damageTaken = `${tempPlayer[i].health - player[i].health}`
                 }
                 embed.addFields([
-                    {name:`Player Weapon ${i+1} ${tookdamage}`,value:`${player[i].health} ${healthEmoji} ${-damageTaken}`,inline:true}
+                    {name:`Player ${player[i].name} ${tookdamage}`,value:`${player[i].health} ${healthEmoji} ${-damageTaken}`,inline:true}
                 ])
                 if(player[i].dead) {playersDead++}
             }else {
@@ -258,7 +276,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
                     damageTaken = `${tempEnemy[i].health - enemy[i].health}`
                 }
                 embed.addFields([
-                    {name:`Enemy Weapon ${i+1} ${tookdamage}`,value:`${enemy[i].health} ${healthEmoji} ${-damageTaken}`,inline:true}
+                    {name:`Enemy ${enemy[i].name} ${tookdamage}`,value:`${enemy[i].health} ${healthEmoji} ${-damageTaken}`,inline:true}
                 ])
                 if(enemy[i].dead) {enemiesDead++}
             }
@@ -267,14 +285,31 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
             ])
         }
         if(enemiesDead == enemy.length) {
+            let data:any = {}
+            let text = 'You won and were awarded: \n'
+            for(let obj of encounter.rewards) {
+                data[`items.${obj.id}`] = obj.value
+                const item = items[obj.id as keyof typeof items]
+                text += `${obj.value} x ${response.interaction.client.emojis.cache.get(item.emoji)} ${item.name}\n`
+            }
+            try {
+                const response2 = await UserModel.findOneAndUpdate({
+                    userid: response.interaction.user.id
+                }, {
+                    $inc: data
+                });
+            }catch(e) {
+                console.log(e)
+                return player;
+            }
             embed.setColor(0x00FF00)
-            embed.setFooter({text:'You Won!'})
+            embed.setDescription(text)
             continueBtn.setDisabled(false)
             actionRow.setComponents(continueBtn)
             break;
         } else if (playersDead == player.length) {
             embed.setColor(0xFF0000)
-            embed.setFooter({text:'You Lost!'})
+            embed.setFooter({text:'You lost, your journey has come to an end.'})
             break;
         }
         tempPlayer = structuredClone(player)

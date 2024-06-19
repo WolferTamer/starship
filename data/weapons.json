@@ -39,6 +39,20 @@
             "defense":5,
             "apt":0.5,
             "name":"Torpedo Igniter"
+        }, "healingwand" : {
+            "ingredients": {
+                "spacesilk":10,
+                "orbitalore":10,
+                "wobblywool":20
+            },
+            "attacksenemies":false,
+            "damage":-15,
+            "maxTargets":2,
+            "behavior":"lowesthealth",
+            "health":50,
+            "defense":5,
+            "apt":0.5,
+            "name":"Healing Wand"
         }
     }
 }
