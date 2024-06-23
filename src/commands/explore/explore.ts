@@ -51,7 +51,7 @@ module.exports = {
                 damage:wepInfo.damage*wepModifier + damMod,
                 health:wepInfo.health*wepModifier + healthMod,
                 attacksenemies:wepInfo.attacksenemies,
-                defense:wepInfo.defense*wepModifier + defMod,
+                defense:wepInfo.defense + defMod,
                 atp:wepInfo.apt*wepModifier + speedMod,
                 attackStore:Math.max(1,wepInfo.apt*wepModifier),
                 weaponid:userWep.weaponid,
@@ -118,7 +118,7 @@ async function handleNewEncounter(type:string, encounter:any,player:any, respons
 function handleBoost(encounter: typeof encounters.boost[0],player:any, response: InteractionResponse<boolean>) {
     let healthEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'health' && object.guild.id == process.env.GUILD)
     let damageEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'damage' && object.guild.id == process.env.GUILD)
-    let armorEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'health' && object.guild.id == process.env.GUILD)
+    let armorEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'defense' && object.guild.id == process.env.GUILD)
     let hitEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'hit' && object.guild.id == process.env.GUILD)
     
     const embed = new EmbedBuilder()
@@ -129,14 +129,13 @@ function handleBoost(encounter: typeof encounters.boost[0],player:any, response:
     for(let index of encounter.targets) {
         if(!player[index].dead) {
             player[index][encounter.key]+=encounter.value
-
-        }
-        if(encounter.key === 'health') {
-            text += `+${encounter.value}${healthEmoji}: ${player[index].name}\n`
-        } else if(encounter.key === 'damage') {
-            text += `+${encounter.value}${damageEmoji}: ${player[index].name}\n`
-        } else if(encounter.key === 'defense') {
-            text += `+${encounter.value}${armorEmoji}: ${player[index].name}\n`
+            if(encounter.key === 'health') {
+                text += `+${encounter.value}${healthEmoji}: ${player[index].name}\n`
+            } else if(encounter.key === 'damage') {
+                text += `+${encounter.value}${damageEmoji}: ${player[index].name}\n`
+            } else if(encounter.key === 'defense') {
+                text += `+${encounter.value}${armorEmoji}: ${player[index].name}\n`
+            }
         }
     }
     embed.addFields([{
@@ -234,7 +233,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
             damage:wepInfo.damage*wepModifier,
             health:wepInfo.health*wepModifier,
             attacksenemies:wepInfo.attacksenemies,
-            defense:wepInfo.defense*wepModifier,
+            defense:wepInfo.defense,
             atp:wepInfo.apt*wepModifier,
             attackStore:Math.max(1,wepInfo.apt*wepModifier),
             weaponid:userWep.weaponid,

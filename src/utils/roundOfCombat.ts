@@ -40,7 +40,7 @@ module.exports = (player: any, enemy:any) => {
                     if(weapon.attacksenemies) {
                         enemy[targets[j]].health -= weapon.damage
                         if(weapon.damage > 0) {
-                            enemy[targets[j]].health += enemy[targets[j]].defense
+                            enemy[targets[j]].health += Math.min(enemy[targets[j]].defense,weapon.damage)
                         }
                         if(enemy[targets[j]].health <= 0) {
                             enemy[targets[j]].health = 0
@@ -49,7 +49,7 @@ module.exports = (player: any, enemy:any) => {
                     } else {
                         player[targets[j]].health -= weapon.damage
                         if(weapon.damage > 0) {
-                            player[targets[j]].health += player[targets[j]].defense
+                            player[targets[j]].health += Math.min(player[targets[j]].defense,weapon.damage)
                         }
                         if(player[targets[j]].health <= 0) {
                             player[targets[j]].health = 0

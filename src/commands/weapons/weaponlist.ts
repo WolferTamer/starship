@@ -12,9 +12,9 @@ module.exports = {
         for(let [key,value] of Object.entries(weapons)) {
             let text = ``
             if(value.attacksenemies) {
-                text+=`Attacks up to ${value.maxTargets} enemies for ${value.damage} health ${value.apt} per turn\nID: ${key}`
+                text+=`Attacks up to ${value.maxTargets} enemies for ${value.damage} health ${value.apt} times per turn\nID: ${key}`
             } else {
-                text+=`Heals up to ${value.maxTargets} allies for ${-value.damage} health ${value.apt} per turn.\nID: ${key}`
+                text+=`Heals up to ${value.maxTargets} allies for ${-value.damage} health ${value.apt} times per turn.\nID: ${key}`
             }
             embed.addFields([
                 {name:`${value.name}`,value:text}

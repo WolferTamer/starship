@@ -19,7 +19,7 @@
     },
     "alienfur": {
         "name": "Alien Fur",
-        "emoji": "1251301997886570496",
+        "emoji": "1253210850878165052",
         "rarity":3,
         "weight": 1
     },
@@ -37,61 +37,127 @@
     },
     "asteroidiron": {
         "name":"Asteroid Iron",
-        "emoji": "1251324330004971573",
+        "emoji": "1253225441112883261",
         "rarity":1,
         "weight":1
     },
     "ancientsteel": {
         "name":"Ancient Steel",
-        "emoji": "1251324330004971573",
+        "emoji": "1253452253235253409",
         "rarity":2,
         "weight":1
     },
     "corruptedcarbon": {
         "name":"Corrupted Carbon",
-        "emoji": "1251324330004971573",
+        "emoji": "1253454514728599642",
         "rarity":3,
         "weight":1
     },
     "elementalmetal": {
         "name":"Elemental Metal",
-        "emoji": "1251324330004971573",
+        "emoji": "1253463502211776523",
         "rarity":4,
+        "weight":1
+    },
+    "explosiveberry": {
+        "name":"Explosive Berry",
+        "emoji": "1253508476475543614",
+        "rarity":0,
+        "weight":1
+    },
+    "conductivewood": {
+        "name":"Conductive Wood",
+        "emoji": "1253513907448844379",
+        "rarity":1,
+        "weight":1
+    },
+    "poisonflower": {
+        "name":"Poison Flower",
+        "emoji": "1253463502211776523",
+        "rarity":2,
+        "weight":1
+    },
+    "elasticvines": {
+        "name":"Elastic Vines",
+        "emoji": "1253463502211776523",
+        "rarity":3,
+        "weight":1
+    },
+    "meteoricmagma": {
+        "name":"Meteoric Magma",
+        "emoji": "909611416359678022",
+        "rarity":4,
+        "weight":1
+    },
+    "whitestardust": {
+        "name":"White Stardust",
+        "emoji": "909341494018707467",
+        "rarity":0,
+        "weight":1
+    },
+    "greenstardust": {
+        "name":"Green Stardust",
+        "emoji": "909335143385276457",
+        "rarity":1,
+        "weight":1
+    },
+    "bluestardust": {
+        "name":"Blue Stardust",
+        "emoji": "909337188238508065",
+        "rarity":2,
+        "weight":1
+    },
+    "purplestardust": {
+        "name":"Purple Stardust",
+        "emoji": "909339760693215292",
+        "rarity":3,
+        "weight":1
+    },
+    "redstardust": {
+        "name":"Red Stardust",
+        "emoji": "909329889340035133",
+        "rarity":4,
+        "weight":1
+    },
+    "orangestardust": {
+        "name":"Orange Stardust",
+        "emoji": "909332074677284895",
+        "rarity":5,
         "weight":1
     },
     "whitecore": {
         "name":"White Resource Core",
-        "emoji": "1251324330004971573",
+        "emoji": "1253225329644929064",
         "rarity":0,
         "weight":0
     },
     "greencore": {
         "name":"Green Resource Core",
-        "emoji": "1251324330004971573",
+        "emoji": "1253225356987469924",
         "rarity":1,
         "weight":0
     },
     "bluecore": {
         "name":"Blue Resource Core",
-        "emoji": "1251324330004971573",
+        "emoji": "1253225373005779094",
         "rarity":2,
         "weight":0
     },
     "purplecore": {
         "name":"Purple Resource Core",
-        "emoji": "1251324330004971573",
+        "emoji": "1253225382400888883",
         "rarity":3,
         "weight":0
     },
     "redcore": {
         "name":"Red Resource Core",
-        "emoji": "1251324330004971573",
+        "emoji": "1253227838094704690",
         "rarity":4,
         "weight":0
     },
     "orangecore": {
         "name":"Orange Resource Core",
-        "emoji": "1251324330004971573",
+        "emoji": "1253225404391751771",
         "rarity":5,
         "weight":0
     }

@@ -50,9 +50,61 @@
             "maxTargets":2,
             "behavior":"lowesthealth",
             "health":50,
-            "defense":5,
+            "defense":3,
             "apt":0.5,
             "name":"Healing Wand"
+        },
+        "bluelaser": {
+            "ingredients": {
+                "spacesilk":40
+            },
+            "attacksenemies":true,
+            "damage":50,
+            "maxTargets":1,
+            "behavior":"highesthealth",
+            "health":100,
+            "defense":5,
+            "apt":0.5,
+            "name":"Blue Laser Cannon"
+        },
+        "minigun": {
+            "ingredients": {
+                "spacesilk":40
+            },
+            "attacksenemies":true,
+            "damage":6,
+            "maxTargets":1,
+            "behavior":"lowesthealth",
+            "health":130,
+            "defense":0,
+            "apt":5,
+            "name":"Minigun"
+        },
+        "repairlaser": {
+            "ingredients": {
+                "spacesilk":40
+            },
+            "attacksenemies":false,
+            "damage":-50,
+            "maxTargets":1,
+            "behavior":"lowesthealth",
+            "health":70,
+            "defense":1,
+            "apt":0.5,
+            "name":"Repair Laser"
+        },
+        "purplelaser": {
+            "ingredients": {
+                "spacesilk":40
+            },
+            "attacksenemies":true,
+            "damage":100,
+            "maxTargets":1,
+            "behavior":"lowesthealth",
+            "health":30,
+            "defense":10,
+            "apt":0.1,
+            "name":"Purple Laser Cannon"
         }
     }
 }

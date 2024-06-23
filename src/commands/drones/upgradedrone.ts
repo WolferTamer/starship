@@ -1,6 +1,8 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, CommandInteraction, ComponentType, EmbedBuilder, SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
 import * as upgrades from '../../../data/droneupgrades.json'
 const UserModel = require('../../utils/schema')
+import * as items from '../../../data/items.json'
+import drones from '../../../data/drones.json'
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,7 +17,7 @@ module.exports = {
             return;
         }
         const drone = profileData.drones[botNum-1]
-		const response = await interaction.reply(buildEmbed(drone,botNum));
+		const response = await interaction.reply(buildEmbed(drone,botNum, interaction));
 
         const filter = (i: any) => i.user.id == interaction.user.id
         const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 60_000, filter });
@@ -45,7 +47,7 @@ module.exports = {
                     new:true
                 });
 
-                await response.edit(buildEmbed(profileData.drones[botNum-1],botNum))
+                await response.edit(buildEmbed(profileData.drones[botNum-1],botNum, interaction))
 
                 await i.reply({content:`You spent ${upgrades[type as keyof typeof upgrades][tier].amount} ${upgrades[type as keyof typeof upgrades][tier].item} to upgrade ${type}`,ephemeral:true})
             }
@@ -53,7 +55,7 @@ module.exports = {
 	},
 };
 
-function buildEmbed(drone: any, botNum: number) {
+function buildEmbed(drone: any, botNum: number, interaction:ChatInputCommandInteraction) {
     const upgradeSpeed = new ButtonBuilder()
             .setCustomId('speed')
             .setLabel('Speed')
@@ -76,21 +78,24 @@ function buildEmbed(drone: any, botNum: number) {
             let embed = new EmbedBuilder()
             .setTitle(`Upgrade Drone ${botNum}`)
             .setColor(0x3ea5b3)
-            .setDescription('See the next upgrades for your drones.')
+            .setDescription(`See the next upgrades for ${interaction.client.emojis.cache.get(drones.drones[botNum-1].emoji)}`)
         let speedVal = 'Max'
         if(drone.speed < upgrades.speed.length) {
             upgradeSpeed.setDisabled(false);
-            speedVal = `${Math.round((2/(drone.speed+1))*drone.amount*100)/100} minutes - ${upgrades.speed[drone.speed].amount} ${upgrades.speed[drone.speed].item}`
+            let itemInfo = items[upgrades.speed[drone.speed].item as keyof typeof items]
+            speedVal = `${Math.round((2/(drone.speed+1))*drone.amount*100)/100} minutes: ${upgrades.speed[drone.speed].amount}x${interaction.client.emojis.cache.get(itemInfo.emoji)} ${itemInfo.name}`
         }
         let amountVal = 'Max'
         if(drone.amount-9 < upgrades.amount.length) {
             upgradeAmount.setDisabled(false);
-            amountVal = `${drone.amount+1} - ${upgrades.amount[drone.amount-9].amount} ${upgrades.amount[drone.amount-9].item}`
+            let itemInfo = items[upgrades.amount[drone.amount-9].item as keyof typeof items]
+            amountVal = `${drone.amount+1} items: ${upgrades.amount[drone.amount-9].amount}x${interaction.client.emojis.cache.get(itemInfo.emoji)} ${itemInfo.name}`
         }
         let qualityVal = 'Max'
         if(drone.quality < upgrades.quality.length) {
             upgradeQuality.setDisabled(false);
-            qualityVal = `${drone.quality+1} - ${upgrades.quality[drone.quality].amount} ${upgrades.quality[drone.quality].item}`
+            let itemInfo = items[upgrades.quality[drone.quality].item as keyof typeof items]
+            qualityVal = `${drone.quality+1} items: ${upgrades.quality[drone.quality].amount}x${interaction.client.emojis.cache.get(itemInfo.emoji)} ${itemInfo.name}`
         }
 
         if(drone.working) {

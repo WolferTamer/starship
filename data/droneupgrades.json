@@ -2,11 +2,23 @@
     "speed": [
         {"item":"spacesilk","amount":10},
         {"item":"spacesilk","amount":10},
-        {"item":"spacesilk","amount":30}
+        {"item":"spacesilk","amount":50},
+        {"item":"wobblywool","amount":50},
+        {"item":"wobblywool","amount":200},
+        {"item":"luxuryleather","amount":100},
+        {"item":"luxuryleather","amount":300},
+        {"item":"luxuryleather","amount":500},
+        {"item":"wobblywool","amount":2000},
+        {"item":"alienfur","amount":200},
+        {"item":"alienfur","amount":500},
+        {"item":"insectcarapace","amount":100}
     ],
     "quality": [
         {"item":"spacesilk","amount":5},
-        {"item":"spacesilk","amount":5}
+        {"item":"orbitalore","amount":20},
+        {"item":"asteroidiron","amount":250},
+        {"item":"ancientsteel","amount":1000},
+        {"item":"corruptedcarbon","amount":2000}
     ],
     "travel": [
         {"item":"spacesilk","amount":15},
@@ -14,6 +26,26 @@
     ],
     "amount": [
         {"item":"spacesilk","amount":2},
-        {"item":"spacesilk","amount":2}
+        {"item":"explosiveberry","amount":2},
+        {"item":"explosiveberry","amount":10},
+        {"item":"explosiveberry","amount":20},
+        {"item":"explosiveberry","amount":50},
+        {"item":"conductivewood","amount":30},
+        {"item":"explosiveberry","amount":200},
+        {"item":"conductivewood","amount":100},
+        {"item":"conductivewood","amount":200},
+        {"item":"explosiveberry","amount":1000},
+        {"item":"poisonflower","amount":100},
+        {"item":"poisonflower","amount":200},
+        {"item":"poisonflower","amount":400},
+        {"item":"explosiveberry","amount":5000},
+        {"item":"conductivewood","amount":1000},
+        {"item":"elasticvines","amount":50},
+        {"item":"elasticvines","amount":80},
+        {"item":"elasticvines","amount":150},
+        {"item":"elasticvines","amount":300},
+        {"item":"explosiveberry","amount":20000},
+        {"item":"poisonflower","amount":1000},
+        {"item":"meteoricmagma","amount":100}
     ]
 }
