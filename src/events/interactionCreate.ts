@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, Events, Interaction } from "discord.js";
+import { Client, CommandInteraction, Events, Interaction, Collection } from "discord.js";
 const petPostFix =require( '../utils/petPostFix')
 const UserModel = require('../utils/schema')
 //Gets called whenever an interaction (command) occurs.
@@ -9,9 +9,38 @@ module.exports = {
 	async execute(interaction: Interaction) {
         //If it isnt a slash command, return.
 		if (!interaction.isChatInputCommand()) return;
+
         let prefix = "";
         let postfix = ""
         let profileData;
+
+        const command = interaction.client.commands.get(interaction.commandName);
+        if (!command) {
+            console.error(`No command matching ${interaction.commandName} was found.`);
+            return;
+        }
+
+        const {cooldowns} = interaction.client
+        if(!cooldowns.has(command.data.name)) {
+            cooldowns.set(command.data.name, new Collection());
+        }
+
+        const now = Date.now();
+        const timestamps = cooldowns.get(command.data.name);
+        const defaultCooldown = 5;
+        const cooldownAmount = (command.cooldown ?? defaultCooldown) * 1_000;
+
+        if(timestamps.has(interaction.user.id)) {
+            const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount
+            if(now < expirationTime) {
+                const expiredTimestamp = Math.round(expirationTime / 1_000)
+                return interaction.reply({content: `You can use ${command.data.name} again <t:${expiredTimestamp}:R>.`})
+            }
+        }
+
+        timestamps.set(interaction.user.id, now);
+        setTimeout(() => timestamps.delete(interaction.user.id),cooldownAmount)
+            
 
         //Grab the user's data from the database. If none exist then create it and add a prefix for it.
         try{
@@ -29,12 +58,6 @@ module.exports = {
         }
 
         
-        const command = interaction.client.commands.get(interaction.commandName);
-
-        if (!command) {
-            console.error(`No command matching ${interaction.commandName} was found.`);
-            return;
-        }
 
         //Save the profile so as to register any new values with defaults
         profileData.save();

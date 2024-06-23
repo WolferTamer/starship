@@ -14,6 +14,7 @@ intents: [
 //Create a commands/events collection for the client, this allows you to access the lists from anywhere.
 client.commands = new Collection()
 client.events = new Collection()
+client.cooldowns = new Collection()
 
 
 //Once the bot is logged in, go though the event and command handlers to register each
