@@ -2,6 +2,7 @@ import { ChatInputCommandInteraction, CommandInteraction, SlashCommandBuilder, S
 const UserModel = require('../../utils/schema');
 
 module.exports = {
+    cooldown:10,
 	data: new SlashCommandBuilder()
 		.setName('work')
 		.setDescription('Earn a random amount of money based on your badge tier.'),

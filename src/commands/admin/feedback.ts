@@ -3,6 +3,7 @@ const UserModel = require('../../utils/schema');
 import 'dotenv/config'
 
 module.exports = {
+    cooldown:300,
 	data: new SlashCommandBuilder()
 		.setName('feedback')
 		.setDescription('Send feedback to the bot developers!')

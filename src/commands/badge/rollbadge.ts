@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const UserModel = require('../../utils/schema')
 
 module.exports = {
+    cooldown:10,
 	data: new SlashCommandBuilder()
 		.setName('rollbage')
 		.setDescription('Spend money to roll for a new badge')

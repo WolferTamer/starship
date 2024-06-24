@@ -5,6 +5,7 @@ import * as items from '../../../data/items.json'
 import drones from '../../../data/drones.json'
 
 module.exports = {
+    cooldown:30,
 	data: new SlashCommandBuilder()
 		.setName('upgradedrone')
 		.setDescription('Upgrade one of the drone')

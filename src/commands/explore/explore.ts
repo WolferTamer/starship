@@ -10,7 +10,7 @@ const rollEncounter = require('../../utils/rollEncounter')
 import encounters from '../../../data/encounters.json'
 
 module.exports = {
-    cooldown:120,
+    cooldown:180,
 	data: new SlashCommandBuilder()
 		.setName('explore')
 		.setDescription('Explore and engage in combat to earn rewards!'),
