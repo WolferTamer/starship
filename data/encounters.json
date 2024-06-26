@@ -12,7 +12,8 @@
                 }
             ],
             "rewards":[{"id":"spacesilk","value":20}],
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"A small fighter appears out of hyperspace and beelines towards your ship, torpedos at the ready. Prepare for combat!",
             "weapons":[
@@ -28,7 +29,8 @@
                 }
             ],
             "rewards":[{"id":"orbitalore","value":20}],
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"As you enter orbit around a planet your sensors pick up a nearby satellite. It only has one weapon, but it suddenly starts turning towards you. Prepare for Combat!",
             "weapons":[
@@ -38,7 +40,8 @@
                 }
             ],
             "rewards":[{"id":"explosiveberry","value":30}],
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"A ship of comparable size to yours approaches the loot you were hoping to claim, and it seems ready to fight. Prepare for combat!",
             "weapons":[
@@ -57,7 +60,8 @@
                 }
             ],
             "rewards":[{"id":"asteroidiron","value":10}],
-            "weight":1
+            "weight":1,
+            "grade": 1
         },{
             "description":"A ship of comparable size to yours approaches the loot you were hoping to claim, and it seems ready to fight. Prepare for combat!",
             "weapons":[
@@ -76,7 +80,8 @@
                 }
             ],
             "rewards":[{"id":"asteroidiron","value":10}],
-            "weight":1
+            "weight":1,
+            "grade": 1
         },{
             "description":"A ship of comparable size to yours approaches the loot you were hoping to claim, and it seems ready to fight. Prepare for combat!",
             "weapons":[
@@ -95,7 +100,8 @@
                 }
             ],
             "rewards":[{"id":"asteroidiron","value":10}],
-            "weight":0.5
+            "weight":0.5,
+            "grade": 1
         },{
             "description":"A ship of comparable size to yours approaches the loot you were hoping to claim, and it seems ready to fight. Prepare for combat!",
             "weapons":[
@@ -114,7 +120,8 @@
                 }
             ],
             "rewards":[{"id":"asteroidiron","value":10}],
-            "weight":1
+            "weight":1,
+            "grade": 1
         },{
             "description":"A ship of comparable size to yours approaches the loot you were hoping to claim, and it seems ready to fight. Prepare for combat!",
             "weapons":[
@@ -136,7 +143,8 @@
                 }
             ],
             "rewards":[{"id":"asteroidiron","value":10}],
-            "weight":1
+            "weight":1,
+            "grade": 2
         }
     ],"boost":[
         {
@@ -144,89 +152,107 @@
             "key":"health",
             "targets":[0,1,2,3],
             "value":20,
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"Taking a drive through the asteroid belt you notice some strong materials you can use to armor up your weapons. Your weapons gain 2 armor!",
             "key":"defense",
             "targets":[0,1,2,3],
             "value":2,
-            "weight":1
+            "weight":1,
+            "grade": 1
         },{
             "description":"At a port orbiting a large moon you notice an item for sale, and at a great price. It's an energy amplifier, one of your weapon's attacks becomes more powerful",
             "key":"damage",
             "targets":[0],
             "value":15,
-            "weight":0.25
+            "weight":0.25,
+            "grade": 1
         },{
             "description":"At a port orbiting a large moon you notice an item for sale, and at a great price. It's an energy amplifier, one of your weapon's attacks becomes more powerful",
             "key":"damage",
             "targets":[1],
             "value":15,
-            "weight":0.25
+            "weight":0.25,
+            "grade": 1
         },{
             "description":"At a port orbiting a large moon you notice an item for sale, and at a great price. It's an energy amplifier, one of your weapon's attacks becomes more powerful",
             "key":"damage",
             "targets":[2],
             "value":15,
-            "weight":0.25
+            "weight":0.25,
+            "grade": 1
         },{
             "description":"At a port orbiting a large moon you notice an item for sale, and at a great price. It's an energy amplifier, one of your weapon's attacks becomes more powerful",
             "key":"damage",
             "targets":[3],
             "value":15,
-            "weight":0.25
+            "weight":0.25,
+            "grade": 1
         }
     ],"choice":[
         {
             "description":"You identify a criminal ship holding valuable resources leaving a nearby planet. You can chase after them or stop by the planet to recover.",
             "choices":{"boost":"Stop","combat":"Chase"},
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"You approach a debris field to gather what remains, but another starship speeds away with some of the loot. You can stop to gather what remains, or take your chances and go after them.",
             "choices":{"reward":"Gather","combat":"Chase"},
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"A field of debris is slowly exiting orbit around a planet, and it'll soon be burned up by the atmosphere. You can go grab it now or stop and repair at a nearby dock.",
             "choices":{"boost":"Repair","reward":"Gather"},
-            "weight":1
+            "weight":1,
+            "grade": 0
         }
     ],"reward":[
         {
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"whitecore","value":2}],
-            "weight":0.5
+            "weight":0.5,
+            "grade": 1
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"spacesilk","value":40}],
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"orbitalore","value":40}],
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"explosiveberry","value":40}],
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"whitestardust","value":40}],
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"asteroidiron","value":10}],
-            "weight":1
+            "weight":1,
+            "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"poisonflower","value":2}],
-            "weight":1
+            "weight":1,
+            "grade": 1
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"asteroidiron","value":50}],
-            "weight":0.25
+            "weight":0.25,
+            "grade": 1
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"poisonflower","value":10}],
-            "weight":0.25
+            "weight":0.25,
+            "grade": 1
         }
     ]
 }

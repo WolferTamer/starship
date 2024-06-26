@@ -29,13 +29,14 @@ module.exports = (type = '', profileData: any) => {
     
     }
     rand = Math.random();
+    let newEncounters = encounters[type as keyof typeof encounters].filter((obj) => obj.grade <= profileData.badgetier)
     let sum = 0;
-    for(let obj of encounters[type as keyof typeof encounters]) {
+    for(let obj of newEncounters) {
         sum+=obj.weight
     }
     rand *=sum
     sum = 0;
-    for(let obj of encounters[type as keyof typeof encounters]) {
+    for(let obj of newEncounters) {
         sum+=obj.weight
         if(rand < sum) {
            return {type:type,value:obj} 
