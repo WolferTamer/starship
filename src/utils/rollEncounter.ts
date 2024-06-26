@@ -1,9 +1,21 @@
 import encounters from '../../data/encounters.json'
 
-module.exports = (type = '') => {
+module.exports = (type = '', profileData: any) => {
     let rand = Math.random()
     if(type === '') {
         const chanceTable = {'combat':.5,'choice':.7,'boost':.9,'reward':1};
+        if(profileData) {
+            const pet = profileData.pets[profileData.pet]
+            if(pet.petid == 4) {
+                chanceTable.combat = .4
+            } else if(pet.petid == 5) {
+                chanceTable.combat = .6
+                chanceTable.choice = .75
+            } else if(pet.petid == 6) {
+                chanceTable.combat = .4
+                chanceTable.choice = .6
+            }
+        }
 
         if(rand < chanceTable.combat) {
             type = 'combat'

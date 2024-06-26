@@ -12,7 +12,8 @@ for(let [key,value] of Object.entries(items)) {
 //A template for pets. May have levels in the future.
 let petSchema = new mongoose.Schema({
     petid: {type:Number,default:0,required:true},
-    petname: {type:String,default:''}
+    petname: {type:String,default:''},
+    progress: {type:Number, default:0}
 });
 
 const weaponSchema = new mongoose.Schema({

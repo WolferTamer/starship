@@ -48,6 +48,9 @@ module.exports = {
             } else if (userWep.slot == 4) {
                 healthMod = 20
             }
+            if(profileData.pets[profileData.pet].petid == 7) {
+                damMod += 5
+            }
             player.push({
                 damage:wepInfo.damage*wepModifier + damMod,
                 health:wepInfo.health*wepModifier + healthMod,
@@ -64,7 +67,11 @@ module.exports = {
         }
         collector.once('collect', async i => {
             if(i.customId==='startexplore') {
-                const roll = rollEncounter();
+                let info = ''
+                if(profileData.pets[profileData.pet].petid == 9) {
+                    info = 'boost'
+                }
+                const roll = rollEncounter('',profileData);
                 const encounter = roll.value;
                 const type = roll.type;
                 i.deferUpdate()
@@ -74,7 +81,7 @@ module.exports = {
 
         collector.on('collect', async i => {
             if(i.customId==='continueexplore') {
-                const roll = rollEncounter();
+                const roll = rollEncounter('',profileData);
                 const encounter = roll.value;
                 const type = roll.type;
                 i.deferUpdate()

@@ -30,7 +30,7 @@ module.exports = {
 
 
 		let embed = new EmbedBuilder()
-            .setTitle(`Pet Bought ${pets.pets[index].icon}`)
+            .setTitle(`Pet Bought ${interaction.client.emojis.cache.get(pets.pets[index].icon)}`)
             .setColor(0x0565ff)
             .setDescription(`Congratulations, you bought a ${petName}!`)
     

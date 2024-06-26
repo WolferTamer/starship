@@ -3,6 +3,7 @@ const UserModel = require('../../utils/schema')
 const rollItems = require('../../utils/rollItems')
 import items from '../../../data/items.json'
 import {drones} from '../../../data/drones.json'
+import {pets} from '../../../data/pets.json'
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -31,7 +32,16 @@ module.exports = {
             if(Date.now()-drone.sent.getTime() >= workTime*60000) {
                 let newItems = rollItems(drone)
                 let stringVal = ''
+                let petChance = Math.random()
+                let pet = profileData.pets[profileData.pet]
+                let multiplier = 1
+                if(petChance < pets[pet.petid].postchance && pet.petid == 2) {
+                    multiplier = 2
+                    interaction.channel?.send(`Your ${pet.petname} has doubled your item output!`)
+                }
                 for(let [key,val] of Object.entries(newItems)) {
+                    newItems[key] *=multiplier;
+                    val = newItems[key]
                     let item = items[key.split('.')[1] as keyof typeof items]
                     stringVal+=`${val} x ${interaction.client.emojis.cache.get(item.emoji)} ${item.name}\n`
                 }

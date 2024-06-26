@@ -1,7 +1,7 @@
 {"pets":[
     {
         "name": "Kitty",
-        "icon":"🐱",
+        "icon":"1255375022797885460",
         "description": "The classic kitty will hang out with you and snuggle when you're laying down!\nThey'll give you passive rewards.",
         "badge":1,
         "cost":1000,
@@ -9,26 +9,74 @@
     },
     {
         "name": "Puppy",
-        "icon":"🐶",
+        "icon":"1255375073645428777",
         "description": "The classic puppy will demand constant attention and play, make sure to give them treats!\nThey'll give you simple tasks to earn rewards.",
         "badge":1,
         "cost":1000,
         "postchance":0.1
     },
     {
+        "name": "Bunny",
+        "icon": "1255374983660703744",
+        "description": "This little guy will hop around without a care in the world, gathering tons of veggies!\nThey'll automatically collect some of your items.",
+        "badge":2,
+        "cost":8000,
+        "postchance":0.2
+    },
+    {
+        "name": "Mouse",
+        "icon": "1255375047892144188",
+        "description": "This tiny mouse will skitter around to cause chaos in every nook and cranny they can find!\nThey'll randomly prevent an enemy from attacking for a turn.",
+        "badge":2,
+        "cost":8000,
+        "postchance":0
+    },
+    {
+        "name": "Bat",
+        "icon": "1255374960478781523",
+        "description": "This flying puppy will proudly accompany your ship, using thier echolocation to help navigate!\nThey'll increase the chances of a \"choice\" encounter.",
+        "badge":3,
+        "cost":20000,
+        "postchance":0
+    },
+    {
+        "name": "Shark",
+        "icon": "1255375089898229820",
+        "description": "This ferocious predator will seek out nearby battles using their sensitive smell!\nThey'll increase the chances of a \"combat\" encounter.",
+        "badge":3,
+        "cost":20000,
+        "postchance":0
+    },
+    {
+        "name": "Owl",
+        "icon": "1255375061066584095",
+        "description": "This nocturnal hunter will use its spinning head to scout out particular spots!\nThey'll increase the chances of a \"boost\" encounter.",
+        "badge":3,
+        "cost":20000,
+        "postchance":0
+    },
+    {
         "name": "Bear",
-        "icon":"🐻",
+        "icon":"1255374969819365387",
         "description": "The bear will give you constant protection and a fuzzy friend to cozy up with!\nThey'll help you in battles.",
         "badge":4,
         "cost":50000,
         "postchance":0
     },
     {
-        "name": "Bunny",
-        "icon": "🐰",
-        "description": "This little guy will hop around without a care in the world, gathering tons of veggies!\nThey'll automatically collect some of your items.",
-        "badge":2,
-        "cost":8000,
+        "name": "Cow",
+        "icon":"1255374996247937155",
+        "description": "The cow will be a close ally and help you when you're most in need!\nAfter every combat your weapons will be healed slightly.",
+        "badge":4,
+        "cost":50000,
+        "postchance":0
+    },
+    {
+        "name": "Fairy",
+        "icon":"1255375010412105790",
+        "description": "This elegant angel will bless your exploration to be a success!\nAt the start of every run you are granted a powerup.",
+        "badge":5,
+        "cost":100000,
         "postchance":0
     }
 ]}

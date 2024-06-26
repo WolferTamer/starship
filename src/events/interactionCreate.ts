@@ -63,7 +63,7 @@ module.exports = {
         profileData.save();
 
         if(profileData.pet > -1) {
-            const petPost = petPostFix(profileData)
+            const petPost = await petPostFix(profileData)
             if(petPost) {
                 postfix += '\n'+ petPost + '\n'
             }

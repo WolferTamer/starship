@@ -39,7 +39,7 @@ module.exports = {
 
 		profileData.pets.forEach((obj : any, index : number) => {
 			const pet = pets.pets[obj.petid]
-			let nameVal = `${obj.petname} ${pet.icon}`
+			let nameVal = `${obj.petname} ${interaction.client.emojis.cache.get(pet.icon)}`
 			if(index==profileData.pet) { nameVal+=' (Chosen)'}
 			embed.addFields( {
 				name:nameVal,
