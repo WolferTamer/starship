@@ -18,7 +18,7 @@
     {
         "name": "Bunny",
         "icon": "1255374983660703744",
-        "description": "This little guy will hop around without a care in the world, gathering tons of veggies!\nThey'll automatically collect some of your items.",
+        "description": "This little guy will hop around without a care in the world, gathering tons of veggies!\nRandomly doubles the amount you get from collecting without fleet.",
         "badge":2,
         "cost":8000,
         "postchance":0.2
@@ -26,7 +26,7 @@
     {
         "name": "Mouse",
         "icon": "1255375047892144188",
-        "description": "This tiny mouse will skitter around to cause chaos in every nook and cranny they can find!\nThey'll randomly prevent an enemy from attacking for a turn.",
+        "description": "This tiny mouse will skitter around to cause chaos in every nook and cranny they can find!\nYour first ally to die while exploring is revived after winning combat.",
         "badge":2,
         "cost":8000,
         "postchance":0

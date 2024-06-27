@@ -75,7 +75,7 @@ module.exports = {
                 const encounter = roll.value;
                 const type = roll.type;
                 i.deferUpdate()
-                player = await handleNewEncounter(type,encounter,player,response)
+                player = await handleNewEncounter(type,encounter,player,response,profileData)
             }
         })
 
@@ -85,34 +85,34 @@ module.exports = {
                 const encounter = roll.value;
                 const type = roll.type;
                 i.deferUpdate()
-                player = await handleNewEncounter(type,encounter,player,response)
+                player = await handleNewEncounter(type,encounter,player,response, profileData)
             }else if (i.customId==='choosecombat') {
-                const roll = rollEncounter('combat');
+                const roll = rollEncounter('combat',profileData);
                 const encounter = roll.value;
                 const type = roll.type;
                 i.deferUpdate()
-                player = await handleNewEncounter(type,encounter,player,response)
+                player = await handleNewEncounter(type,encounter,player,response, profileData)
             }else if (i.customId==='chooseboost') {
-                const roll = rollEncounter('boost');
+                const roll = rollEncounter('boost',profileData);
                 const encounter = roll.value;
                 const type = roll.type;
-                player = await handleNewEncounter(type,encounter,player,response)
+                player = await handleNewEncounter(type,encounter,player,response, profileData)
                 i.deferUpdate()
             }else if (i.customId==='choosereward') {
-                const roll = rollEncounter('reward');
+                const roll = rollEncounter('reward',profileData);
                 const encounter = roll.value;
                 const type = roll.type;
-                player = await handleNewEncounter(type,encounter,player,response)
+                player = await handleNewEncounter(type,encounter,player,response, profileData)
                 i.deferUpdate()
             }
         })
     }
 }
 
-async function handleNewEncounter(type:string, encounter:any,player:any, response: InteractionResponse<boolean>) {
+async function handleNewEncounter(type:string, encounter:any,player:any, response: InteractionResponse<boolean>, profileData: any) {
     switch(type) {
         case 'combat': {
-            return await handleCombat(encounter,player,response)
+            return await handleCombat(encounter,player,response, profileData)
         } case 'boost': {
             return handleBoost(encounter,player, response)
         } case 'choice': {
@@ -217,7 +217,7 @@ async function handleReward(encounter: typeof encounters.reward[0],player:any, r
     return player
 }
 
-async function handleCombat(encounter: typeof encounters.combat[0],player:any, response: InteractionResponse<boolean>) {
+async function handleCombat(encounter: typeof encounters.combat[0],player:any, response: InteractionResponse<boolean>, profileData: any) {
     let healthEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'health' && object.guild.id == process.env.GUILD)
     let damageEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'damage' && object.guild.id == process.env.GUILD)
     let armorEmoji = response.interaction.client.emojis.cache.find((object)=> object.name == 'health' && object.guild.id == process.env.GUILD)
@@ -298,6 +298,25 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
                 data[`items.${obj.id}`] = obj.value
                 const item = items[obj.id as keyof typeof items]
                 text += `${obj.value} x ${response.interaction.client.emojis.cache.get(item.emoji)} ${item.name}\n`
+            }
+            if(profileData.pets[profileData.pet].petid == 8) {
+                for(let obj of player) {
+                    if(!obj.dead) {
+                        obj.health+=20;
+                        text+=`+20${healthEmoji}: ${obj.name}\n`
+                    }
+                }
+            }
+            if(profileData.pets[profileData.pet].petid == 3 && profileData.pets[profileData.pet].progress == 0) {
+                for(let obj of player) {
+                    if(obj.dead) {
+                        obj.health = 1;
+                        obj.dead = false;
+                        profileData.progress = 1
+                        text += `Your mouse revived an ally!\n`
+                        break;
+                    }
+                }
             }
             try {
                 const response2 = await UserModel.findOneAndUpdate({
