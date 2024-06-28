@@ -1,0 +1,65 @@
+{
+    "embeds": [
+        {
+            "title":"Welcome to Voidspace OS!",
+            "description":"**OS:** Hello! I'm an instance of VosA OS, and I'll be your guide to exploring the stars as a new bounty hunter! You'll be flying between planets and systems, gathering ancient relics and leftover scraps, using your rewards to improve your ship and eventually conquering the galaxy! Or explode sometime before then. Let's start off with the basics, try pressing the \"Next\" button below this message.",
+            "fields":[]
+        }, {
+            "title":"Basic Commands",
+            "description":"**OS:** Great job! These kinds of buttons will be present all over your starship interface, so make sure you're familiar with them. If you want to refresh yourself on what we've already discussed, press the \"Prev\" button. Now, let's see if you have a handle on basic commands. Use the /ping command for your starship then hit \"Next\"!",
+            "fields": []
+        }, {
+            "title":"Command Inputs",
+            "description": "**OS:** Easy as pie, right? That command just sent a little jolt to your ship to make sure it's working alright, so if you didn't hear anything back and have already taken off it might be time to start worrying. Now let's try another command, one a little more complex. Use the /guess command and input any number between 1-10 for the `number` parameter. Leave the second input blank for now (unless you feel like losing money).",
+            "fields": []
+        }, {
+            "title":"Gambling",
+            "description":"**OS:** Perfect! Now you've unlocked the most important feature of your starship: Built in gambling! By default you'll be gambling $50 at a time, you'll lose it if your guess is more than 2 off, you'll keep it if it's 2 or less off, and you'll double your money if it's spot on! Money can be used for plenty of things, the most notable being badges and pets. For now let's just focus on one: Badges. Try using the /badge command.",
+            "fields":[{"name":"/balance","value":"View the amount of money you have.","inline":true},
+                {"name":"/guess [number]","value":"Guess a number for the chance of winning money.","inline":true},
+                {"name":"/work","value":"Generate some money by working.","inline":true},
+                {"name":"/pay [user] [amount]","value":"Give a user some money.","inline":true}]
+        }, {
+            "title":"Badges",
+            "description":"**OS:** Now you should be able to see the info on your badge. Unless you've been working ahead, it'll be white. This is the lowest tier of badge, and the next one you get will be green. Your badge acts as a pass that lets you purchace and unlock new things in your starship, so make sure you're upgrading your badge whenever possible. Below this You'll find a couple relvant commands. Look through them then move on to the next section.",
+            "fields":[{"name":"/badge","value":"View the information about your current badge.","inline":true},
+            {"name":"/rollbadge {amount}","value":"Spend money to attempt to get a new badge. You can do it for free at first, but you'll need to spend exponentially more money to get higher tier ones.","inline":true}]
+        }, {
+            "title":"Pets",
+            "description":"**OS:** The other primary purpose of money is to buy pets. You can purchase as many as you like in the petstore, and each different type will give you a different benefit to having them at your side. Keep in mind that even the lowest level pet requires a green badge.",
+            "fields":[{"name":"/petstore","value":"View all the different pets available to buy.","inline":true},
+            {"name":"/pet","value":"View all the pets you currently own.","inline":true},
+            {"name":"/buypet [name] [","value":"Buy a pet from the petstore.","inline":true},
+            {"name":"/choosepet [name]","value":"Choose which pet you want to have give you thier benefits.","inline":true},
+            {"name":"/rename [currentname] [newname]","value":"Rename one of your pets.","inline":true}]
+        }, {
+            "title":"Items",
+            "description":"**OS:** Before you can truly understad what most of the pets do, you must first understand items. As you explore with your starship you'll quickly come across various resources that can be used to improve your ship. As such, you should keep careful stock of what items you have and use them whenever the opportunity arises.",
+            "fields":[{"name":"/inventory","value":"View all of the items you currently have.","inline":true},
+            {"name":"/sellitems [item] {amount}","value":"Sell an amount of a specific item. By default sell all of that item in your inventory.","inline":true},
+            {"name":"/compress [item] {amount}","value":"Compress 100 of a specific item into a single core, which can be used with your weapons.","inline":true}]
+        }, {
+            "title":"Drones",
+            "description":"**OS:** Now that you know about items, you also need to know how to get them. The primary way for you to do this is through drones. You start off with one drone and can buy more with money later. They can be upgraded using specific items, allowing them to gather more over quicker times.",
+            "fields":[{"name":"/drone [index]","value":"Send out your drone and collect the items it has gathered.","inline":true},
+                {"name":"/drones","value":"View the stats of all your drones.","inline":true},
+                {"name":"/buydrone","value":"Buy a new drone for an exponential price.","inline":true},
+                {"name":"/upgradedrone [index]","value":"Upgrade a specifc drone's stats using items.","inline":true},
+                {"name":"/fleet","value":"Send out and collect the items of your drones all at once.","inline":true}]
+        }, {
+            "title":"Weapons",
+            "description":"**OS:** Excellent, remember to send out your drones regularly! The next componenet of your ship that you need to pay attention to are the weapons. You have four of these in total, all Red Laser Cannon to start with. You can craft and install new weapons over time, and even use the resource cores from before to upgrade them randomly! Each weapon slot can be given a different quality, so be sure to plan carefully.",
+            "fields": [{"name":"/arsenal","value":"View the current weapons you have equipped and change the slots.","inline":true},
+                {"name":"/weaponlist","value":"View a list of weapons that are available to craft.","inline":true},
+                {"name":"/weaponstorage","value":"View a list of all the weapons you have crafted.","inline":true},
+                {"name":"/weapon [id]","value":"View the stats of a specific weapon.","inline":true},
+                {"name":"/craftweapon [id]","value":"Craft a specific weapon.","inline":true},
+                {"name":"/reforge [index] [tier]","value":"Use a weapon core to potentially upgrade a weapon.","inline":true},
+                {"name":"/equipweapon [index], [slot]","value":"Equip a weapon you already have crafted.","inline":true}]
+        }, {
+            "title":"Exploring",
+            "description":"**OS:** The most important function of your ship is /explore. This is where you'll find rare items and fight enemies! The entire goal of upgrading your ship is to make yourself better at this. Go ahead and give it a try! That's all I have to teach you for now, but if you come across a command you don't understand use /help for some advice.",
+            "fields":[]
+        }
+    ]
+}

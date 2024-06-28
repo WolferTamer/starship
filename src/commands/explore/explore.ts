@@ -10,7 +10,7 @@ const rollEncounter = require('../../utils/rollEncounter')
 import encounters from '../../../data/encounters.json'
 
 module.exports = {
-    cooldown:180,
+    cooldown:60,
 	data: new SlashCommandBuilder()
 		.setName('explore')
 		.setDescription('Explore and engage in combat to earn rewards!'),
@@ -71,7 +71,7 @@ module.exports = {
                 if(profileData.pets[profileData.pet].petid == 9) {
                     info = 'boost'
                 }
-                const roll = rollEncounter('',profileData);
+                const roll = rollEncounter(info,profileData);
                 const encounter = roll.value;
                 const type = roll.type;
                 i.deferUpdate()

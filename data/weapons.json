@@ -72,7 +72,7 @@
                 "spacesilk":40
             },
             "attacksenemies":true,
-            "damage":6,
+            "damage":5,
             "maxTargets":1,
             "behavior":"lowesthealth",
             "health":130,

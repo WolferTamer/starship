@@ -15,7 +15,7 @@ module.exports = {
 
 
 		const embed = new EmbedBuilder()
-            .setTitle(`Are you sure you would like to buy a new drone? ${interaction.client.emojis.cache.get(drones[profileData.drones.length].emoji)}`)
+            .setTitle(`Are you sure you would like to buy a new drone? ${interaction.client.emojis.cache.get(drones[profileData.drones.length-1].emoji)}`)
             .setDescription(`Cost: $${100**(profileData.drones.length+1)}`)
             .setColor(0x3ea5b3)
 
