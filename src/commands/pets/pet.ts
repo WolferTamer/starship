@@ -3,6 +3,10 @@ const UserModel = require('../../utils/schema')
 import * as pets from '../../../data/pets.json'
 
 module.exports = {
+	embed: new EmbedBuilder()
+    .setTitle('pet')
+    .setDescription('A list of all the pets you own.')
+    .setFields([{name:'{User}',value:'The user you would like to check the pets of. Default yourself.'}]),
 	data: new SlashCommandBuilder()
 		.setName('pet')
 		.setDescription('Check the pet you have!')

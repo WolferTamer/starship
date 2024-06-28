@@ -5,6 +5,10 @@ import * as items from '../../../data/items.json'
 import drones from '../../../data/drones.json'
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('upgradedrone')
+    .setDescription('Choose a specific drone to upgrade using your items.')
+    .setFields([{name:'[Drone]',value:'The index of the drone you want to upgrade.'}]),
     cooldown:30,
 	data: new SlashCommandBuilder()
 		.setName('upgradedrone')

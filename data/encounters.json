@@ -164,28 +164,7 @@
         },{
             "description":"At a port orbiting a large moon you notice an item for sale, and at a great price. It's an energy amplifier, one of your weapon's attacks becomes more powerful",
             "key":"damage",
-            "targets":[0],
-            "value":15,
-            "weight":0.25,
-            "grade": 1
-        },{
-            "description":"At a port orbiting a large moon you notice an item for sale, and at a great price. It's an energy amplifier, one of your weapon's attacks becomes more powerful",
-            "key":"damage",
-            "targets":[1],
-            "value":15,
-            "weight":0.25,
-            "grade": 1
-        },{
-            "description":"At a port orbiting a large moon you notice an item for sale, and at a great price. It's an energy amplifier, one of your weapon's attacks becomes more powerful",
-            "key":"damage",
-            "targets":[2],
-            "value":15,
-            "weight":0.25,
-            "grade": 1
-        },{
-            "description":"At a port orbiting a large moon you notice an item for sale, and at a great price. It's an energy amplifier, one of your weapon's attacks becomes more powerful",
-            "key":"damage",
-            "targets":[3],
+            "targets":[0,1,2,3],
             "value":15,
             "weight":0.25,
             "grade": 1

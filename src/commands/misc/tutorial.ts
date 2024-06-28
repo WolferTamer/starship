@@ -1,6 +1,9 @@
 import { ActionRow, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, ComponentType, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import {embeds} from '../../../data/tutorial.json'
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('tutorial')
+    .setDescription('Go through the basics of the bot in the tutorial.'),
 	data: new SlashCommandBuilder()
 		.setName('tutorial')
 		.setDescription('Get an explanation of the bot!'),

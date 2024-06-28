@@ -1,7 +1,11 @@
-import { ChatInputCommandInteraction, CommandInteraction, SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
+import { ChatInputCommandInteraction, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
 const UserModel = require('../../utils/schema')
 
 module.exports = {
+	embed: new EmbedBuilder()
+    .setTitle('balance')
+    .setDescription('Check the amount of money a user has')
+    .setFields([{name:'{User}',value:'The user to check the balance of. Default yourself'}]),
 	data: new SlashCommandBuilder()
 		.setName('balance')
 		.setDescription('Shows your balance!')

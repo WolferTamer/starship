@@ -1,8 +1,14 @@
-import { ChatInputCommandInteraction, CommandInteraction, SlashCommandBuilder, SlashCommandIntegerOption, SlashCommandNumberOption } from "discord.js";
+import { ChatInputCommandInteraction, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandIntegerOption, SlashCommandNumberOption } from "discord.js";
 import mongoose from "mongoose";
 const UserModel = require('../../utils/schema');
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('guess')
+    .setDescription('Guess a number from 1-10 for the chance of winning money.')
+    .setFields([{name:'[Number]',value:'The number you want to guess.'},
+        {name:'{Amount}',value:'The amount of money you want to bet, default and minimum 50.'}
+    ]),
 	data: new SlashCommandBuilder()
 		.setName('guess')
 		.setDescription('guess a number for the chance to win money!')

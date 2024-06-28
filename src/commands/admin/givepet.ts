@@ -4,6 +4,12 @@ import pets from '../../../data/pets.json'
 import {admins} from '../../../config.json'
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('givepet')
+    .setDescription('Only admins can use this command to cheat in a pet for a particular player')
+    .setFields([{name:'[Pet]',value:'The name of the pet you want to cheat in.'},
+        {name:'{User}',value:'The user you want to give the pet to. By default it gives it to the player using the command.'}
+    ]),
 	data: new SlashCommandBuilder()
 		.setName('givepet')
 		.setDescription('Admin command to give yourself a pet!')

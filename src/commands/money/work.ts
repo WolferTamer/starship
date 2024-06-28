@@ -1,7 +1,10 @@
-import { ChatInputCommandInteraction, CommandInteraction, SlashCommandBuilder, SlashCommandIntegerOption, SlashCommandNumberOption } from "discord.js";
+import { ChatInputCommandInteraction, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandIntegerOption, SlashCommandNumberOption } from "discord.js";
 const UserModel = require('../../utils/schema');
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('work')
+    .setDescription('Earn a random amount of money based on your badge tier.'),
     cooldown:10,
 	data: new SlashCommandBuilder()
 		.setName('work')

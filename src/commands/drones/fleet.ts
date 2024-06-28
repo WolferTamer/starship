@@ -11,6 +11,9 @@ const UserModel = require("../../utils/schema");
 const rollItems = require("../../utils/rollItems");
 import {drones} from '../../../data/drones.json'
 module.exports = {
+  embed: new EmbedBuilder()
+  .setTitle('fleet')
+  .setDescription('Collect and send out all your drones at once. Any passive buffs to gathering do not apply to this command.'),
   data: new SlashCommandBuilder()
     .setName("fleet")
     .setDescription("Send your drones out to work"),

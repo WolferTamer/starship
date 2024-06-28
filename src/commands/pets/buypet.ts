@@ -3,6 +3,10 @@ const UserModel = require('../../utils/schema')
 import * as pets from '../../../data/pets.json'
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('buypet')
+    .setDescription('Buy one of the pets available in the petstore.')
+    .setFields([{name:'[Pet]',value:'The pet that you would like to buy.'}]),
 	data: new SlashCommandBuilder()
 		.setName('buypet')
 		.setDescription('Buy a pet from the pet store!')

@@ -3,6 +3,12 @@ const UserModel = require('../../utils/schema');
 import 'dotenv/config'
 
 module.exports = {
+    embed: new EmbedBuilder()
+        .setTitle('feedback')
+        .setDescription('This command sends a section of feedback to the bot developers. This can be used for bugs & general advice. People who abuse this feature can be muted or banned from the bot.')
+        .setFields([{name:'[Type]',value:'The type of feedback you wish to send. There is a preselected list of options, including bug reports and misc.'},
+            {name:'[Content]',value:'The actual text of your report.'}
+        ]),
     cooldown:300,
 	data: new SlashCommandBuilder()
 		.setName('feedback')

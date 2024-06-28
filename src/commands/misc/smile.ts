@@ -2,6 +2,9 @@ import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.j
 import mongoose from "mongoose";
 
 module.exports = {
+	embed: new EmbedBuilder()
+    .setTitle('smile')
+    .setDescription('Sends a smile image.'),
 	data: new SlashCommandBuilder()
 		.setName('smile')
 		.setDescription('Draws a smiley face!'),

@@ -4,6 +4,9 @@ const tierToName = require('../../utils/tierToname')
 const UserModel = require('../../utils/schema')
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('weaponstorage')
+    .setDescription('A list of all the weapons you have crafted.'),
 	data: new SlashCommandBuilder()
 		.setName('weaponstorage')
 		.setDescription('View the weapons you have crafted'),

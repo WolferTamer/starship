@@ -3,6 +3,9 @@ const UserModel = require('../../utils/schema')
 import {drones} from '../../../data/drones.json'
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('drones')
+    .setDescription('Look at the stats of all of your drones at once.'),
 	data: new SlashCommandBuilder()
 		.setName('drones')
 		.setDescription('Look at all your drones'),

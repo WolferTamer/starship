@@ -4,6 +4,13 @@ import items from '../../../data/items.json'
 import {admins} from '../../../config.json'
 
 module.exports = {
+    embed: new EmbedBuilder()
+        .setTitle('giveitem')
+        .setDescription('Only admins can use this command to cheat in items to a specific player inventory')
+        .setFields([{name:'[Id]',value:'The ID of the item you want to cheat in.'},
+            {name:'[Amount]',value:'The amount of items to give.'},
+            {name:'{User}',value:'The user you want to give the items to. By default it gives it to the player using the command.'}
+        ]),
 	data: new SlashCommandBuilder()
 		.setName('giveitem')
 		.setDescription('Admin command to give yourself an item!')

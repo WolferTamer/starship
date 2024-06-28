@@ -2,6 +2,9 @@ import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteracti
 const UserModel = require('../../utils/schema')
 import items from '../../../data/items.json'
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('inventory')
+    .setDescription('All the items you have in your inventory.'),
 	data: new SlashCommandBuilder()
 		.setName('inventory')
 		.setDescription('Look at all your items'),

@@ -3,6 +3,11 @@ import mongoose from "mongoose";
 const UserModel = require('../../utils/schema')
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('rollbadge')
+    .setDescription('Roll for a brand new badge. If you roll lower than your current tier it will not be replaced.')
+    .setFields([
+        {name:'{Amount}',value:'The amount of money to spend on a roll. What you can get increases the more you spend.'},]),
     cooldown:10,
 	data: new SlashCommandBuilder()
 		.setName('rollbage')

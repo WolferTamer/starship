@@ -3,6 +3,10 @@ import {weapons} from '../../../data/weapons.json'
 import items from "../../../data/items.json";
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('weapon')
+    .setDescription('The details of a particular type of weapon.')
+    .setFields([{name:'[Weapon]',value:'The name of the weapon.'}]),
 	data: new SlashCommandBuilder()
 		.setName('weapon')
 		.setDescription('View the stats of a specific weapon')

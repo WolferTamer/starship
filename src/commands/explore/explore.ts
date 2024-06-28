@@ -10,6 +10,9 @@ const rollEncounter = require('../../utils/rollEncounter')
 import encounters from '../../../data/encounters.json'
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('explore')
+    .setDescription('Gather items and fight other starships.'),
     cooldown:60,
 	data: new SlashCommandBuilder()
 		.setName('explore')

@@ -2,6 +2,9 @@ import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteracti
 const UserModel = require('../../utils/schema')
 import * as pets from '../../../data/pets.json'
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('petstore')
+    .setDescription('The list of all the pets available to buy.'),
     cooldown:60,
 	data: new SlashCommandBuilder()
 		.setName('petstore')

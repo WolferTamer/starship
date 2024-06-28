@@ -3,6 +3,10 @@ import {admins} from '../../../config.json'
 const UserModel = require('../../utils/schema')
 
 module.exports = {
+    embed: new EmbedBuilder()
+        .setTitle('fbmute')
+        .setDescription('This command can only be used by admins. It prevents someone from sending additional feedback using the /feedback command. This is only to be used when necessary.')
+        .addFields([{name:'[User]',value:`The user that the admin would like to mute.`}]),
 	data: new SlashCommandBuilder()
 		.setName('fbmute')
 		.setDescription('Mute an individual from sending feedback!')

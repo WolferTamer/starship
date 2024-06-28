@@ -7,19 +7,25 @@ import {
   const tierToName = require("../../utils/tierToname")
   import items from "../../../data/items.json";
   module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('compress')
+    .setDescription('Choose a specific item to compress into a core of the same rarity.')
+    .setFields([{name:'[Item]',value:'The name of the item you want to compress.'},
+      {name:'{amount}',value:'The amount of cores you want to make. Consumes 100 of the item for each core. Default 1.'}
+    ]),
     data: new SlashCommandBuilder()
       .setName("compress")
       .setDescription("Compress 100 of a specific item")
       .addStringOption((option) =>
         option
           .setName("item")
-          .setDescription("The item you wish to buy")
+          .setDescription("The item you wish to compress")
           .setRequired(true)
       )
       .addIntegerOption((option) =>
         option
           .setName("amount")
-          .setDescription("The amount you want to sell")
+          .setDescription("The amount you want to make")
           .setRequired(false)
           .setMinValue(1)
       ),

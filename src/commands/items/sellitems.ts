@@ -6,6 +6,12 @@ import {
 const UserModel = require("../../utils/schema");
 import * as items from "../../../data/items.json";
 module.exports = {
+  embed: new EmbedBuilder()
+    .setTitle('sellitems')
+    .setDescription('Sell a specific item from your inventory.')
+    .setFields([{name:'[Item]',value:'The name of the item you would like to sell.'},
+      {name:'{Amount}',value:'The amount of item you would like to sell. Default all of that particular item.'}
+    ]),
   data: new SlashCommandBuilder()
     .setName("sellitems")
     .setDescription("Sell your items")

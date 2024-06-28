@@ -4,6 +4,12 @@ import items from '../../../data/items.json'
 const UserModel = require('../../utils/schema')
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('equipweapon')
+    .setDescription('Equip one of the weapons you have crafted.')
+    .setFields([{name:'[Weapon]',value:'The weapon you want to equip.'},
+        {name:'[Slot]',value:'The slot that you would like to equip the weapon in.'}
+    ]),
 	data: new SlashCommandBuilder()
 		.setName('equipweapon')
 		.setDescription('Equip a weapon in a certian slot.')

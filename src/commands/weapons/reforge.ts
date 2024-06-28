@@ -5,6 +5,12 @@ const UserModel = require('../../utils/schema')
 const tierToName = require('../../utils/tierToname')
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('reforge')
+    .setDescription('Spend a resource core to potentially upgrade a weapon. Lower tier weapons are kept.')
+    .setFields([{name:'[Slot]',value:'The equipped slot of the weapon you want to reforge.'},
+        {name:'[Tier]',value:'The tier of resource core you want to spend.'}
+    ]),
 	data: new SlashCommandBuilder()
 		.setName('reforge')
 		.setDescription('Reforge a weapon')

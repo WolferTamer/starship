@@ -7,6 +7,9 @@ const slotToName = require('../../utils/slotToName')
 const UserModel = require('../../utils/schema');
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('arsenal')
+    .setDescription('All the weapons you currently have equipped.'),
 	data: new SlashCommandBuilder()
 		.setName('arsenal')
 		.setDescription('View your arsenal of weapons'),

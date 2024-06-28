@@ -3,6 +3,12 @@ import * as pets from '../../../data/pets.json'
 const UserModel = require('../../utils/schema')
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('rename')
+    .setDescription('Rename of the pets you own.')
+    .setFields([{name:'[Pet]',value:'The current name of the pet you want to rename.'},
+        {name:'[New Name]',value:'The new name you want to give the pet'}
+    ]),
 	data: new SlashCommandBuilder()
 		.setName('rename')
 		.setDescription('Rename one of your pets!')

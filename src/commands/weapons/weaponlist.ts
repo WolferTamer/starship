@@ -2,6 +2,9 @@ import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder} from "d
 import {weapons} from '../../../data/weapons.json'
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('weaponlist')
+    .setDescription('A list of all available weapons.'),
 	data: new SlashCommandBuilder()
 		.setName('weaponlist')
 		.setDescription('View all available weapons.'),

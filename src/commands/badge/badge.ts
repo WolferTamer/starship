@@ -2,6 +2,9 @@ import { time, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "dis
 import mongoose from "mongoose";
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('badge')
+    .setDescription('Check the info for your current badge.'),
 	data: new SlashCommandBuilder()
 		.setName('badge')
 		.setDescription('Check which badge you have!'),

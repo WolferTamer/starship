@@ -6,6 +6,10 @@ import {drones} from '../../../data/drones.json'
 import {pets} from '../../../data/pets.json'
 
 module.exports = {
+    embed: new EmbedBuilder()
+    .setTitle('drone')
+    .setDescription('Send your drone out to work and collect the items you have gathered. Any passive boosts only apply in this command.')
+    .setFields([{name:'[Drone]',value:'The index of the drone you want to check.'}]),
 	data: new SlashCommandBuilder()
 		.setName('drone')
 		.setDescription('Send your drone out to work')
