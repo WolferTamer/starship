@@ -138,6 +138,26 @@ function handleBoost(encounter: typeof encounters.boost[0],player:any, response:
         .setColor(0x00FF00)
         let text = ''
     for(let index of encounter.targets) {
+        if(index == 4) {
+            let rand = Math.random()
+            let total = 0;
+            for(let obj of player) {
+                if(!obj.dead){
+                    total++
+                }
+            }
+            rand *= total;
+            total = 0;
+            for(let i = 0; i < player.length; i++) {
+                if(!player[i].dead){
+                    total++
+                    if(rand < total) {
+                        index = i
+                        break;
+                    }
+                }
+            }
+        }
         if(!player[index].dead) {
             player[index][encounter.key]+=encounter.value
             if(encounter.key === 'health') {
