@@ -1,6 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, CommandInteraction, ComponentType, EmbedBuilder, SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
 const UserModel = require('../../utils/schema')
 import * as pets from '../../../data/pets.json'
+const tierToName = require("../../utils/tierToname")
 module.exports = {
     embed: new EmbedBuilder()
     .setTitle('petstore')
@@ -18,7 +19,7 @@ module.exports = {
         for(var obj of pets.pets) {
             petArray.push( {
                 name:`${obj.name} ${interaction.client.emojis.cache.get(obj.icon)}: $${obj.cost}`,
-                value:`${obj.description} Tier: ${obj.badge}`
+                value:`${obj.description} Tier: ${tierToName(obj.badge)}`
             })
         }
 

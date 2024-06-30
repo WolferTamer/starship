@@ -23,6 +23,7 @@ module.exports = {
         .setRequired(true)),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
 
+        //If the user has been muted then immediately end the command
         if(profileData.muted) {
             interaction.reply({content:`I'm sorry, you are banned from providing feedback. If this has been done in error please contact a developer.`,ephemeral:true})
             return;
@@ -42,7 +43,7 @@ module.exports = {
                 color = 0xFF0000
             }
         }
-
+        
         let embed = new EmbedBuilder()
             .setTitle(`${title} from ${interaction.user.globalName}`)
             .setDescription(content)

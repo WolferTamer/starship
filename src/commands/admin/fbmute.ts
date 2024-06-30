@@ -16,11 +16,13 @@ module.exports = {
         const isAdmin = admins.findIndex((item) => item === interaction.user.id) >= 0
         const recipient = interaction.options.getUser('user')!
 
+        //Automatically cancels the command if the user is not in the config.json folder.
         if(!isAdmin) {
             interaction.reply({content:"You are not an admin",ephemeral:true})
             return;
         }
 
+        //If the user exists go and get their information. If they do not have a profile return a response.
         if(recipient) {
             try{
                 profileData = await UserModel.findOne({userid:recipient.id});
@@ -43,6 +45,7 @@ module.exports = {
             text+='muted.';
         }
 
+        //Set the muted option to the user's profile.
         try {
             const response = await UserModel.findOneAndUpdate({
                 userid: profileData.userid

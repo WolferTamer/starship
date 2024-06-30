@@ -14,7 +14,7 @@ module.exports = {
             .setTitle(`You have a ${tierToColor(profileData.badgetier)} badge!`)
             .setDescription(`Obtained at ${time(profileData.badgedate)}.`)
             .addFields(
-                {name:"Stat Changes:", value:"+5 Awesome \n+7 Catch Rate\n+1000000 Cuteness"}
+                {name:"Stat Changes:", value:"Unlock new pets!\nHigher Work Wage!"}
             )
             .setThumbnail('https://png.pngtree.com/png-vector/20230116/ourmid/pngtree-3d-star-badge-clipart-png-image_6564314.png')
 		interaction.reply({embeds:[embed]});

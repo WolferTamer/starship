@@ -1,6 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, CommandInteraction, ComponentType, EmbedBuilder, SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
 const UserModel = require('../../utils/schema')
 import items from '../../../data/items.json'
+const tierToName = require("../../utils/tierToname")
 module.exports = {
     embed: new EmbedBuilder()
     .setTitle('inventory')
@@ -14,7 +15,7 @@ module.exports = {
             let embed = new EmbedBuilder()
             .setTitle('Inventory')
             .setColor(0x0565ff)
-            .setDescription(`Items of rarity ${i}`)
+            .setDescription(`Rarity: ${tierToName(i)}`)
             embeds.push(embed)
         }
         for(let [key,value] of Object.entries(items)) {

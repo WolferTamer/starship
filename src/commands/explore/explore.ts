@@ -34,6 +34,7 @@ module.exports = {
 
         const filter = (i: any) => i.user.id == interaction.user.id
         const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 300_000, filter });
+        //Create the play object, an array of all the weapons they'll use.
         let player :any[] = []
         for(let userWep of profileData.weapons) {
             const wepModifier = weaponQualityMod(userWep.grade)

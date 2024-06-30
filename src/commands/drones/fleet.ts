@@ -54,15 +54,15 @@ module.exports = {
       .setColor(0x3ea5b3)
       .addFields([
         {
-          name: `Completed Drones:`,
+          name: `Completed Drones`,
           value: `You got items from & resent: ${completedDrones}`,
         },
         {
-          name: `Working Drones:`,
+          name: `Working Drones`,
           value: `You're still waiting for: ${workingDrones}`,
         },
         {
-          name: `Unworking Drones:`,
+          name: `Unworking Drones`,
           value: `You sent out: ${nonWorkingDrones}`,
         },
       ]);

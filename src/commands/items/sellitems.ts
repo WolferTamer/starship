@@ -54,14 +54,20 @@ module.exports = {
       .setColor(0x0565ff)
       .setDescription(`Sold ${amount} x ${interaction.client.emojis.cache.get(item.emoji)} ${item.name} for ${cost}`);
 
-    const response = await UserModel.findOneAndUpdate({
-        userid: interaction.user.id
-    }, {
-        $inc: {
-            balance:cost,
-            [`items.${itemName}`]:-amount
-        }
-    });
+    try {
+      const response = await UserModel.findOneAndUpdate({
+          userid: interaction.user.id
+      }, {
+          $inc: {
+              balance:cost,
+              [`items.${itemName}`]:-amount
+          }
+      });
+    } catch(e) {
+      console.log(e)
+      interaction.reply({content:`An error occured`,ephemeral:true})
+      return;
+    }
 
     interaction.reply({ embeds: [embed] });
   },

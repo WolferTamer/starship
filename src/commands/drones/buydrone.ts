@@ -11,6 +11,7 @@ module.exports = {
 		.setDescription('Buy a new drone!'),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
 
+        //Check if the user has the required amount of money to buy a new drone.
         if (profileData.balance < 100**(profileData.drones.length+1)) {
             interaction.reply({content:`You don't have $${100**(profileData.drones.length+1)} to buy another drone. ${interaction.client.emojis.cache.get(drones[profileData.drones.length-1].emoji)}`,ephemeral:true})
             return;
@@ -36,15 +37,21 @@ module.exports = {
 
         const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 60_000, filter });
     
-        collector.on('collect', async i => {
+        //When the button is clicked send the changes to the database and edit the reply.
+        collector.once('collect', async i => {
             if(i.customId === 'buydrone') {
-                const res = await UserModel.findOneAndUpdate({
-                    userid: interaction.user.id
-                }, {
-                    $push: {drones:{}},
-                    $inc: {balance:-(100**(profileData.drones.length+1))}
-                });
-                embed.setTitle(`Drone Bought! ${interaction.client.emojis.cache.get(drones[profileData.drones.length-1].emoji)}`).setColor(0x00FF00)
+                try {
+                    const res = await UserModel.findOneAndUpdate({
+                        userid: interaction.user.id
+                    }, {
+                        $push: {drones:{}},
+                        $inc: {balance:-(100**(profileData.drones.length+1))}
+                    });
+                    embed.setTitle(`Drone Bought! ${interaction.client.emojis.cache.get(drones[profileData.drones.length-1].emoji)}`).setColor(0x00FF00)
+                } catch(e) {
+                    console.log(e)
+                    i.reply({content:`An error occured! Please try again`,ephemeral:true})
+                }
                 response.edit({embeds:[embed],components:[]})
             }
         })
