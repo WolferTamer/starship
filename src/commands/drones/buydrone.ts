@@ -1,6 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, ComponentType, EmbedBuilder, SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
 const UserModel = require('../../utils/schema')
 import {drones} from '../../../data/drones.json'
+const tierToName = require('../../utils/tierToname')
 
 module.exports = {
     embed: new EmbedBuilder()
@@ -12,6 +13,10 @@ module.exports = {
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
 
         //Check if the user has the required amount of money to buy a new drone.
+        if(profileData.badgetier < profileData.drones.length*2-1) {
+            interaction.reply({content:`You aren't high enough rank (${tierToName(profileData.drones.length*2-1)}) to buy another drone. ${interaction.client.emojis.cache.get(drones[profileData.drones.length-1].emoji)}`,ephemeral:true})
+            return;
+        }
         if (profileData.balance < 100**(profileData.drones.length+1)) {
             interaction.reply({content:`You don't have $${100**(profileData.drones.length+1)} to buy another drone. ${interaction.client.emojis.cache.get(drones[profileData.drones.length-1].emoji)}`,ephemeral:true})
             return;

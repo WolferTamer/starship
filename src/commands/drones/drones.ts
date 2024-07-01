@@ -1,6 +1,7 @@
 import { ChatInputCommandInteraction, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
 const UserModel = require('../../utils/schema')
 import {drones} from '../../../data/drones.json'
+const tierToName = require('../../utils/tierToname')
 
 module.exports = {
     embed: new EmbedBuilder()
@@ -22,7 +23,7 @@ module.exports = {
             i++
         }
     
-        embed.setFooter({text:`The cost of your next bot is $${100**(profileData.drones.length+1)}`})
+        embed.setFooter({text:`The cost of your next bot is $${100**(profileData.drones.length+1)} and you need to be rank ${tierToName(profileData.drones.length*2-1)}.`})
 		interaction.reply({embeds:[embed]});
 	},
 };

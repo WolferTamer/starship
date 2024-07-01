@@ -4,14 +4,14 @@ const UserModel = require('../../utils/schema')
 
 module.exports = {
     embed: new EmbedBuilder()
-    .setTitle('rollbadge')
-    .setDescription('Roll for a brand new badge. If you roll lower than your current tier it will not be replaced.')
+    .setTitle('rollrank')
+    .setDescription('Roll for a brand new rank. If you roll lower than your current tier it will not be replaced.')
     .setFields([
         {name:'{Amount}',value:'The amount of money to spend on a roll. What you can get increases the more you spend.'},]),
     cooldown:10,
 	data: new SlashCommandBuilder()
-		.setName('rollbage')
-		.setDescription('Spend money to roll for a new badge')
+		.setName('rollrank')
+		.setDescription('Spend money to roll for a new rank')
         .addIntegerOption((option: SlashCommandIntegerOption) => option.setMinValue(0).setMaxValue(100000)
         .setRequired(false).setName('amount')
         .setDescription('The amount you want to spend. The higher amount, the better your chances')),
@@ -64,17 +64,17 @@ module.exports = {
         let embed:EmbedBuilder
         if(profileData.badgetier<badgeRes) {
             embed = new EmbedBuilder()
-                .setTitle(`${interaction.user.displayName} Earned a New Badge!`)
+                .setTitle(`${interaction.user.displayName} Earned a New Rank!`)
                 .setTimestamp(Date.now())
                 .setColor(0x00FF00)
-                .setDescription(`You spent $${amount} and got a ${tierToColor(badgeRes)} badge, which is ${badgeRes-profileData.badgetier} better than your old badge.`)
-                .setFooter({text:`Check /badge to see what your new badge does.`})
+                .setDescription(`You spent $${amount} and went to rank ${tierToColor(badgeRes)}, which is ${badgeRes-profileData.badgetier} better than your old rank.`)
+                .setFooter({text:`Check /rank to see what your new badge does.`})
         } else {
             embed = new EmbedBuilder()
-                .setTitle(`${interaction.user.displayName} Didn't Find a New Badge`)
+                .setTitle(`${interaction.user.displayName} Didn't Get a New Rank`)
                 .setTimestamp(Date.now())
                 .setColor(0xFF0000)
-                .setDescription(`You spent $${amount} and got a ${tierToColor(badgeRes)} badge, which isn't better than your current badge.`)
+                .setDescription(`You spent $${amount} and got ${tierToColor(badgeRes)} rank, which isn't better than your current rank.`)
                 badgeRes = 0
         }
 

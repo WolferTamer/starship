@@ -61,7 +61,7 @@
     },
     "explosiveberry": {
         "name":"Explosive Berry",
-        "emoji": "1253508476475543614",
+        "emoji": "1257089659729875127",
         "rarity":0,
         "weight":1
     },
@@ -73,55 +73,55 @@
     },
     "poisonflower": {
         "name":"Poison Flower",
-        "emoji": "1253463502211776523",
+        "emoji": "1257087015804211261",
         "rarity":2,
         "weight":1
     },
     "elasticvines": {
         "name":"Elastic Vines",
-        "emoji": "1253463502211776523",
+        "emoji": "1257089042269470810",
         "rarity":3,
         "weight":1
     },
     "meteoricmagma": {
         "name":"Meteoric Magma",
-        "emoji": "909611416359678022",
+        "emoji": "1257089583200600074",
         "rarity":4,
         "weight":1
     },
     "whitestardust": {
         "name":"White Stardust",
-        "emoji": "909341494018707467",
+        "emoji": "1257065948272132318",
         "rarity":0,
         "weight":1
     },
     "greenstardust": {
         "name":"Green Stardust",
-        "emoji": "909335143385276457",
+        "emoji": "1257065963396796558",
         "rarity":1,
         "weight":1
     },
     "bluestardust": {
         "name":"Blue Stardust",
-        "emoji": "909337188238508065",
+        "emoji": "1257065980610347048",
         "rarity":2,
         "weight":1
     },
     "purplestardust": {
         "name":"Purple Stardust",
-        "emoji": "909339760693215292",
+        "emoji": "1257065996087201834",
         "rarity":3,
         "weight":1
     },
     "redstardust": {
         "name":"Red Stardust",
-        "emoji": "909329889340035133",
+        "emoji": "1257066015867797654",
         "rarity":4,
         "weight":1
     },
     "orangestardust": {
         "name":"Orange Stardust",
-        "emoji": "909332074677284895",
+        "emoji": "1257066029444497529",
         "rarity":5,
         "weight":1
     },

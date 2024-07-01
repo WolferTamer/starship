@@ -36,7 +36,7 @@
             "weapons":[
                 {
                     "weaponid":"purplelaser",
-                    "grade":4
+                    "grade":3
                 }
             ],
             "rewards":[{"id":"explosiveberry","value":30}],

@@ -3,18 +3,18 @@ import mongoose from "mongoose";
 
 module.exports = {
     embed: new EmbedBuilder()
-    .setTitle('badge')
-    .setDescription('Check the info for your current badge.'),
+    .setTitle('rank')
+    .setDescription('Check the info for your current rank.'),
 	data: new SlashCommandBuilder()
-		.setName('badge')
-		.setDescription('Check which badge you have!'),
+		.setName('rank')
+		.setDescription('Check which rank you have!'),
 	async execute(interaction: CommandInteraction, profileData: any) {
         const embed = new EmbedBuilder()
             .setColor(tierToHex(profileData.badgetier))
-            .setTitle(`You have a ${tierToColor(profileData.badgetier)} badge!`)
+            .setTitle(`You are ${tierToColor(profileData.badgetier)} rank!`)
             .setDescription(`Obtained at ${time(profileData.badgedate)}.`)
             .addFields(
-                {name:"Stat Changes:", value:"Unlock new pets!\nHigher Work Wage!"}
+                {name:"Stat Changes:", value:"Unlock new pets!\nHigher Work Wage!\nMore Difficult encounters"}
             )
             .setThumbnail('https://png.pngtree.com/png-vector/20230116/ourmid/pngtree-3d-star-badge-clipart-png-image_6564314.png')
 		interaction.reply({embeds:[embed]});

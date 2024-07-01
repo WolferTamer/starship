@@ -14,19 +14,19 @@
             "fields": []
         }, {
             "title":"Gambling",
-            "description":"**OS:** Perfect! Now you've unlocked the most important feature of your starship: Built in gambling! By default you'll be gambling $50 at a time, you'll lose it if your guess is more than 2 off, you'll keep it if it's 2 or less off, and you'll double your money if it's spot on! Money can be used for plenty of things, the most notable being badges and pets. For now let's just focus on one: Badges. Try using the /badge command.",
+            "description":"**OS:** Perfect! Now you've unlocked the most important feature of your starship: Built in gambling! By default you'll be gambling $50 at a time, you'll lose it if your guess is more than 2 off, you'll keep it if it's 2 or less off, and you'll double your money if it's spot on! Money can be used for plenty of things, the most notable being ranks and pets. For now let's just focus on one: Ranks. Try using the /rank command.",
             "fields":[{"name":"/balance","value":"View the amount of money you have.","inline":true},
                 {"name":"/guess [number]","value":"Guess a number for the chance of winning money.","inline":true},
                 {"name":"/work","value":"Generate some money by working.","inline":true},
                 {"name":"/pay [user] [amount]","value":"Give a user some money.","inline":true}]
         }, {
-            "title":"Badges",
-            "description":"**OS:** Now you should be able to see the info on your badge. Unless you've been working ahead, it'll be white. This is the lowest tier of badge, and the next one you get will be green. Your badge acts as a pass that lets you purchace and unlock new things in your starship, so make sure you're upgrading your badge whenever possible. Below this You'll find a couple relvant commands. Look through them then move on to the next section.",
-            "fields":[{"name":"/badge","value":"View the information about your current badge.","inline":true},
-            {"name":"/rollbadge {amount}","value":"Spend money to attempt to get a new badge. You can do it for free at first, but you'll need to spend exponentially more money to get higher tier ones.","inline":true}]
+            "title":"Ranks",
+            "description":"**OS:** Now you should be able to see the info on your rank. Unless you've been working ahead, it'll be white. This is the lowest tier rank, and the next one you get will be green. Your rank acts as a pass that lets you purchace and unlock new things in your starship, so make sure you're upgrading your rank whenever possible. Below this You'll find a couple relvant commands. Look through them then move on to the next section.",
+            "fields":[{"name":"/rank","value":"View the information about your current rank.","inline":true},
+            {"name":"/rollrank {amount}","value":"Spend money to attempt to get a new rank. You can do it for free at first, but you'll need to spend exponentially more money to get higher tier ones.","inline":true}]
         }, {
             "title":"Pets",
-            "description":"**OS:** The other primary purpose of money is to buy pets. You can purchase as many as you like in the petstore, and each different type will give you a different benefit to having them at your side. Keep in mind that even the lowest level pet requires a green badge.",
+            "description":"**OS:** The other primary purpose of money is to buy pets. You can purchase as many as you like in the petstore, and each different type will give you a different benefit to having them at your side. Keep in mind that even the lowest level pet requires rank green.",
             "fields":[{"name":"/petstore","value":"View all the different pets available to buy.","inline":true},
             {"name":"/pet","value":"View all the pets you currently own.","inline":true},
             {"name":"/buypet [name] [","value":"Buy a pet from the petstore.","inline":true},
