@@ -4,7 +4,7 @@ module.exports = (type = '', profileData: any) => {
     let rand = Math.random()
     if(type === '') {
         const chanceTable = {'combat':.5,'choice':.7,'boost':.9,'reward':1};
-        if(profileData) {
+        if(profileData && profileData.pet > 0) {
             const pet = profileData.pets[profileData.pet]
             if(pet.petid == 4) {
                 chanceTable.combat = .4

@@ -54,7 +54,7 @@ module.exports = {
             } else if (userWep.slot == 4) {
                 healthMod = 20
             }
-            if(profileData.pets[profileData.pet].petid == 7) {
+            if(profileData.pet > 0 && profileData.pets[profileData.pet].petid == 7) {
                 damMod += 5
             }
             player.push({
@@ -74,7 +74,7 @@ module.exports = {
         collector.once('collect', async i => {
             if(i.customId==='startexplore') {
                 let info = ''
-                if(profileData.pets[profileData.pet].petid == 9) {
+                if(profileData.pet > 0 && profileData.pets[profileData.pet].petid == 9) {
                     info = 'boost'
                 }
                 const roll = rollEncounter(info,profileData);
@@ -325,7 +325,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
                 const item = items[obj.id as keyof typeof items]
                 text += `${obj.value} x ${response.interaction.client.emojis.cache.get(item.emoji)} ${item.name}\n`
             }
-            if(profileData.pets[profileData.pet].petid == 8) {
+            if(profileData.pet > 0 && profileData.pets[profileData.pet].petid == 8) {
                 for(let obj of player) {
                     if(!obj.dead) {
                         obj.health+=20;
@@ -333,7 +333,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
                     }
                 }
             }
-            if(profileData.pets[profileData.pet].petid == 3 && profileData.pets[profileData.pet].progress == 0) {
+            if(profileData.pet > 0 && profileData.pets[profileData.pet].petid == 3 && profileData.pets[profileData.pet].progress == 0) {
                 for(let obj of player) {
                     if(obj.dead) {
                         obj.health = 1;

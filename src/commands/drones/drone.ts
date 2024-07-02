@@ -39,7 +39,7 @@ module.exports = {
                 let petChance = Math.random()
                 let pet = profileData.pets[profileData.pet]
                 let multiplier = 1
-                if(petChance < pets[pet.petid].postchance && pet.petid == 2) {
+                if(profileData.pet > 0 && petChance < pets[pet.petid].postchance && pet.petid == 2) {
                     multiplier = 2
                     interaction.channel?.send(`Your ${pet.petname} has doubled your item output!`)
                 }
