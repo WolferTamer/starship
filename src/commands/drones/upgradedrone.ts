@@ -21,7 +21,7 @@ module.exports = {
             interaction.reply({content:`You don't have that many bots!`,ephemeral:true})
             return;
         }
-        const drone = profileData.drones[botNum-1]
+        let drone = profileData.drones[botNum-1]
 		const response = await interaction.reply(buildEmbed(drone,botNum, interaction));
 
         const filter = (i: any) => i.user.id == interaction.user.id
@@ -53,6 +53,7 @@ module.exports = {
                 });
 
                 await response.edit(buildEmbed(profileData.drones[botNum-1],botNum, interaction))
+                drone = profileData.drones[botNum-1]
 
                 await i.reply({content:`You spent ${upgrades[type as keyof typeof upgrades][tier].amount} ${upgrades[type as keyof typeof upgrades][tier].item} to upgrade ${type}`,ephemeral:true})
             }
