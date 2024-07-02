@@ -1,7 +1,9 @@
 import { Client, REST, Routes } from "discord.js";
 const fs = require('node:fs');
 const path = require('node:path');
-import 'dotenv/config'
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
 
 module.exports = async (client: Client) => {

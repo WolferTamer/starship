@@ -1,6 +1,8 @@
 import { ChatInputCommandInteraction, ColorResolvable, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandIntegerOption, SlashCommandNumberOption, TextChannel } from "discord.js";
 const UserModel = require('../../utils/schema');
-import 'dotenv/config'
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
 module.exports = {
     embed: new EmbedBuilder()

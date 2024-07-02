@@ -1,7 +1,9 @@
 import { ActionRow, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, CommandInteraction, ComponentType, EmbedBuilder, InteractionResponse, SlashCommandBuilder, SlashCommandIntegerOption, SlashCommandNumberOption } from "discord.js";
 import {weapons} from '../../../data/weapons.json'
 import items from "../../../data/items.json";
-import 'dotenv/config'
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 const UserModel = require('../../utils/schema')
 const tierToName = require('../../utils/tierToname')
 const roundOfCombats = require('../../utils/roundOfCombat')

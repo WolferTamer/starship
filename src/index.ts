@@ -1,4 +1,6 @@
-import 'dotenv/config'
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 import * as mongoose from 'mongoose'
 import { Client, Collection, Events, IntentsBitField } from "discord.js";
 
