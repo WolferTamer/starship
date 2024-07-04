@@ -288,7 +288,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
             if(player[i]) {
                 let tookdamage = ''
                 let damageTaken = ''
-                if(player[i].health != tempPlayer[i].health) {
+                if(player[i].health < tempPlayer[i].health) {
                     tookdamage = `${hitEmoji}`
                     damageTaken = `${tempPlayer[i].health - player[i].health}`
                 }
@@ -304,7 +304,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
             if(enemy[i]) {
                 let tookdamage = ''
                 let damageTaken = ''
-                if(enemy[i].health != tempEnemy[i].health) {
+                if(enemy[i].health < tempEnemy[i].health) {
                     tookdamage = `${hitEmoji}`
                     damageTaken = `${tempEnemy[i].health - enemy[i].health}`
                 }

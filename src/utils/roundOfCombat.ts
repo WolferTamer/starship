@@ -10,11 +10,15 @@ module.exports = (player: any, enemy:any) => {
                 //Gather an array of potential targets
                 if(weapon.attacksenemies) {
                     for(let j = 0; j < enemy.length; j++) {
-                        targets.push(j)
+                        if(!enemy[j].dead) {
+                            targets.push(j)
+                        }
                     }
                 } else {
                     for(let j = 0; j < player.length; j++) {
-                        targets.push(j)
+                        if(!player[j].dead) {
+                            targets.push(j)
+                        }
                     }
                 }
 
@@ -79,11 +83,15 @@ module.exports = (player: any, enemy:any) => {
                 let targets = []
                 if(weapon.attacksenemies) {
                     for(let j = 0; j < player.length; j++) {
-                        targets.push(j)
+                        if(!player[j].dead) {
+                            targets.push(j)
+                        }
                     }
                 } else {
                     for(let j = 0; j < enemy.length; j++) {
-                        targets.push(j)
+                        if(!enemy[j].dead) {
+                            targets.push(j)
+                        }
                     }
                 }
                 //Determine targets

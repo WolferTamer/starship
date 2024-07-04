@@ -11,7 +11,7 @@
                     "grade":2
                 }
             ],
-            "rewards":[{"id":"spacesilk","value":20}],
+            "rewards":[{"id":"spacesilk","value":5}],
             "weight":1,
             "grade": 0
         },{
@@ -28,7 +28,24 @@
                     "grade":1
                 }
             ],
-            "rewards":[{"id":"orbitalore","value":20}],
+            "rewards":[{"id":"orbitalore","value":5}],
+            "weight":1,
+            "grade": 0
+        },{
+            "description":"A small fighter appears out of hyperspace and beelines towards your ship, torpedos at the ready. Prepare for combat!",
+            "weapons":[
+                {
+                    "weaponid":"redlaser",
+                    "grade":1
+                }, {
+                    "weaponid":"torpedo",
+                    "grade":1
+                }, {
+                    "weaponid":"repairlaser",
+                    "grade":1
+                }
+            ],
+            "rewards":[{"id":"whitestardust","value":5}],
             "weight":1,
             "grade": 0
         },{
@@ -39,7 +56,7 @@
                     "grade":3
                 }
             ],
-            "rewards":[{"id":"explosiveberry","value":30}],
+            "rewards":[{"id":"explosiveberry","value":5}],
             "weight":1,
             "grade": 0
         },{
@@ -50,16 +67,16 @@
                     "grade":1
                 }, {
                     "weaponid":"redlaser",
-                    "grade":2
+                    "grade":1
                 }, {
                     "weaponid":"redlaser",
-                    "grade":2
+                    "grade":1
                 }, {
                     "weaponid":"healingwand",
-                    "grade":2
+                    "grade":1
                 }
             ],
-            "rewards":[{"id":"asteroidiron","value":10}],
+            "rewards":[{"id":"asteroidiron","value":5}],
             "weight":1,
             "grade": 1
         },{
@@ -70,16 +87,16 @@
                     "grade":1
                 }, {
                     "weaponid":"minigun",
-                    "grade":2
+                    "grade":1
                 }, {
                     "weaponid":"redlaser",
                     "grade":2
                 }, {
                     "weaponid":"repairlaser",
-                    "grade":2
+                    "grade":1
                 }
             ],
-            "rewards":[{"id":"asteroidiron","value":10}],
+            "rewards":[{"id":"greenstardust","value":5}],
             "weight":1,
             "grade": 1
         },{
@@ -99,27 +116,27 @@
                     "grade":1
                 }
             ],
-            "rewards":[{"id":"asteroidiron","value":10}],
-            "weight":0.5,
+            "rewards":[{"id":"conductivewood","value":5}],
+            "weight":1,
             "grade": 1
         },{
             "description":"A ship of comparable size to yours approaches the loot you were hoping to claim, and it seems ready to fight. Prepare for combat!",
             "weapons":[
                 {
                     "weaponid":"redlaser",
-                    "grade":2
+                    "grade":1
                 }, {
                     "weaponid":"redlaser",
-                    "grade":2
+                    "grade":1
                 }, {
                     "weaponid":"redlaser",
-                    "grade":2
+                    "grade":1
                 }, {
                     "weaponid":"redlaser",
-                    "grade":2
+                    "grade":1
                 }
             ],
-            "rewards":[{"id":"asteroidiron","value":10}],
+            "rewards":[{"id":"wobblywool","value":5}],
             "weight":1,
             "grade": 1
         },{
@@ -142,7 +159,7 @@
                     "grade":1
                 }
             ],
-            "rewards":[{"id":"asteroidiron","value":10}],
+            "rewards":[{"id":"luxuryleather","value":5}],
             "weight":1,
             "grade": 2
         }
@@ -157,7 +174,7 @@
         },{
             "description":"Taking a drive through the asteroid belt you notice some strong materials you can use to armor up your weapons. Your weapons gain 2 armor!",
             "key":"defense",
-            "targets":[0,1,2,3],
+            "targets":[4],
             "value":2,
             "weight":1,
             "grade": 1
@@ -189,32 +206,32 @@
     ],"reward":[
         {
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"whitecore","value":2}],
+            "rewards":[{"id":"whitecore","value":1}],
             "weight":0.5,
             "grade": 1
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"spacesilk","value":40}],
+            "rewards":[{"id":"spacesilk","value":10}],
             "weight":1,
             "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"orbitalore","value":40}],
+            "rewards":[{"id":"orbitalore","value":10}],
             "weight":1,
             "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"explosiveberry","value":40}],
+            "rewards":[{"id":"explosiveberry","value":10}],
             "weight":1,
             "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"whitestardust","value":40}],
+            "rewards":[{"id":"whitestardust","value":10}],
             "weight":1,
             "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"asteroidiron","value":10}],
+            "rewards":[{"id":"asteroidiron","value":3}],
             "weight":1,
             "grade": 0
         },{
@@ -224,12 +241,12 @@
             "grade": 1
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"asteroidiron","value":50}],
+            "rewards":[{"id":"asteroidiron","value":10}],
             "weight":0.25,
             "grade": 1
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"poisonflower","value":10}],
+            "rewards":[{"id":"poisonflower","value":5}],
             "weight":0.25,
             "grade": 1
         }

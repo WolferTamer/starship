@@ -15,7 +15,8 @@
         },"glaive": {
             "ingredients": {
                 "spacesilk":10,
-                "orbitalore":10
+                "orbitalore":10,
+                "greenstardust":5
             },
             "attacksenemies":true,
             "damage":15,
@@ -32,7 +33,7 @@
                 "wobblywool":20
             },
             "attacksenemies":true,
-            "damage":10,
+            "damage":15,
             "maxTargets":4,
             "behavior":"lowesthealth",
             "health":70,
@@ -41,9 +42,9 @@
             "name":"Torpedo Igniter"
         }, "healingwand" : {
             "ingredients": {
-                "spacesilk":10,
+                "whitestardust":10,
                 "orbitalore":10,
-                "wobblywool":20
+                "conductivewood":10
             },
             "attacksenemies":false,
             "damage":-15,
@@ -56,7 +57,8 @@
         },
         "bluelaser": {
             "ingredients": {
-                "spacesilk":40
+                "spacesilk":30,
+                "luxuryleather":10
             },
             "attacksenemies":true,
             "damage":50,
@@ -69,7 +71,8 @@
         },
         "minigun": {
             "ingredients": {
-                "spacesilk":40
+                "explosiveberry":25,
+                "asteroidiron":5
             },
             "attacksenemies":true,
             "damage":5,
@@ -77,25 +80,28 @@
             "behavior":"lowesthealth",
             "health":130,
             "defense":0,
-            "apt":5,
+            "apt":7,
             "name":"Minigun"
         },
         "repairlaser": {
             "ingredients": {
-                "spacesilk":40
+                "greenstardust":5,
+                "luxuryleather":5,
+                "conductivewood":5
             },
             "attacksenemies":false,
-            "damage":-50,
+            "damage":-40,
             "maxTargets":1,
             "behavior":"lowesthealth",
             "health":70,
             "defense":1,
-            "apt":0.5,
+            "apt":0.4,
             "name":"Repair Laser"
         },
         "purplelaser": {
             "ingredients": {
-                "spacesilk":40
+                "explosiveberry":50,
+                "asteroidiron":10
             },
             "attacksenemies":true,
             "damage":100,
@@ -103,7 +109,7 @@
             "behavior":"lowesthealth",
             "health":30,
             "defense":10,
-            "apt":0.1,
+            "apt":0.4,
             "name":"Purple Laser Cannon"
         }
     }
