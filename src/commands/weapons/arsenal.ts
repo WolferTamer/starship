@@ -130,13 +130,6 @@ module.exports = {
                     case 'health':newType = 4;break;
                 }
                 if(newType == 0) { i.deferUpdate()}
-                let oldSlot = -1
-                for(let x = 0; x < profileData.weapons.length; x++) {
-                    if(profileData.weapons[x].slot == newType) {
-                        oldSlot = x
-                    }
-                }
-                if(oldSlot < 0) {
                     try {
                         profileData = await UserModel.findOneAndUpdate({
                             userid: interaction.user.id
@@ -164,36 +157,7 @@ module.exports = {
                         console.log(e)
                         i.reply({content:`An error occured. Please try again.`, ephemeral:true})
                     }
-                } else {
-                    try {
-                        profileData = await UserModel.findOneAndUpdate({
-                            userid: interaction.user.id
-                        }, {
-                            $set: {[`weapons.${index}.slot`]:newType,
-                            [`weapons.${oldSlot}.slot`]:profileData.weapons[index].slot}
-                        },{new:true});
-                        
-                        embeds[oldSlot] = embedMaker(profileData.weapons[oldSlot],oldSlot)
-                        embeds[index] = embedMaker(profileData.weapons[index],index)
-
-                        dropdown.setOptions([])
-
-                        for(let i = 0; i < 4; i++) {
-                            if(i != profileData.weapons[index].slot-1) {
-                                dropdown.addOptions(
-                                    dropdownOptions[i]
-                                )
-                            }
-                        }
-
-                        dropdownActionRow.setComponents(dropdown)
-                        i.reply(`The types of slot ${index+1} and ${oldSlot+1} have been switched.`)
-                        response.edit({embeds:[embeds[index]],components:[actionRow,dropdownActionRow]})
-                    } catch(e) {
-                        console.log(e)
-                        i.reply({content:`An error occured. Please try again.`, ephemeral:true})
-                    }
-                }
+                
             }
         })
     }

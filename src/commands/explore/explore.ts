@@ -23,7 +23,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle("Are you ready to begin?")
-            .setDescription("You have 5 minutes or until you run out of health to complete as much as you can.")
+            .setDescription("You have 2 minutes or until you run out of health to complete as much as you can.")
             .setColor(0xFF0000)
         const startButton = new ButtonBuilder()
             .setCustomId('startexplore')
@@ -31,11 +31,10 @@ module.exports = {
             .setStyle(ButtonStyle.Success)
         const actionRow = new ActionRowBuilder<ButtonBuilder>()
             .addComponents(startButton)
-        
         const response = await interaction.reply({embeds:[embed],components:[actionRow]})
 
         const filter = (i: any) => i.user.id == interaction.user.id
-        const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 300_000, filter });
+        const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120_000, filter });
         //Create the play object, an array of all the weapons they'll use.
         let player :any[] = []
         for(let userWep of profileData.weapons) {
@@ -71,6 +70,7 @@ module.exports = {
                 dead:false
             })
         }
+        let rewardMoney = 0;
         collector.once('collect', async i => {
             if(i.customId==='startexplore') {
                 let info = ''
@@ -80,22 +80,28 @@ module.exports = {
                 const roll = rollEncounter(info,profileData);
                 const encounter = roll.value;
                 const type = roll.type;
+                if(type === 'combat') {
+                    rewardMoney++;
+                }
                 i.deferUpdate()
                 player = await handleNewEncounter(type,encounter,player,response,profileData)
             }
         })
-
         collector.on('collect', async i => {
             if(i.customId==='continueexplore') {
                 const roll = rollEncounter('',profileData);
                 const encounter = roll.value;
                 const type = roll.type;
+                if(type === 'combat') {
+                    rewardMoney++;
+                }
                 i.deferUpdate()
                 player = await handleNewEncounter(type,encounter,player,response, profileData)
             }else if (i.customId==='choosecombat') {
                 const roll = rollEncounter('combat',profileData);
                 const encounter = roll.value;
                 const type = roll.type;
+                rewardMoney++;
                 i.deferUpdate()
                 player = await handleNewEncounter(type,encounter,player,response, profileData)
             }else if (i.customId==='chooseboost') {
@@ -109,6 +115,23 @@ module.exports = {
                 const encounter = roll.value;
                 const type = roll.type;
                 player = await handleNewEncounter(type,encounter,player,response, profileData)
+                i.deferUpdate()
+            } else if (i.customId === 'endexplore') {
+                const endEmbed = new EmbedBuilder()
+                    .setColor(0x0000FF)
+                    .setTitle('You Escaped')
+                    .setDescription(`You returned to your home base with all your rewards intact. You earned $${rewardMoney*100} for your performance.`)
+                try {
+                    const res = await UserModel.findOneAndUpdate({
+                        userid: response.interaction.user.id
+                    }, {
+                        $inc: {balance:rewardMoney*100}
+                    });
+                } catch(e) {
+                    console.log(e)
+                    i.reply({content:`An error occured when awarding your money`,ephemeral:true})
+                }
+                response.edit({embeds:[endEmbed],components:[]})
                 i.deferUpdate()
             }
         })
@@ -181,8 +204,14 @@ function handleBoost(encounter: typeof encounters.boost[0],player:any, response:
         .setStyle(ButtonStyle.Primary)
     const actionRow = new ActionRowBuilder<ButtonBuilder>()
         .addComponents(continueBtn)
+    const endButton = new ButtonBuilder()
+            .setCustomId('endexplore')
+            .setLabel('Escape')
+            .setStyle(ButtonStyle.Danger)
+    const endActionRow = new ActionRowBuilder<ButtonBuilder>()
+            .setComponents(endButton)
     
-    response.edit({embeds:[embed],components:[actionRow]})
+    response.edit({embeds:[embed],components:[actionRow,endActionRow]})
 
     return player
 }
@@ -200,8 +229,13 @@ function handleChoice(encounter: typeof encounters.choice[0],player:any, respons
             .setStyle(ButtonStyle.Primary)
         actionRow.addComponents(button)
     }
-    
-    response.edit({embeds:[embed],components:[actionRow]})
+    const endButton = new ButtonBuilder()
+            .setCustomId('endexplore')
+            .setLabel('Escape')
+            .setStyle(ButtonStyle.Danger)
+    const endActionRow = new ActionRowBuilder<ButtonBuilder>()
+            .setComponents(endButton)
+    response.edit({embeds:[embed],components:[actionRow,endActionRow]})
 
     return player
 }
@@ -237,8 +271,13 @@ async function handleReward(encounter: typeof encounters.reward[0],player:any, r
         .setStyle(ButtonStyle.Primary)
     const actionRow = new ActionRowBuilder<ButtonBuilder>()
         .addComponents(continueBtn)
-    
-    response.edit({embeds:[embed],components:[actionRow]})
+        const endButton = new ButtonBuilder()
+            .setCustomId('endexplore')
+            .setLabel('Escape')
+            .setStyle(ButtonStyle.Danger)
+    const endActionRow = new ActionRowBuilder<ButtonBuilder>()
+            .setComponents(endButton)
+    response.edit({embeds:[embed],components:[actionRow,endActionRow]})
 
     return player
 }
@@ -259,6 +298,13 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
         .setDisabled(true)
     const actionRow = new ActionRowBuilder<ButtonBuilder>()
         .addComponents(continueBtn)
+    const endButton = new ButtonBuilder()
+            .setCustomId('endexplore')
+            .setLabel('Escape')
+            .setStyle(ButtonStyle.Danger)
+            .setDisabled(true)
+    const endActionRow = new ActionRowBuilder<ButtonBuilder>()
+            .setComponents(endButton)
     let enemy = []
     for(let userWep of encounter.weapons) {
         const wepModifier = weaponQualityMod(userWep.grade)
@@ -280,6 +326,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
     let sleep = async (ms:number) => await new Promise(r => setTimeout(r,ms));
     let tempPlayer = player
     let tempEnemy = enemy
+    let turns = 0;
     while(true) {
         let playersDead = 0;
         let enemiesDead = 0
@@ -358,20 +405,31 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
             embed.setDescription(text)
             continueBtn.setDisabled(false)
             actionRow.setComponents(continueBtn)
+            endButton.setDisabled(false)
+            endActionRow.setComponents(endButton)
             break;
         } else if (playersDead == player.length) {
             embed.setColor(0xFF0000)
             embed.setFooter({text:'You lost, your journey has come to an end.'})
             break;
+        } else if (turns >= 12) {
+            embed.setColor(0xa86925)
+            embed.setFooter({text:'The turn limit was reached, you each go your seperate ways.'})
+            continueBtn.setDisabled(false)
+            actionRow.setComponents(continueBtn)
+            endButton.setDisabled(false)
+            endActionRow.setComponents(endButton)
+            break;
         }
         tempPlayer = structuredClone(player)
         tempEnemy = structuredClone(enemy)
-        response.edit({embeds:[embed],components:[actionRow]})
+        response.edit({embeds:[embed],components:[actionRow,endActionRow]})
         let result:any = roundOfCombats(player,enemy)
         player = result.player
         enemy = result.enemy
+        turns++;
         await sleep(3000)
     }
-    response.edit({embeds:[embed],components:[actionRow]})
+    response.edit({embeds:[embed],components:[actionRow,endActionRow]})
     return player
 }

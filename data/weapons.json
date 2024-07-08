@@ -104,7 +104,7 @@
                 "asteroidiron":10
             },
             "attacksenemies":true,
-            "damage":100,
+            "damage":70,
             "maxTargets":1,
             "behavior":"lowesthealth",
             "health":30,
