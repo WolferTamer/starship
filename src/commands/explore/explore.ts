@@ -34,7 +34,7 @@ module.exports = {
         const response = await interaction.reply({embeds:[embed],components:[actionRow]})
 
         const filter = (i: any) => i.user.id == interaction.user.id
-        const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120_000, filter });
+        const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 150_000, filter });
 
         //Create the play object, an array of all the weapons they'll use.
         let player :any[] = []
@@ -72,23 +72,9 @@ module.exports = {
             })
         }
         let rewardMoney = 0;
+        let timerOut = false
         setTimeout(async ()=>{
-            const finalEmbed = new EmbedBuilder()
-                .setColor(0x00CC00)
-                .setTitle('Time Ran out!')
-                .setDescription(`2 minutes is up, so you can't continue this expedition. You won ${rewardMoney*100}`)
-                try {
-                    if(rewardMoney > 0) {
-                        const res = await UserModel.findOneAndUpdate({
-                            userid: response.interaction.user.id
-                        }, {
-                            $inc: {balance:rewardMoney*100}
-                        });
-                    }
-                } catch(e) {
-                    console.log(e)
-                }
-                response.edit({embeds:[finalEmbed],components:[]})
+            timerOut = true
         },120_000)
         collector.once('collect', async i => {
             if(i.customId==='startexplore') {
@@ -107,6 +93,23 @@ module.exports = {
             }
         })
         collector.on('collect', async i => {
+            if(timerOut && rewardMoney > 0) {
+                const finalEmbed = new EmbedBuilder()
+                    .setColor(0x00CC00)
+                    .setTitle('Time Ran out!')
+                    .setDescription(`2 minutes is up, so you can't continue this expedition. You won ${rewardMoney*100}`)
+                    try {
+                            const res = await UserModel.findOneAndUpdate({
+                                userid: response.interaction.user.id
+                            }, {
+                                $inc: {balance:rewardMoney*100}
+                            });
+                    } catch(e) {
+                        console.log(e)
+                    }
+                    response.edit({embeds:[finalEmbed],components:[]})
+                    return;
+            }
             if(i.customId==='continueexplore') {
                 const roll = rollEncounter('',profileData);
                 const encounter = roll.value;
@@ -116,6 +119,15 @@ module.exports = {
                 }
                 i.deferUpdate()
                 player = await handleNewEncounter(type,encounter,player,response, profileData)
+                let allDead = true
+                for(let obj of player) {
+                    if(!obj.dead) {
+                        allDead = false
+                    }
+                }
+                if(allDead) {
+                    rewardMoney = 0;
+                }
             }else if (i.customId==='choosecombat') {
                 const roll = rollEncounter('combat',profileData);
                 const encounter = roll.value;
@@ -123,6 +135,15 @@ module.exports = {
                 rewardMoney++;
                 i.deferUpdate()
                 player = await handleNewEncounter(type,encounter,player,response, profileData)
+                let allDead = true
+                for(let obj of player) {
+                    if(!obj.dead) {
+                        allDead = false
+                    }
+                }
+                if(allDead) {
+                    rewardMoney = 0;
+                }
             }else if (i.customId==='chooseboost') {
                 const roll = rollEncounter('boost',profileData);
                 const encounter = roll.value;
@@ -150,6 +171,7 @@ module.exports = {
                     console.log(e)
                     i.reply({content:`An error occured when awarding your money`,ephemeral:true})
                 }
+                rewardMoney = 0
                 response.edit({embeds:[endEmbed],components:[]})
                 i.deferUpdate()
             }
