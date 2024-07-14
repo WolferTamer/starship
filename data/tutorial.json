@@ -54,8 +54,7 @@
                 {"name":"/weaponstorage","value":"View a list of all the weapons you have crafted.","inline":true},
                 {"name":"/weapon [id]","value":"View the stats of a specific weapon.","inline":true},
                 {"name":"/craftweapon [id]","value":"Craft a specific weapon.","inline":true},
-                {"name":"/reforge [index] [tier]","value":"Use a weapon core to potentially upgrade a weapon.","inline":true},
-                {"name":"/equipweapon [index], [slot]","value":"Equip a weapon you already have crafted.","inline":true}]
+                {"name":"/reforge [index] [tier]","value":"Use a weapon core to potentially upgrade a weapon.","inline":true}]
         }, {
             "title":"Exploring",
             "description":"**OS:** The most important function of your ship is /explore. This is where you'll find rare items and fight enemies! The entire goal of upgrading your ship is to make yourself better at this. Go ahead and give it a try! That's all I have to teach you for now, but if you come across a command you don't understand use /help for some advice.",
