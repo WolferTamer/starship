@@ -35,6 +35,7 @@ module.exports = {
 
         const filter = (i: any) => i.user.id == interaction.user.id
         const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120_000, filter });
+
         //Create the play object, an array of all the weapons they'll use.
         let player :any[] = []
         for(let userWep of profileData.weapons) {
@@ -71,6 +72,24 @@ module.exports = {
             })
         }
         let rewardMoney = 0;
+        setTimeout(async ()=>{
+            const finalEmbed = new EmbedBuilder()
+                .setColor(0x00CC00)
+                .setTitle('Time Ran out!')
+                .setDescription(`2 minutes is up, so you can't continue this expedition. You won ${rewardMoney*100}`)
+                try {
+                    if(rewardMoney > 0) {
+                        const res = await UserModel.findOneAndUpdate({
+                            userid: response.interaction.user.id
+                        }, {
+                            $inc: {balance:rewardMoney*100}
+                        });
+                    }
+                } catch(e) {
+                    console.log(e)
+                }
+                response.edit({embeds:[finalEmbed],components:[]})
+        },120_000)
         collector.once('collect', async i => {
             if(i.customId==='startexplore') {
                 let info = ''
