@@ -18,7 +18,9 @@ module.exports = {
         .addStringOption((option) =>
             option.setName('type').setDescription('The type of critique you wish to give')
         .setRequired(true).setChoices ( {name: 'Misc.', value:'misc'},
-            {name:'Bug Report',value:'bug'}
+            {name:'Bug Report',value:'bug'},
+            {name:'Feature Request', value:'feature'},
+            {name:'Enhancement',value:'enhance'}
         )
         ).addStringOption((option) => option
             .setName('content').setDescription('The content of your critique')
@@ -38,16 +40,22 @@ module.exports = {
         switch(type) {
             case 'misc': {
                 title = 'Misc. Feedback'
-                color = 0x00FF00
+                color = 0xFFA500
             }
             case 'bug': {
                 title = 'Bug Report'
                 color = 0xFF0000
+            } case 'feature': {
+                title = 'Feature Request'
+                color = 0x00FF00
+            } case 'enhance': {
+                title = 'Enhancement'
+                color = 0x0000FF
             }
         }
         
         let embed = new EmbedBuilder()
-            .setTitle(`${title} from ${interaction.user.globalName}`)
+            .setTitle(`${title} from ${interaction.user.tag}`)
             .setDescription(content)
             .setFooter({text:`User ID: ${interaction.user.id}`})
             .setColor(color);
