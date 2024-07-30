@@ -47,7 +47,9 @@ const baseSchema = new mongoose.Schema({
     muted: {type:Boolean, default: false},
     weapons: {type:[weaponSchema],default:[{},{},{},{}]},
     drones: {type:[droneSchema],default:[{}]},
-    weaponstorage: {type:[weaponSchema],default:[]}
+    weaponstorage: {type:[weaponSchema],default:[]},
+    dailytime: {type:Date,default:new Date(0)},
+    dailystreak: {type:Number,default:0}
     });
 
 const UserModel = mongoose.model('Base', baseSchema);
