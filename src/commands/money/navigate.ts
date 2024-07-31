@@ -87,7 +87,7 @@ module.exports = {
                 }
                 if(y == field.length-1 && x == field[0].length-1) {
                     embed.setColor(0x00FF00)
-                    let amount = Math.round((2**(profileData.badgetier-7))*(response.createdTimestamp+60000-Date.now())/2)
+                    let amount = Math.round((2**(profileData.chosenbadge-7))*(response.createdTimestamp+60000-Date.now())/2)
                     embed.setFooter({text:`You won $${amount}`})
                     try {
                         const res = await UserModel.findOneAndUpdate({

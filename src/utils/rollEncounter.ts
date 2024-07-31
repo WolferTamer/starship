@@ -29,7 +29,7 @@ module.exports = (type = '', profileData: any) => {
     
     }
     rand = Math.random();
-    let newEncounters = encounters[type as keyof typeof encounters].filter((obj) => obj.grade <= profileData.badgetier)
+    let newEncounters = encounters[type as keyof typeof encounters].filter((obj) => obj.grade <= profileData.chosenbadge)
     let sum = 0;
     for(let obj of newEncounters) {
         sum+=obj.weight

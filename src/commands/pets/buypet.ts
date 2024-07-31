@@ -21,7 +21,7 @@ module.exports = {
         if(index < 0) {
             interaction.reply({content:`The pet ${petName} does not exist.`,ephemeral:true})
             return;
-        } else if (pets.pets[index].badge > profileData.badgetier){
+        } else if (pets.pets[index].badge > profileData.chosenbadge){
             interaction.reply({content:`You don't have a high enough rank to buy ${petName}.`,ephemeral:true})
             return;
         }  else if (profileData.balance < pets.pets[index].cost) {

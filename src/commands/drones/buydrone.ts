@@ -13,7 +13,7 @@ module.exports = {
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
 
         //Check if the user has the required amount of money to buy a new drone.
-        if(profileData.badgetier < profileData.drones.length*2-1) {
+        if(profileData.chosenbadge < profileData.drones.length*2-1) {
             interaction.reply({content:`You aren't high enough rank (${tierToName(profileData.drones.length*2-1)}) to buy another drone. ${interaction.client.emojis.cache.get(drones[profileData.drones.length-1].emoji)}`,ephemeral:true})
             return;
         }

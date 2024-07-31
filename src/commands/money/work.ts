@@ -10,7 +10,7 @@ module.exports = {
 		.setName('work')
 		.setDescription('Earn a random amount of money based on your rank.'),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
-        const rand = Math.floor(Math.random()*10*(2**profileData.badgetier))+1;
+        const rand = Math.floor(Math.random()*10*(2**profileData.chosenbadge))+1;
 
         if(rand > 0) {
             const response = await UserModel.findOneAndUpdate({

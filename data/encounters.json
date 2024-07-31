@@ -406,16 +406,6 @@
             "grade": 0
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"asteroidiron","value":3}],
-            "weight":1,
-            "grade": 0
-        },{
-            "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
-            "rewards":[{"id":"poisonflower","value":2}],
-            "weight":1,
-            "grade": 1
-        },{
-            "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"asteroidiron","value":10}],
             "weight":0.25,
             "grade": 1
@@ -423,22 +413,22 @@
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"poisonflower","value":2}],
             "weight":0.25,
-            "grade": 1
+            "grade": 2
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"greenstardust","value":3}],
             "weight":1,
-            "grade": 1
+            "grade": 2
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"wobblywool","value":3}],
             "weight":1,
-            "grade": 1
+            "grade": 2
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"conductivewood","value":10}],
             "weight":0.25,
-            "grade": 1
+            "grade": 2
         },{
             "description":"As you scanned the surrounding debris field, you identified a crate displaying strange gravitational pull. You find it contains some valuable compressed resources.",
             "rewards":[{"id":"poisonflower","value":5}],

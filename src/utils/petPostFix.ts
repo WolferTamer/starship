@@ -14,7 +14,7 @@ module.exports = async (profileData: any, client: Client) => {
     let petInstance = profileData.pets[profileData.pet]
     if(rand < chance) {
         if(profileData.pets[profileData.pet].petid == 0) {
-            let randItem = rollItem({quality:profileData.badgetier})
+            let randItem = rollItem({quality:profileData.chosenbadge})
             const id = randItem.split('.')[1]
             giveItem(randItem,profileData,2)
             items
@@ -50,7 +50,7 @@ module.exports = async (profileData: any, client: Client) => {
                 }, {
                     $set: {[`pets.${profileData.pet}.progress`]:0},
                 });
-                let randItem = rollItem({quality:profileData.badgetier})
+                let randItem = rollItem({quality:profileData.chosenbadge})
                 const id = randItem.split('.')[1]
                 giveItem(randItem, profileData,5)
                 return `${client.emojis.cache.get(pet.icon)} You finished playing fetch and were awarded 5 ${items[id as keyof typeof items].name}`

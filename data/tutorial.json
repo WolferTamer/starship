@@ -18,7 +18,8 @@
             "fields":[{"name":"/balance","value":"View the amount of money you have.","inline":true},
                 {"name":"/guess [number]","value":"Guess a number for the chance of winning money.","inline":true},
                 {"name":"/work","value":"Generate some money by working.","inline":true},
-                {"name":"/pay [user] [amount]","value":"Give a user some money.","inline":true}]
+                {"name":"/pay [user] [amount]","value":"Give a user some money.","inline":true},
+                {"name":"/navigate","value":"Navigate around an asteroid field in exchange for money.","inline":true}]
         }, {
             "title":"Ranks",
             "description":"**OS:** Now you should be able to see the info on your rank. Unless you've been working ahead, it'll be white. This is the lowest tier rank, and the next one you get will be green. Your rank acts as a pass that lets you purchace and unlock new things in your starship, so make sure you're upgrading your rank whenever possible. Below this You'll find a couple relvant commands. Look through them then move on to the next section.",

@@ -40,6 +40,7 @@ const baseSchema = new mongoose.Schema({
     userid: {type: String,require:true, unique:true}, 
     balance: {type: Number, default: 1000}, 
     items: {type: itemSchema, default: () => ({})},
+    chosenbadge: {type:Number,default:0},
     badgetier: {type:Number,default:0},
     badgedate: {type:Date, default: Date.now},
     pet: {type:Number, default:-1},

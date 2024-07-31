@@ -9,11 +9,8 @@ import {time,
   import items from "../../../data/items.json";
   module.exports = {
     embed: new EmbedBuilder()
-    .setTitle('compress')
-    .setDescription('Choose a specific item to compress into a core of the same rarity.')
-    .setFields([{name:'[Item]',value:'The name of the item you want to compress.'},
-      {name:'{amount}',value:'The amount of cores you want to make. Consumes 100 of the item for each core. Default 1.'}
-    ]),
+    .setTitle('daily')
+    .setDescription('Collect your daily rewards and build up a streak. Every day you collect in a row you earn an extra $500, and every 10 days you get a higher quality resource core. Once you reach the maximum tier core, you instead get an extra one every 10 days.'),
     data: new SlashCommandBuilder()
       .setName("daily")
       .setDescription("Collect a daily reward and earn a streak"),

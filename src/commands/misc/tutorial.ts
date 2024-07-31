@@ -30,7 +30,7 @@ module.exports = {
             .setComponents(prevButton,nextButton)
         let response = await interaction.reply({embeds:[pages[0]], components:[actionRow]})
         const filter = (i: any) => i.user.id == interaction.user.id
-        const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120_000, filter });
+        const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 300_000, filter });
         let index = 0;
         collector.on("collect", async (i) => {
             if(i.customId === 'prevtutorial') {
