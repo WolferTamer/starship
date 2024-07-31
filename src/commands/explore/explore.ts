@@ -226,7 +226,11 @@ function handleBoost(encounter: typeof encounters.boost[0],player:any, response:
             }
         }
         if(!player[index].dead) {
-            player[index][encounter.key]+=encounter.value
+            if(encounter.key === 'damage' && player[index].damage < 0) {
+                player[index][encounter.key]-=encounter.value
+            }else {
+                player[index][encounter.key]+=encounter.value
+            }
             if(encounter.key === 'health') {
                 text += `+${encounter.value}${healthEmoji}: ${player[index].name}\n`
             } else if(encounter.key === 'damage') {
