@@ -1,3 +1,5 @@
+//
+
 module.exports = (grade: number) => {
     switch(grade) {
         case 2: return 1.2;

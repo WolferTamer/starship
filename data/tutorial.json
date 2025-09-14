@@ -35,7 +35,7 @@
             {"name":"/rename [currentname] [newname]","value":"Rename one of your pets.","inline":true}]
         }, {
             "title":"Items",
-            "description":"**OS:** Before you can truly understad what most of the pets do, you must first understand items. As you explore with your starship you'll quickly come across various resources that can be used to improve your ship. As such, you should keep careful stock of what items you have and use them whenever the opportunity arises.",
+            "description":"**OS:** Before you can truly understand what most of the pets do, you must first understand items. As you explore with your starship you'll quickly come across various resources that can be used to improve your ship. As such, you should keep careful stock of what items you have and use them whenever the opportunity arises.",
             "fields":[{"name":"/inventory","value":"View all of the items you currently have.","inline":true},
             {"name":"/sellitems [item] {amount}","value":"Sell an amount of a specific item. By default sell all of that item in your inventory.","inline":true},
             {"name":"/compress [item] {amount}","value":"Compress 100 of a specific item into a single core, which can be used with your weapons.","inline":true}]

@@ -10,6 +10,7 @@ const roundOfCombats = require('../../utils/roundOfCombat')
 const weaponQualityMod = require('../../utils/weaponQualityMod')
 const rollEncounter = require('../../utils/rollEncounter')
 import encounters from '../../../data/encounters.json'
+import { activatedPet, itemsObtained, visited, weaponDestroyed, wonCombat } from "../../utils/updateQuests";
 
 module.exports = {
     embed: new EmbedBuilder()
@@ -55,6 +56,7 @@ module.exports = {
                 healthMod = 20
             }
             if(profileData.pet > 0 && profileData.pets[profileData.pet].petid == 7) {
+                activatedPet(1,profileData)
                 damMod += 5
             }
             player.push({
@@ -80,6 +82,7 @@ module.exports = {
             if(i.customId==='startexplore') {
                 let info = ''
                 if(profileData.pet > 0 && profileData.pets[profileData.pet].petid == 9) {
+                    activatedPet(1,profileData)
                     info = 'boost'
                 }
                 const roll = rollEncounter(info,profileData);
@@ -182,12 +185,15 @@ module.exports = {
 async function handleNewEncounter(type:string, encounter:any,player:any, response: InteractionResponse<boolean>, profileData: any) {
     switch(type) {
         case 'combat': {
+            visited('combat',profileData)
             return await handleCombat(encounter,player,response, profileData)
         } case 'boost': {
+            visited('repair',profileData)
             return handleBoost(encounter,player, response)
         } case 'choice': {
             return handleChoice(encounter,player, response)
         } default: {
+            visited('reward',profileData)
             return (await handleReward(encounter,player,response))
         }
     }
@@ -411,13 +417,16 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
         }
         if(enemiesDead == enemy.length) {
             let data:any = {}
+            let questData: {[key:string]: number} = {}
             let text = 'You won and were awarded: \n'
             for(let obj of encounter.rewards) {
+                questData[obj.id] = obj.value
                 data[`items.${obj.id}`] = obj.value
                 const item = items[obj.id as keyof typeof items]
                 text += `${obj.value} x ${response.interaction.client.emojis.cache.get(item.emoji)} ${item.name}\n`
             }
             if(profileData.pet > 0 && profileData.pets[profileData.pet].petid == 8) {
+                activatedPet(1,profileData)
                 for(let obj of player) {
                     if(!obj.dead) {
                         obj.health+=20;
@@ -432,6 +441,7 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
                         obj.dead = false;
                         profileData.progress = 1
                         text += `Your mouse revived an ally!\n`
+                        activatedPet(1,profileData)
                         break;
                     }
                 }
@@ -442,6 +452,8 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
                 }, {
                     $inc: data
                 });
+                itemsObtained(questData,profileData)
+                wonCombat(profileData)
             }catch(e) {
                 console.log(e)
                 return player;
@@ -469,11 +481,16 @@ async function handleCombat(encounter: typeof encounters.combat[0],player:any, r
         tempPlayer = structuredClone(player)
         tempEnemy = structuredClone(enemy)
         response.edit({embeds:[embed],components:[actionRow,endActionRow]})
-        let result:any = roundOfCombats(player,enemy)
+        let result:any = roundOfCombats(player,enemy,profileData)
         player = result.player
         enemy = result.enemy
         turns++;
         await sleep(3000)
+    }
+    for (const bad of enemy) {
+        if(bad.dead) {
+            weaponDestroyed(bad.weaponid,profileData)
+        }
     }
     response.edit({embeds:[embed],components:[actionRow,endActionRow]})
     return player

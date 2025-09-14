@@ -4,6 +4,7 @@ const rollItems = require('../../utils/rollItems')
 import items from '../../../data/items.json'
 import {drones} from '../../../data/drones.json'
 import {pets} from '../../../data/pets.json'
+import { activatedPet, itemsObtained } from "../../utils/updateQuests";
 
 module.exports = {
     embed: new EmbedBuilder()
@@ -40,6 +41,7 @@ module.exports = {
                 let pet = profileData.pets[profileData.pet]
                 let multiplier = 1
                 if(profileData.pet > 0 && petChance < pets[pet.petid].postchance && pet.petid == 2) {
+                    activatedPet(1,profileData)
                     multiplier = 2
                     interaction.channel?.send(`Your ${pet.petname} has doubled your item output!`)
                 }
@@ -59,6 +61,11 @@ module.exports = {
                         $set: {[`drones.${botNum-1}.working`]:false},
                         $inc: newItems
                     });
+                    let questUpdates: {[key:string]:number} = {}
+                    for(let [key,amount] of Object.entries(newItems)) {
+                        questUpdates[key.substring(5)] = amount as number
+                    }
+                    itemsObtained(questUpdates,profileData)
                 }catch(e){
                     console.log(e)
                     interaction.reply({content:`There was an error. Please try again`,ephemeral:true})

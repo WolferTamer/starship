@@ -17,6 +17,7 @@ intents: [
 client.commands = new Collection()
 client.events = new Collection()
 client.cooldowns = new Collection()
+client.progress = new Collection()
 
 
 //Once the bot is logged in, go though the event and command handlers to register each

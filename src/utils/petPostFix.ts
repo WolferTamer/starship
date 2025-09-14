@@ -1,6 +1,7 @@
 import { Client } from 'discord.js';
 import * as pets from '../../data/pets.json'
 import items from '../../data/items.json'
+import { activatedPet } from './updateQuests';
 const UserModel = require('../utils/schema')
 const rollItem = require('./rollItem')
 
@@ -17,10 +18,11 @@ module.exports = async (profileData: any, client: Client) => {
             let randItem = rollItem({quality:profileData.chosenbadge})
             const id = randItem.split('.')[1]
             giveItem(randItem,profileData,2)
-            items
+            activatedPet(0,profileData)
             return `${client.emojis.cache.get(pet.icon)} ${profileData.pets[profileData.pet].petname} gave you 2 ${items[id as keyof typeof items].name}`
         } else if(profileData.pets[profileData.pet].petid == 1){
             if(petInstance.progress == 0) {
+                activatedPet(1,profileData)
                 try {
                     const response = await UserModel.findOneAndUpdate({
                         userid: profileData.userid

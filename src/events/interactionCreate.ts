@@ -10,21 +10,33 @@ module.exports = {
         //If it isnt a slash command, return.
 		if (!interaction.isChatInputCommand()) return;
 
+        //Each time a command is sent there's a chance for a prefix or postfix to be added
+        //These usually include quest progress and other things that occur over time
         let prefix = "";
         let postfix = ""
         let profileData;
 
+        
         const command = interaction.client.commands.get(interaction.commandName);
         if (!command) {
             console.error(`No command matching ${interaction.commandName} was found.`);
             return;
         }
 
+        //You must check wether command is on cooldown or not, each command has its own collection
+        //Which contains info for each user
         const {cooldowns} = interaction.client
         if(!cooldowns.has(command.data.name)) {
             cooldowns.set(command.data.name, new Collection());
         }
 
+        //Similar story for progress, each user has its own array containing quest progress
+        const {progress} = interaction.client
+        if(!progress.has(interaction.user.id)) {
+            progress.set(interaction.user.id, [])
+        }
+
+        //Gets the cooldown information so that we can check if we're allowed to run the command.
         const now = Date.now();
         const timestamps = cooldowns.get(command.data.name);
         const defaultCooldown = 5;
@@ -51,7 +63,7 @@ module.exports = {
                 });
                 profile.save();
                 profileData = await UserModel.findOne({userid:interaction.user.id});
-                prefix += "A user profile was created in our database. If you already should have had user data, please contact support \n"
+                prefix += "A user profile was created in our database. If you should have already had user data, please contact support \n"
             }
         } catch (e) {
             console.log(e)

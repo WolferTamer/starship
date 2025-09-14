@@ -1,0 +1,233 @@
+{
+    "commander": {
+        "ordered": [
+            {
+                "title":"First Kills",
+                "objectives":[
+                    {
+                        "name":"Destroy 3 Red Lasers",
+                        "type":"destroy",
+                        "amount":3,
+                        "weapon":"redlaser"
+                    }
+                ],
+                "reward":{
+                    "asteroidIron":2
+                }
+            }, {
+
+                "title":"Deal Some Damage",
+                "objectives":[
+                    {
+                        "name":"Deal 500 Damage with Torpedo Igniters",
+                        "type":"damage",
+                        "amount":500,
+                        "weapon":"torpedo"
+                    }
+                ],
+                "reward": {
+                    "greenstardust":5
+                }
+
+            }
+        ],"repeating": [
+            {
+                "title":"Repeat 1",
+                "objectives":[
+                    {
+                        "name":"Destroy 1 Purple Laser",
+                        "type":"destroy",
+                        "amount":1,
+                        "weapon":"purplelaser"
+                    }
+                ],
+                "reward":{
+                    "asteroidiron":2
+                }
+            }
+        ],
+        "description": "The commander gives you quests involving combat with enemies.",
+        "name": "Commander"
+    },
+    "miner": {
+        "ordered": [
+            {
+                "title":"Start Mining!",
+                "objectives":[
+                    {
+                        "name":"Obtain 20 Asteroid Iron",
+                        "type":"obtain",
+                        "amount":20,
+                        "item":"asteroidiron"
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            },
+            {
+                "title":"Craft a Core",
+                "objectives":[
+                    {
+                        "name":"Craft a White Core",
+                        "type":"compress",
+                        "amount":1,
+                        "item":"whitecore"
+                    }
+                ],
+                "reward":{
+                    "conductivewood":10
+                }
+            }
+        ],"repeating": [
+            {
+                "title":"Hidden Petals",
+                "objectives":[
+                    {
+                        "name":"Obtain 5 Poison Flowers",
+                        "type":"obtain",
+                        "amount":5,
+                        "item":"poisonflower"
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            }
+        ],
+        "description": "The miner gives you quests involving gathering and creating items.",
+        "name": "Miner"
+    },
+    "astronomer": {
+        "ordered": [
+            {
+                "title":"Get Fixed Up",
+                "objectives":[
+                    {
+                        "name":"Visit 4 Docks/Repair Stations",
+                        "type":"visit",
+                        "amount":4,
+                        "place":"repair"
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            },
+            {
+                "title":"Victories",
+                "objectives":[
+                    {
+                        "name":"Win 2 Battles",
+                        "type":"win",
+                        "amount":2
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            }
+        ],"repeating": [
+            {
+                "title":"Get Fixed Up",
+                "objectives":[
+                    {
+                        "name":"Collect Resources 5 Times",
+                        "type":"visit",
+                        "amount":5,
+                        "place":"collect"
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            }
+        ],
+        "description": "The astronomer will give you quests about exploring the galaxy.",
+        "name": "Astronomer"
+    },
+    "mechanic": {
+        "ordered": [
+            {
+                "title":"Build a Laser",
+                "objectives":[
+                    {
+                        "name":"Build a Purple Laser",
+                        "type":"create",
+                        "amount":1,
+                        "weapon":"purplelaser"
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            },
+            {
+                "title":"Upgrade!",
+                "objectives":[
+                    {
+                        "name":"Upgrade a weapon to Grade 2",
+                        "type":"upgrade",
+                        "amount":1,
+                        "grade":2
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            }
+        ],"repeating": [
+            {
+                "title":"Build Torpedos",
+                "objectives":[
+                    {
+                        "name":"Build a Torpedo Igniter",
+                        "type":"create",
+                        "amount":1,
+                        "weapon":"torpedo"
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            }
+        ],
+        "description": "The mechanic gives you quests involving creating and upgrading weapons.",
+        "name": "Mechanic"
+    },
+    "biologist": {
+        "ordered": [
+            {
+                "title":"Activate Pet",
+                "objectives":[
+                    {
+                        "name":"Trigger Your Pet's Action 3 Time",
+                        "type":"action",
+                        "amount":3,
+                        "pet": -1
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            }
+        ],"repeating": [
+            {
+                "title":"Activate Pet",
+                "objectives":[
+                    {
+                        "name":"Trigger Your Pet's Action 3 Time",
+                        "type":"action",
+                        "amount":3,
+                        "pet": -1
+                    }
+                ],
+                "reward":{
+                    "greenstardust":3
+                }
+            }
+        ],  
+        "description": "The biologist gives you quests involving your pets.",
+        "name": "Biologist"
+    }
+}

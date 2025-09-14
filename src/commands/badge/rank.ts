@@ -60,6 +60,11 @@ module.exports = {
 	},
 };
 
+/**
+ * 
+ * @param tier The number value of the rank/badge tier
+ * @returns The color of the rank
+ */
 function tierToColor(tier:number) {
     if(tier == 0) {
         return "white"
@@ -77,6 +82,11 @@ function tierToColor(tier:number) {
     return "gold"
 }
 
+/**
+ * 
+ * @param tier The number value of the rank/badge tier
+ * @returns The hex code to use to represent the rank
+ */
 function tierToHex(tier:number) {
     if(tier == 0) {
         return 0xF0F0F0

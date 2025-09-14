@@ -6,6 +6,7 @@ import {
   const UserModel = require("../../utils/schema");
   const tierToName = require("../../utils/tierToname")
   import items from "../../../data/items.json";
+import { itemCompressed } from "../../utils/updateQuests";
   module.exports = {
     embed: new EmbedBuilder()
     .setTitle('compress')
@@ -56,6 +57,8 @@ import {
               [`items.${itemName}`]:-amount
           }
       });
+
+      itemCompressed(coreid,amount/100,profileData)
   
       interaction.reply({ embeds: [embed] });
     },

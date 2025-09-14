@@ -1,6 +1,7 @@
 import { ChatInputCommandInteraction, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandIntegerOption, SlashCommandNumberOption } from "discord.js";
 import {weapons} from '../../../data/weapons.json'
 import items from "../../../data/items.json";
+import { upgradedWeapon } from "../../utils/updateQuests";
 const UserModel = require('../../utils/schema')
 const tierToName = require('../../utils/tierToname')
 
@@ -47,6 +48,7 @@ module.exports = {
                 $inc: {[`items.${coreid}`]:-1},
                 $set: {[`weapons.${slot-1}.grade`]:rolled+1}
             });
+            upgradedWeapon(rolled+1,profileData)
         } catch(e) {
             console.log(e)
             interaction.reply({content:`An error occured, please try again`, ephemeral:true})

@@ -9,6 +9,19 @@ for(let [key,value] of Object.entries(items)) {
     itemSchema.add({[key]:{type:Number,default:0}})
 }
 
+let questProgressSchema = new mongoose.Schema({
+    commander: {type:Number, default:0},
+    miner: {type:Number, default:0},
+    astronomer: {type:Number, default:0},
+    biologist: {type:Number, default:0},
+    mechanic: {type:Number, default:0}
+})
+
+let questScema = new mongoose.Schema({
+    giver: {type:String, default:''},
+    progress: {type:[Number],default:[]}
+})
+
 //A template for pets. May have levels in the future.
 let petSchema = new mongoose.Schema({
     petid: {type:Number,default:0,required:true},
@@ -50,7 +63,9 @@ const baseSchema = new mongoose.Schema({
     drones: {type:[droneSchema],default:[{}]},
     weaponstorage: {type:[weaponSchema],default:[]},
     dailytime: {type:Date,default:new Date(0)},
-    dailystreak: {type:Number,default:0}
+    dailystreak: {type:Number,default:0},
+    quest:{type:questScema,default:{}},
+    questindex: {type:questProgressSchema,default:{}}
     });
 
 const UserModel = mongoose.model('Base', baseSchema);

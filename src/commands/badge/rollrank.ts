@@ -1,5 +1,4 @@
 import { ChatInputCommandInteraction, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandIntegerOption } from "discord.js";
-import mongoose from "mongoose";
 const UserModel = require('../../utils/schema')
 
 module.exports = {
@@ -84,6 +83,13 @@ module.exports = {
 	},
 };
 
+/**
+ * 
+ * @param id The id of the user you want to update
+ * @param badge The number tier of the rank/badge
+ * @param amount The amount spent on upgrading the badge
+ * @returns 
+ */
 async function updateBadge(id:string, badge:number, amount:number) {
     //Update the data. Don't send anything if no money was spent & the badge didn't change.
     if(amount == 0 && badge == 0) {

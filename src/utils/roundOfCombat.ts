@@ -1,4 +1,7 @@
-module.exports = (player: any, enemy:any) => {
+import { InteractionResponse } from "discord.js"
+import { damageDealt } from "./updateQuests"
+
+module.exports = (player: any, enemy:any, profileData: any) => {
     //Loop through every player & enemy, handling both the enemy and player weapon at the same time.
     for(let i = 0; i < player.length || i < enemy.length; i++) {
         if(player[i] && !player[i].dead) {
@@ -49,14 +52,19 @@ module.exports = (player: any, enemy:any) => {
                 for(let j = 0; j < targets.length; j++) {
                     if(weapon.attacksenemies) {
                         enemy[targets[j]].health -= weapon.damage
+                        let totalDamage = weapon.damage
                         if(weapon.damage > 0) {
                             //add health back based on the defense of the enemy, never healing more than the amount of damage dealt.
                             enemy[targets[j]].health += Math.min(enemy[targets[j]].defense,weapon.damage)
+                            totalDamage -= Math.min(enemy[targets[j]].defense,weapon.damage)
                         }
                         if(enemy[targets[j]].health <= 0) {
                             //if the enemy's health is below 0 mark them as dead.
                             enemy[targets[j]].health = 0
                             enemy[targets[j]].dead = true;
+                        }
+                        if(totalDamage > 0) {
+                            damageDealt(weapon.weaponid,enemy[targets[j]].weaponid,totalDamage,profileData)
                         }
                     } else {
                         //same process with other set of targets.

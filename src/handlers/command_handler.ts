@@ -31,7 +31,7 @@ module.exports = async (client: Client) => {
 
     const rest = new REST().setToken(process.env.TOKEN!);
 
-    // and deploy your commands!
+    //and deploy your commands!
     //Registers both the application and guild commands. Guild commands are registered in a specific server.
     (async () => {
         try {

@@ -10,6 +10,7 @@ import {
 const UserModel = require("../../utils/schema");
 const rollItems = require("../../utils/rollItems");
 import {drones} from '../../../data/drones.json'
+import { itemsObtained } from "../../utils/updateQuests";
 module.exports = {
   embed: new EmbedBuilder()
   .setTitle('fleet')
@@ -77,6 +78,11 @@ module.exports = {
           $inc: inc,
         }
       );
+      let questUpdates: {[key:string]:number} = {}
+      for(let [key,amount] of Object.entries(inc)) {
+        questUpdates[key.substring(5)] = amount as number
+      }
+      itemsObtained(questUpdates,profileData)
     } catch (e) {
       console.log(e);
       interaction.reply({content:`There was an error. Please try again`,ephemeral:true});

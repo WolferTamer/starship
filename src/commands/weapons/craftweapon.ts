@@ -1,6 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, CommandInteraction, ComponentType, EmbedBuilder, SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
 import {weapons} from '../../../data/weapons.json'
 import items from '../../../data/items.json'
+import { craftedWeapon } from "../../utils/updateQuests";
 const UserModel = require('../../utils/schema')
 
 module.exports = {
@@ -58,6 +59,7 @@ module.exports = {
                             weaponstorage:{weaponid:weaponid}
                         }
                     });
+                    craftedWeapon(weaponid,profileData)
                     embed.setFooter({text:'Weapon Crafted'}).setColor(0x00FF00)
                 } catch(e) {
                     console.log(e)
