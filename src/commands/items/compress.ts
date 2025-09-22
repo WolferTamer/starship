@@ -31,11 +31,13 @@ import { itemCompressed } from "../../utils/updateQuests";
           .setMinValue(1)
       ),
     async execute(interaction: ChatInputCommandInteraction, profileData: any) {
+
+      //Choose a specific item to compress. amount is equal to the amount of that item to compress/100
       const itemName = interaction.options.getString("item")!.toLowerCase().replace(/\s/g, '');;
       const amount = (interaction.options.getInteger("amount") ?? 1)*100
       const item = items[itemName as keyof typeof items];
       if (!item) {
-        interaction.reply({content:`The item ${itemName} does note exist.`,ephemeral:true});
+        interaction.reply({content:`The item ${itemName} does not exist.`,ephemeral:true});
         return;
       } else if (profileData.items[itemName] < amount || profileData.items[itemName] < 1) {
         interaction.reply({content:`You only have ${profileData.items[itemName]} ${item.name}`,ephemeral:true});

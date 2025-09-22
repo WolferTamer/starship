@@ -21,13 +21,17 @@ module.exports = {
         .addUserOption((option) => option.setName('user').setDescription('The user you want to give an item to (yourself by default)')
             .setRequired(false)),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
+        //parse through options
         const itemName = interaction.options.getString('item')!.toLowerCase()
         const amount = interaction.options.getInteger('amount')!
         const recipient = interaction.options.getUser('user')
+        //grab the item info
         const item = items[itemName as keyof typeof items]
 
+        //Check that the user is an admin
         const isAdmin = admins.findIndex((item) => item === interaction.user.id) >= 0
 
+        //Grab the data of the user you're giving an item to
         if(recipient) {
             try{
                 profileData = await UserModel.findOne({userid:recipient.id});
@@ -42,6 +46,7 @@ module.exports = {
             }
         }
         
+        
         if(!item) {
             interaction.reply({content:`The item ${itemName} does not exist.`,ephemeral:true})
             return;
@@ -51,7 +56,7 @@ module.exports = {
         } 
 
 
-		
+		//Give the items
         try {
             const response = await UserModel.findOneAndUpdate({
                 userid: profileData.userid
@@ -63,6 +68,7 @@ module.exports = {
             interaction.reply({content:'An error occured. please try again.',ephemeral:true})
             return;
         }
+
         let embed = new EmbedBuilder()
             .setTitle(`${interaction.user.displayName} Gave Items to ${recipient?.displayName ?? 'Themselves'}`)
             .setDescription(`${amount} x ${interaction.client.emojis.cache.get(item.emoji)} ${item.name}`)

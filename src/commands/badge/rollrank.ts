@@ -136,6 +136,8 @@ function badgeChances(amount:number) {
     }
 
     //reduces the chances of a green badge, then adjusts all values to make the sum = 1
+
+    //TODO: Is this supposed to be less than or greater than?
     if(amount < 100000) {
         const ratio = (amount-dec/10)/dec/10;
         chances[0]-=ratio;

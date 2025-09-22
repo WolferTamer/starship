@@ -1,10 +1,12 @@
 import encounters from '../../data/encounters.json'
 
 module.exports = (type = '', profileData: any) => {
+    //Generates a random encounter.
     let rand = Math.random()
     if(type === '') {
         const chanceTable = {'combat':.5,'choice':.7,'boost':.9,'reward':1};
         if(profileData && profileData.pet > 0) {
+            //Some pets modify chances of certain encounters, modify table to reflect that
             const pet = profileData.pets[profileData.pet]
             if(pet.petid == 4) {
                 chanceTable.combat = .4
@@ -28,6 +30,8 @@ module.exports = (type = '', profileData: any) => {
         }
     
     }
+
+    //Once the encounter type has been determined, randomly choose a new encounter
     rand = Math.random();
     let newEncounters = encounters[type as keyof typeof encounters].filter((obj) => obj.grade <= profileData.chosenbadge)
     let sum = 0;

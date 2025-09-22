@@ -17,14 +17,15 @@ import {time,
     async execute(interaction: ChatInputCommandInteraction, profileData: any) {
         let lastCollect = profileData.dailytime
         let curStreak = profileData.dailystreak
-
+        //If less than a day has passed, don't collect
+        //If more than 2 days have passed, reset the daily streak
         if(Date.now()-lastCollect < 86400000) {
             interaction.reply(`Your daily rewards will be available in ${time(new Date(lastCollect.getTime()+86400000), TimestampStyles.RelativeTime)}`)
             return;
         } if (Date.now()-lastCollect > 2*86400000) {
             curStreak = 0
         }
-
+        //Calculate rewards
         let coreTier = Math.min(Math.floor(curStreak/10),5)
         let extras = Math.max(Math.floor(curStreak/10 - 5),0)
         let money = 500*(curStreak+1)
@@ -44,7 +45,7 @@ import {time,
                 }
             });
         } catch(e) {
-            interaction.reply({content:`An erro occured claiming your reward, please try again.`, ephemeral:true})
+            interaction.reply({content:`An error occured claiming your reward, please try again.`, ephemeral:true})
             return;
         }
         let itemInfo = items[`${tierToName(coreTier)}core` as keyof typeof items]

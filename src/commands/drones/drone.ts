@@ -17,6 +17,7 @@ module.exports = {
         .addIntegerOption((option) => option.setName('drone').setDescription('The bot you want to check')
             .setMinValue(1).setRequired(true)),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
+
         const botNum = interaction.options.getInteger('drone')!;
         if(botNum > profileData.drones.length) {
             interaction.reply({content:`You don't have that many bots!`,ephemeral:true})
@@ -33,18 +34,25 @@ module.exports = {
             .setLabel('Start Working')
             .setStyle(ButtonStyle.Primary)
             .setDisabled(false)
+        //If the drone is currently working, that means it's either ready to provide items or
+        //still needs to finish. We check both scenarios here.
         if(drone.working) {
             if(Date.now()-drone.sent.getTime() >= workTime*60000) {
+                //Drone is done working, award items
                 let newItems = rollItems(drone)
                 let stringVal = ''
                 let petChance = Math.random()
                 let pet = profileData.pets[profileData.pet]
                 let multiplier = 1
+
+                //Check to see if we can double items due to the player's pet
                 if(profileData.pet > 0 && petChance < pets[pet.petid].postchance && pet.petid == 2) {
                     activatedPet(1,profileData)
                     multiplier = 2
                     interaction.channel?.send(`Your ${pet.petname} has doubled your item output!`)
                 }
+
+                //Multiply the amount of items and create the string to display.
                 for(let [key,val] of Object.entries(newItems)) {
                     newItems[key] *=multiplier;
                     val = newItems[key]
@@ -54,6 +62,7 @@ module.exports = {
                 embed.addFields([
                     {name:`Finished working for ${drone.amount} items`,value:stringVal}
                 ])
+                //Update the user's profile
                 try {
                     const res = await UserModel.findOneAndUpdate({
                         userid: profileData.userid
@@ -61,6 +70,7 @@ module.exports = {
                         $set: {[`drones.${botNum-1}.working`]:false},
                         $inc: newItems
                     });
+                    //Update the user quests
                     let questUpdates: {[key:string]:number} = {}
                     for(let [key,amount] of Object.entries(newItems)) {
                         questUpdates[key.substring(5)] = amount as number
@@ -72,6 +82,7 @@ module.exports = {
                     return
                 }
             } else {
+                //Not finished working, show progress
                 embed.addFields([
                     {name:`Work Status:`,value:`${Math.round(((drone.sent.getTime()+(workTime*60000))-Date.now())/600)/100} minutes left`}
                 ])
@@ -88,9 +99,11 @@ module.exports = {
         
         const filter = (i: any) => i.user.id == interaction.user.id
         const collector = response.createMessageComponentCollector({ componentType: ComponentType.Button, time: 60_000, filter });
-    
+        
+        
         collector.on('collect', async i => {
             if(i.customId==='startwork') {
+                //Send the drone out and reset the timer.
                 try {
                     const res = await UserModel.findOneAndUpdate({
                         userid: profileData.userid

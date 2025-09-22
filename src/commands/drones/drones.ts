@@ -11,6 +11,7 @@ module.exports = {
 		.setName('drones')
 		.setDescription('Look at all your drones'),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
+        //Only shows information about the drones, you can't interact with them.
 		let embed = new EmbedBuilder()
             .setTitle('Drones')
             .setColor(0x3ea5b3)

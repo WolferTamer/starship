@@ -12,6 +12,7 @@ module.exports = {
 		.setDescription('Check which rank you have!'),
     cooldown: 60,
 	async execute(interaction: CommandInteraction, profileData: any) {
+
         const embed = new EmbedBuilder()
             .setColor(tierToHex(profileData.badgetier))
             .setTitle(`You are ${tierToColor(profileData.badgetier)} rank!`)
@@ -37,6 +38,8 @@ module.exports = {
             .setComponents([selectmenu])
 		let response = await interaction.reply({embeds:[embed],components:[actionRow]});
 
+        //We use the dropdown for users to select their rank, allowing them to lower the difficulty
+        //Of /explore if they're in over their head
         const filter = (i: any) => i.user.id == interaction.user.id
         const dropdownCollector = response.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 60_000, filter });
         dropdownCollector.on('collect', async (i : StringSelectMenuInteraction) => {

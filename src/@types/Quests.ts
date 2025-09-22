@@ -1,3 +1,5 @@
+//Typing for quests and objectives
+
 interface Objective {
     name: string,
     type: string,

@@ -3,6 +3,9 @@ import quests from "../../data/quests.json";
 import { Objective, Quest } from "../@types/Quests";
 const UserModel = require("./schema");
 
+//Each of these functions is called when their respective task is done. The filter for if the action
+//Will count towards the quest is done within the function
+
 function weaponDestroyed(weapon: string, profileData: any) {
   if (profileData.quest.giver === "commander") {
     let quest = getQuest("commander", profileData.questindex.commander) as Quest;
@@ -53,6 +56,8 @@ function itemObtained(item:string, amount:number, profileData: any) {
     sendUpdates(updates,profileData.userid)
   }
 }
+
+//Variation on itemObtained that allowd for multiple items to be checked at once
 function itemsObtained(items: {[key:string]:number}, profileData: any) {
   if(profileData.quest.giver === 'miner') {
     let quest: Quest = getQuest("miner", profileData.questindex.miner)

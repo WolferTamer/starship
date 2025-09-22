@@ -28,6 +28,8 @@ module.exports = {
     let quest = profileData.quest;
     let embed: EmbedBuilder;
     let actionRow: ActionRowBuilder<ButtonBuilder>;
+
+    //If the user already has a quest assigned, display the progress.
     if (quest.giver === "") {
       [embed, actionRow] = chooseGiverEmbed();
     } else {
@@ -48,9 +50,12 @@ module.exports = {
 
     collector.on("collect", async (i) => {
       if (i.customId.includes("quest")) {
+        //IDs that include quest are ones that assign a new quest
         let giver = i.customId.substring(5);
         let curIndex = profileData.questindex[giver];
         let newQuest : Quest
+
+        //get quest info, first case is repearing
         if (curIndex >= quests[giver as keyof typeof quests].ordered.length) {
           curIndex =
             (curIndex - quests[giver as keyof typeof quests].ordered.length) %
@@ -61,6 +66,7 @@ module.exports = {
           curIndex
         ] as Quest
         }
+        //Add a progress value for each objective
         let progressItems = [];
         for (let objective of newQuest.objectives) {
           progressItems.push(0);
@@ -81,10 +87,12 @@ module.exports = {
           },
           {new:true}
         );
+        //Change embed to show progress/current quest
         let objs = questProgressEmbed(profileData)
         interaction.editReply({ embeds:[objs[0]], components: [objs[1]] });
         i.deferUpdate()
       } else if (i.customId === "turnin") {
+        //Button for when the quest is complete and you're claiming it
         let curIndex = profileData.questindex[profileData.quest.giver];
         let newQuest = quests[profileData.quest.giver as keyof typeof quests]
           .ordered[curIndex] as Quest;

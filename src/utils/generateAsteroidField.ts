@@ -1,3 +1,4 @@
+//Function that generates the asteroid field data, not the info
 module.exports = (width: number = 10, height: number = 10) : boolean[][] => {
     let field: boolean[][] = new Array()
     for(let i = 0; i < width; i++) {

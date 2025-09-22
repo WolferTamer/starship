@@ -27,12 +27,14 @@ module.exports = {
     let set: any = {};
 
     for (let i = 0; i < profileData.drones.length; i++) {
+      //Same logic as /drone, just does it for all drones incrementally
       let obj = profileData.drones[i];
       if (obj.working) {
         const workTime = (2 / obj.speed) * obj.amount;
         if (Date.now() - obj.sent.getTime() >= workTime * 60000) {
           completedDrones += `${interaction.client.emojis.cache.get(drones[i].emoji)} `;
           let stuff = rollItems(obj);
+          //Items CANNOT be multiplied by pets when doing /fleet
           for (let [key, item] of Object.entries(stuff)) {
             if (inc[key]) {
               inc[key] += item;

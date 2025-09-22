@@ -18,11 +18,16 @@ module.exports = {
         .addUserOption((option) => option.setName('user').setDescription('The user you want to give an item to (yourself by default)')
             .setRequired(false)),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
+        //Parse the options
         const petName = interaction.options.getString('pet')!.toLowerCase()
         const recipient = interaction.options.getUser('user')
+
+        //Since pets are identified by numberical ID, convert the name to the ID
         const index = pets.pets.findIndex((obj) => obj.name.toLowerCase() === petName)
+        //Check that the user is an admin
         const isAdmin = admins.findIndex((item) => item === interaction.user.id) >= 0
 
+        //If a recipient is specified, grab that user info. If not, use the player who ran the command
         if(recipient) {
             try{
                 profileData = await UserModel.findOne({userid:recipient.id});
@@ -36,6 +41,8 @@ module.exports = {
                 return;
             }
         }
+
+        //Check that the index is valid and return false if not
         if(index < 0) {
             interaction.reply({content:`The pet ${petName} does not exist.`,ephemeral:true})
             return;
@@ -44,11 +51,13 @@ module.exports = {
             return;
         }
 
+        //Create pet info
         let newPet = {
             petid:index,
             petname:pets.pets[index].name
         }
 		
+        //Add the pet to the profile.
         try {
             const response = await UserModel.findOneAndUpdate({
                 userid: profileData.userid

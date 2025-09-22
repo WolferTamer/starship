@@ -70,4 +70,4 @@ const baseSchema = new mongoose.Schema({
 
 const UserModel = mongoose.model('Base', baseSchema);
 
-module.exports = UserModel;
+export default UserModel;

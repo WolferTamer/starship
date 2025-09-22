@@ -10,6 +10,8 @@ module.exports = {
 		.setName('inventory')
 		.setDescription('Look at all your items'),
 	async execute(interaction: ChatInputCommandInteraction, profileData: any) {
+        //Create one embed for each rarity so that the user can navigate between them
+        //Show all items even if the user doesn't have a specific one
         let embeds: EmbedBuilder[] = []
         for(let i = 0; i < 6; i++) {
             let embed = new EmbedBuilder()
@@ -47,6 +49,7 @@ module.exports = {
 
         collector.on('collect', async i => {
             if(i.customId === 'previnv') {
+                //Go to the next lowest rarirty page, disable if at the lowest rarity
                 index--;
                 if(index == 0) {
                     prevbutton.setDisabled(true)

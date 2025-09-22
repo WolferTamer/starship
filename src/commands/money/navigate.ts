@@ -79,6 +79,7 @@ module.exports = {
                 }
                 x--;
             }
+            //Always runs no matter which move direction is chosen
             if(i.customId.includes('navigate')) {
                 embed.setDescription(createText(field,y,x))
                 if(field[y][x]) {
@@ -86,6 +87,7 @@ module.exports = {
                     embed.setColor(0xFF0000)
                 }
                 if(y == field.length-1 && x == field[0].length-1) {
+                    //User won, award money
                     embed.setColor(0x00FF00)
                     let amount = Math.round((2**(profileData.chosenbadge-7))*(response.createdTimestamp+60000-Date.now())/2)
                     embed.setFooter({text:`You won $${amount}`})
@@ -112,12 +114,14 @@ function createText(field: boolean[][], x: number, y: number, firstMove: boolean
     for(let i = 0; i < field.length; i++) {
         for(let j = 0; j < field[i].length;j++) {
             if (i == field.length-1 && j == field[i].length-1){
+                //The exit/goal. Celebration emoji if the user made it there
                 if(i ==x && j ==y) {
                     text+='🎉'
                 } else {
                     text+='❌'
                 }
             }else if(field[i][j]) {
+                //Asteroid tile. Comet emoji on first move, explosion if the player hit it, and hidden in other scenarios
                 if(i ==x && j ==y) {
                     text+='💥'
                 } else if (firstMove){
@@ -126,6 +130,7 @@ function createText(field: boolean[][], x: number, y: number, firstMove: boolean
                     text+='➕'
                 }
             } else {
+                //Green if it's the location of the user and nothing else is there.
                 if(i ==x && j ==y) {
                     text+='🟢'
                 } else {

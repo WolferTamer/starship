@@ -14,6 +14,7 @@ module.exports = async (profileData: any, client: Client) => {
     const rand = Math.random()
     let petInstance = profileData.pets[profileData.pet]
     if(rand < chance) {
+        //Called if the user hit the chance to activate the pet ability
         if(profileData.pets[profileData.pet].petid == 0) {
             let randItem = rollItem({quality:profileData.chosenbadge})
             const id = randItem.split('.')[1]
@@ -22,6 +23,7 @@ module.exports = async (profileData: any, client: Client) => {
             return `${client.emojis.cache.get(pet.icon)} ${profileData.pets[profileData.pet].petname} gave you 2 ${items[id as keyof typeof items].name}`
         } else if(profileData.pets[profileData.pet].petid == 1){
             if(petInstance.progress == 0) {
+                //Some pets require progress after being activated, so this sends that update to the db
                 activatedPet(1,profileData)
                 try {
                     const response = await UserModel.findOneAndUpdate({
@@ -61,6 +63,7 @@ module.exports = async (profileData: any, client: Client) => {
     }
 }
 
+//function to give the user an item
 async function giveItem(item:string, profileData: any, amount: number) {
     try {
         const response = await UserModel.findOneAndUpdate({

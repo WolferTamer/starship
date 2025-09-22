@@ -1,6 +1,6 @@
 import { Client, CommandInteraction, Events, Interaction, Collection } from "discord.js";
 const petPostFix =require( '../utils/petPostFix')
-const UserModel = require('../utils/schema')
+import UserModel from "../utils/schema";
 //Gets called whenever an interaction (command) occurs.
 
 module.exports = {
@@ -58,23 +58,24 @@ module.exports = {
         try{
             profileData = await UserModel.findOne({userid:interaction.user.id});
             if(!profileData) {
-                let profile = await UserModel.create({
+                let profileData = await UserModel.create({
                     userid: interaction.user.id
                 });
-                profile.save();
-                profileData = await UserModel.findOne({userid:interaction.user.id});
+                profileData.save();
                 prefix += "A user profile was created in our database. If you should have already had user data, please contact support \n"
             }
         } catch (e) {
             console.log(e)
+            interaction.reply({content:'An error occured when fetching your information. Please try again',ephemeral:true})
+            return
         }
 
         
 
         //Save the profile so as to register any new values with defaults
-        profileData.save();
+        profileData!.save();
 
-        if(profileData.pet > -1) {
+        if(profileData!.pet > -1) {
             const petPost = await petPostFix(profileData,interaction.client)
             if(petPost) {
                 postfix += '\n'+ petPost + '\n'
